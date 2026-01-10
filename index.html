@@ -503,6 +503,67 @@
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
             animation: popupFadeIn 0.4s;
         }
+
+        .popup-overlay .popup-content {
+            max-height: 80vh;
+            overflow: auto;
+        }
+
+        .popup-image {
+            margin: 12px 0 18px;
+            text-align: center;
+        }
+
+        .popup-image img {
+            max-width: 100%;
+            max-height: 60vh;
+            height: auto;
+            display: inline-block;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+        }
+        
+            /* 图片模态放大层 */
+            .image-modal-overlay {
+                position: fixed;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(0,0,0,0.8);
+                z-index: 3000;
+                padding: 20px;
+            }
+
+            .image-modal-inner {
+                max-width: 95vw;
+                max-height: 95vh;
+                position: relative;
+            }
+
+            .image-modal-img {
+                display: block;
+                max-width: 100%;
+                max-height: 100%;
+                border-radius: 8px;
+                box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            }
+
+            .image-modal-close {
+                position: absolute;
+                top: -10px;
+                right: -10px;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+                background: rgba(0,0,0,0.6);
+                color: #fff;
+                border: none;
+                font-size: 20px;
+                line-height: 36px;
+                cursor: pointer;
+                box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+            }
         
         @keyframes popupFadeIn {
             from { opacity: 0; transform: translateY(-20px); }
@@ -559,7 +620,6 @@
             background-color: #f78fb3;
         }
         
-        /* 响应式设计 */
         @media (max-width: 900px) {
             .content-image {
                 float: none;
@@ -630,9 +690,12 @@
             <div class="popup-title">重要提醒</div>
             <div class="popup-message">
                 <p>欢迎来到Qy Server！我们是一个基岩版1.21.50+的Minecraft服务器</p>
-                <p>网站部分音乐来自FreePD</p>
                 <p>请务必遵守服务器规则，共同维护良好的游戏环境</p>
+              <div class="popup-image">
+                  <img src="https://qycloudreve.s.odn.cc/f/VdOIr/2026-01-01_00.01.51.webp" alt="">
+              </div>
               <p>游戏延迟高输入 /server 来切换线路</p>
+              <h3><font color="＃FF0000">网页地图因被攻击而暂时关闭</font></h3>
             </div>
             <div class="popup-footer">
                 <label class="popup-checkbox">
@@ -686,6 +749,12 @@
                                 <div class="content-image">
                                     <div class="carousel" id="heroCarousel">
                                         <div class="carousel-track">
+                                          
+                                            <div class="carousel-item">
+                                                <a href="http://qyserver.s.odn.cc/tl/detail.html?img=https://qycloudreve.s.odn.cc/f/dA3iY/%E5%89%AA%E8%B4%B4%E6%9D%BF%201767282759502.jpg&title=%E5%85%83%E6%97%A6%E5%90%88%E7%85%A7&desc=&date=2026.01.01&loc=%E6%B4%BB%E5%8A%A8%E6%9C%8D&author=weishao22&uthor=">
+                                                    <img src="https://qycloudreve.s.odn.cc/f/1EAtW/2026-01-01_22.09.18_2.webp" alt="">
+                                                </a>
+                                        </div>
                                             <div class="carousel-item">
                                                 <a href="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp">
                                                     <img src="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp" alt="中秋节合照">
@@ -711,25 +780,25 @@
                                 </div>
                 <div class="content-text">
                     <h3>想加入服务器，应该怎么做？</h3>
-                    <p>非常简单，您只需要阅读<a href="http://qyserver.s.odn.cc/rules/">游戏规则</a>然后下载客户端即可游玩。</p>
+                    <p>非常简单，您只需要阅读<a href="/rules/">游戏规则</a>然后下载客户端即可游玩。</p>
                     
                     <button class="add-server-btn" id="add-server-btn">
                         <i class="fas fa-plus-circle"></i> 一键加入游戏
                     </button>
 
-                    <p>关于游戏方面的问题和知识，请阅读我们的<a href="http://qyserver.s.odn.cc/command/">《服务器指令》</a>。</p>
+                    <p>关于游戏方面的问题和知识，请阅读我们的<a href="/command/">《服务器指令》</a>。</p>
                     <h3>服务器规章制度</h3>
                     <p>不要破坏其他玩家的建筑！任何破坏行为都是被禁止的！</p>
                     <p>服内增加了更多遗迹Mod，您可以在这些建筑中找到各种物资。</p>
                     <p>如果您在服内看到恶意破坏行为，请立即向管理员举报！</p>
-                    <p>详细的规章制度，请<a href="http://qyserver.s.odn.cc/rules/">点击这里查看</a>。</p>
-                    
+              /rules/">点击这里查看</a>。</p>
+                  
                     <h3>其他资源</h3>
                     <p>联系邮箱：<a href="mailto:weishao22@outlook.com">weishao22@outlook.com</a>（游戏问题反馈、玩家举报）</p>
                     <p><a href="/tl/">游戏图廊</a></p>
                     <p><a href="/xz/">文件下载</a></p>
-                    <p>游戏音乐<a href="/music/">点击这里</a></p>
-                  <p><a href="/Video/z/">测试视频</a></p>
+                    <p><a href="/music/">游戏音乐</a></p>
+                    <p><a href="/Video/z/">测试视频</a></p>
                 </div>
             </div>
         </div>
@@ -746,10 +815,10 @@
           <div class="footer-section">
                 <h3>其他链接</h3>
                 <div class="footer-links">
-                    <a href="http://qyserver.s.odn.cc/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
-                    <a href="http://qyserver.s.odn.cc/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
-                    <a href="http://qyserver.s.odn.cc/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
-                    <a href="http://qyserver.s.odn.cc/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
+                    <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
+                    <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
+                    <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
+                    <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
                   <a href="https://qyservermap.s.odn.cc"><i class="fas fa-arrow-right"></i> 地图</a>
                   <a href="/qy/"><i class="fas fa-arrow-right"></i> 关于</a>
                   <a href="http://qyserver.s.odn.cc/" id="resetPopup"><i class="fas fa-arrow-right"></i>重置弹窗</a>
@@ -792,10 +861,51 @@
                 }, 500);
             }, 1500);
         });
+
+        // 图片放大辅助：在大屏幕显示模态，否则打开新标签
+        function openImageModal(src) {
+            if (document.querySelector('.image-modal-overlay')) return;
+            const overlay = document.createElement('div');
+            overlay.className = 'image-modal-overlay';
+            overlay.innerHTML = `
+                <div class="image-modal-inner">
+                    <img class="image-modal-img" src="${src}" alt="预览">
+                    <button class="image-modal-close" aria-label="关闭">×</button>
+                </div>`;
+            document.body.appendChild(overlay);
+
+            // 点击遮罩空白处关闭
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) overlay.remove();
+            });
+
+            // 关闭按钮
+            overlay.querySelector('.image-modal-close').addEventListener('click', function() {
+                overlay.remove();
+            });
+
+            // ESC 关闭
+            const escHandler = function(e) {
+                if (e.key === 'Escape') {
+                    overlay.remove();
+                    document.removeEventListener('keydown', escHandler);
+                }
+            };
+            document.addEventListener('keydown', escHandler);
+        }
+
+        function handleImageClick(src) {
+            if (window.innerWidth >= 900) {
+                openImageModal(src);
+            } else {
+                window.open(src, '_blank');
+            }
+        }
+
 // 在页面加载时检查是否应该显示弹窗
 document.addEventListener('DOMContentLoaded', function() {
     // 检查localStorage中是否有"dontShowPopu"标志
-    if (localStorage.getItem('dontShowPopu') !== 'true') {
+    if (localStorage.getItem('dontShowPopu1') !== 'true') {
         // 显示弹窗
         setTimeout(function() {
             document.getElementById('popupOverlay').style.display = 'flex';
@@ -806,7 +916,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('popupConfirm').addEventListener('click', function() {
         // 如果勾选了"不再显示"，则保存到localStorage
         if (document.getElementById('dontShowAgain').checked) {
-            localStorage.setItem('dontShowPopu', 'true');
+            localStorage.setItem('dontShowPopu1', 'true');
         }
         document.getElementById('popupOverlay').style.display = 'none';
     });
@@ -817,6 +927,14 @@ document.addEventListener('DOMContentLoaded', function() {
             this.style.display = 'none';
         }
     });
+    // 弹窗图片点击查看大图（大屏幕模态 / 小屏幕新标签）
+    const popupMainImg = document.querySelector('#popupOverlay .popup-image img');
+    if (popupMainImg) {
+        popupMainImg.style.cursor = 'pointer';
+        popupMainImg.addEventListener('click', function() {
+            handleImageClick(this.src);
+        });
+    }
 });
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
@@ -862,9 +980,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="popup-title">加入Qy Server</div>
                     <div class="popup-message">
                         <p>您即将加入我们的服务器，请确保您已安装Minecraft基岩版1.21.50+</p>
-                        <p>服务器地址：<strong>qymc.fucku.top</strong></p>
+                        <p>服务器地址：<strong>qyserver.s.odn.cc</strong></p>
                         <p>端口：<strong>41657</strong></p>
                         <p>点击下方按钮直接启动游戏</p>
+              <div class="popup-image">
+                  <img src="https://qycloudreve.s.odn.cc/f/MqMHl/2026-01-01_00.01.55.webp" alt="1">
+              </div>
                     </div>
                     <div class="popup-footer">
                         <button class="popup-btn" style="background:#ccc;" id="cancelJoin">取消</button>
@@ -874,10 +995,18 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             
             document.body.appendChild(popup);
+            // 为弹窗内图片绑定放大/打开行为（大屏模态 / 小屏新标签）
+            const popupImg = popup.querySelector('.popup-image img');
+            if (popupImg) {
+                popupImg.style.cursor = 'pointer';
+                popupImg.addEventListener('click', function() {
+                    handleImageClick(this.src);
+                });
+            }
             
             // 确认加入游戏
             popup.querySelector('#confirmJoin').addEventListener('click', function() {
-                const serverIp = "qymc.fucku.top";
+                const serverIp = "qyserver.s.odn.cc";
                 const serverPort = 41657;
                 const minecraftLink = `minecraft://?addExternalServer=Qy server|${serverIp}:${serverPort}`;
                 window.location.href = minecraftLink;
