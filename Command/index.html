@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qy Server | 指令</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/all.css">
    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg" type="image/x-icon">
     <style>
         * {
@@ -20,6 +20,17 @@
             background-color: #ff9dc6;
             color: #5F5F5F;
             scroll-behavior: smooth;
+        }
+        /* 隐藏页面右侧默认滚动条（保留滚动功能） */
+        html, body {
+            -ms-overflow-style: none; /* IE 10+ */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        html::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
         }
         
         a {
@@ -113,7 +124,6 @@
             font-size: 17px;
         }
         
-        /* 横幅区域 */
         #banner {
             background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%);
             background-size: cover;
@@ -517,8 +527,7 @@
             color: #666;
             line-height: 1.6;
         }
-        
-        /* 指令页面样式 */
+
         .command-container {
             max-width: 900px;
             margin: 0 auto;
@@ -754,7 +763,6 @@
             <div class="popup-title">重要提醒</div>
             <div class="popup-message">
                 <p>欢迎来到Qy Server！我们是一个基岩版1.21.50+的Minecraft服务器</p>
-                <p>请注意：网站背景音乐来自FreePD</p>
                 <p>请务必遵守服务器规则，共同维护良好的游戏环境</p>
             </div>
             <div class="popup-footer">
@@ -1000,7 +1008,7 @@
         
         <div class="footer-bottom">
             <a href="https://stats.uptimerobot.com/hgMdAGlsWu" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
-            &copy; 2025 Qy Server 版权所有</a>
+            &copy; 2025-2026 Qy Server 版权所有</a>
         </div>
     </footer>
     
