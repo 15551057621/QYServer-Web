@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qy Server更新日志</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/all.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="https://qycloudreve.s.odn.cc/f/D6Dh5/novaskin-wallpaper-insummer%20%281%29.webp" type="image/x-icon">
     <style>
         * {
@@ -20,6 +21,17 @@
             background-color: #f5f5f5;
             color: #5F5F5F;
             scroll-behavior: smooth;
+        }
+        /* 隐藏页面右侧默认滚动条（保留滚动功能） */
+        html, body {
+            -ms-overflow-style: none; /* IE 10+ */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        html::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
         }
         
         a {
@@ -327,12 +339,12 @@
             </div>
             <div class="nav-links">
                 <a href="http://qyserver.s.odn.cc/"><i class="fas fa-home"></i> 首页</a>
-                <a href="/down/"><i class="fas fa-download"></i> 客户端</a>
-                <a href="/mc/"><i class="fas fa-search"></i> 在线查询</a>
-                <a href="/UpdateLog/"><i class="fas fa-history"></i> 更新日志</a>
+                <a href="http://qyserver.s.odn.cc/down/"><i class="fas fa-download"></i> 客户端</a>
+                <a href="http://qyserver.s.odn.cc/mc/"><i class="fas fa-search"></i> 在线查询</a>
+                <a href="http://qyserver.s.odn.cc/UpdateLog/"><i class="fas fa-history"></i> 更新日志</a>
                 <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-map"></i> 地图</a>
-                <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
-                <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
+                <a href="http://qyserver.s.odn.cc/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
+                <a href="http://qyserver.s.odn.cc/gy/"><i class="fas fa-info-circle"></i> 关于</a>
             </div>
         </div>
     </div>
@@ -359,10 +371,10 @@
             <div class="footer-section">
                 <h3>其他链接</h3>
                 <div class="footer-links">
-                    <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
-                    <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
-                    <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
-                    <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
+                    <a href="http://qyserver.s.odn.cc/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
+                    <a href="http://qyserver.s.odn.cc/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
+                    <a href="http://qyserver.s.odn.cc/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
+                    <a href="http://qyserver.s.odn.cc/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
                     <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-arrow-right"></i> 地图</a>
                 </div>
             </div>
@@ -383,86 +395,72 @@
         </div>
     </footer>
     
+    <script src="main.js"></script>
     <script>
-        // 页面加载完成后隐藏加载动画
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.querySelector('.loading').style.opacity = '0';
-                setTimeout(function() {
-                    document.querySelector('.loading').style.display = 'none';
-                }, 500);
-            }, 1000);
-            
-            // 加载更新日志
-            loadChangelog();
-        });
-        
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const menuBox = document.getElementById('menu-box');
-            
-            if (window.scrollY > 20) {
-                menuBox.style.background = "rgba(255, 255, 255, 0.7)";
-                menuBox.style.boxShadow = "0px 2px 10px rgba(0,0,0,0.1)";
-                menuBox.style.backdropFilter = "blur(10px)";
-                menuBox.style.webkitBackdropFilter = "blur(10px)";
-                
-                // 更新导航链接颜色
-                const navLinks = document.querySelectorAll('.nav-links a');
-                navLinks.forEach(link => {
-                    link.style.color = "#5F5F5F";
-                });
-                
-                // 更新logo颜色
-                document.querySelector('.logo h2').style.color = "#333";
-            } else {
-                menuBox.style.background = "none";
-                menuBox.style.boxShadow = "none";
-                menuBox.style.backdropFilter = "blur(10px)";
-                menuBox.style.webkitBackdropFilter = "blur(10px)";
-                
-                // 恢复导航链接颜色
-                const navLinks = document.querySelectorAll('.nav-links a');
-                navLinks.forEach(link => {
-                    link.style.color = "#C6CDD4";
-                });
-                
-                // 恢复logo颜色
-                document.querySelector('.logo h2').style.color = "#C6CDD4";
+        // Lightbox 功能：保留带链接跳转，未带链接则放大
+        (function(){
+            function openLightbox(src){
+                if(!src) return;
+                if(document.querySelector('.lightbox.open')) return;
+                const lb = document.createElement('div');
+                lb.className = 'lightbox open';
+                lb.innerHTML = `
+                    <div class="lightbox-close" aria-label="关闭">×</div>
+                    <img class="lightbox-img" src="${src}">
+                `;
+                document.body.appendChild(lb);
+                function remove(){
+                    if(!lb || !lb.parentNode) return;
+                    lb.classList.remove('open');
+                    lb.remove();
+                    document.removeEventListener('keydown', onKey);
+                }
+                lb.addEventListener('click', function(e){ if(e.target === lb) remove(); });
+                lb.querySelector('.lightbox-close').addEventListener('click', remove);
+                function onKey(e){ if(e.key === 'Escape') remove(); }
+                document.addEventListener('keydown', onKey);
             }
-        });
-        
-        // 加载更新日志数据
-        function loadChangelog() {
-            fetch('changelog.json')
-                .then(res => res.json())
-                .then(data => {
-                    const list = document.getElementById('changelog-list');
-                    if (!data.length) {
-                        list.innerHTML = '<p>暂无更新日志。</p>';
-                        return;
-                    }
-                    
-                    list.innerHTML = data.map(item => {
-                        // 支持换行和图片标签
-                        let html = item.content
-                            .replace(/\n/g, '<br>')
-                            // 允许插入 <img src="..." width="..." height="..."> 标签
-                            .replace(/&lt;img(.*?)&gt;/g, '<img$1>');
-                        
-                        return `
-                            <div class="changelog-item">
-                                <div class="changelog-date">${item.date}</div>
-                                <div class="changelog-title">${item.title}</div>
-                                <div class="changelog-content">${html}</div>
-                            </div>
-                        `;
-                    }).join('');
-                })
-                .catch(() => {
-                    document.getElementById('changelog-list').innerHTML = '<p>无法加载更新日志。</p>';
+
+            function bindImage(img){
+                if(!img) return;
+                // 排除音乐图标等控件
+                if(img.id === 'musicIcon') return;
+                const wrappedByLink = img.closest && img.closest('a');
+                if (wrappedByLink) return;
+
+                img.style.cursor = 'zoom-in';
+                if (img._lightboxBound) return; // 防重复
+                img._lightboxBound = true;
+                img.addEventListener('click', function(e){
+                    e && e.preventDefault && e.preventDefault();
+                    openLightbox(this.src);
                 });
-        }
+            }
+
+            // 初始绑定（已有静态图片）
+            document.addEventListener('DOMContentLoaded', function(){
+                document.querySelectorAll('#content img, .changelog-content img').forEach(bindImage);
+            });
+
+            // 监测动态插入（main.js 可能异步加载日志）
+            const list = document.getElementById('changelog-list');
+            if(list){
+                const mo = new MutationObserver(function(muts){
+                    muts.forEach(m => {
+                        m.addedNodes.forEach(node => {
+                            if(node.nodeType !== 1) return;
+                            // 新增的日志项内图片
+                            node.querySelectorAll && node.querySelectorAll('img').forEach(bindImage);
+                            // 若整个列表被替换，重复绑定所有图片作为兜底
+                            if(node.id === 'changelog-list' || node.classList && node.classList.contains('changelog-container')){
+                                document.querySelectorAll('#content img, .changelog-content img').forEach(bindImage);
+                            }
+                        });
+                    });
+                });
+                mo.observe(list, { childList: true, subtree: true });
+            }
+        })();
     </script>
 </body>
 </html>
