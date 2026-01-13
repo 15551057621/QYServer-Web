@@ -24,6 +24,17 @@
             color: #5F5F5F;
             scroll-behavior: smooth;
         }
+        /* 隐藏页面右侧默认滚动条（保留滚动功能） */
+        html, body {
+            -ms-overflow-style: none; /* IE 10+ */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        html::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+        }
         
         a {
             text-decoration: none;
@@ -484,29 +495,51 @@
         .popup-overlay {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0; /* top:0; right:0; bottom:0; left:0 */
+            width: 100vw;
+            height: 100vh;
+            right: 0;
+            bottom: 0;
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 2000;
             justify-content: center;
             align-items: center;
+            box-sizing: border-box;
+            padding: 20px; /* 保证移动端有内边距 */
         }
         
         .popup-content {
             background-color: #fff;
             border-radius: 10px;
-            width: 90%;
-            max-width: 500px;
+            width: 100%;
+            max-width: 520px;
             padding: 30px;
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
             animation: popupFadeIn 0.4s;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
 
         .popup-overlay .popup-content {
             max-height: 80vh;
             overflow: auto;
+        }
+
+        /* 隐藏弹窗内部默认滚动条（仍允许滚动） */
+        .popup-overlay .popup-content::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+        }
+        .popup-overlay .popup-content {
+            -ms-overflow-style: none; /* IE 10+ */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        /* 在显示弹窗时锁定页面滚动 */
+        .no-scroll {
+            overflow: hidden !important;
+            height: 100vh !important;
         }
 
         .popup-image {
@@ -693,9 +726,10 @@
                 <p>请务必遵守服务器规则，共同维护良好的游戏环境</p>
               <div class="popup-image">
                   <img src="https://qycloudreve.s.odn.cc/f/VdOIr/2026-01-01_00.01.51.webp" alt="">
-              </div>
+                </div>
               <p>游戏延迟高输入 /server 来切换线路</p>
-              <h3><font color="＃FF0000">网页地图因被攻击而暂时关闭</font></h3>
+              <h3><font color="＃FF0000">网页地图因被攻击而暂时关闭<br>如果您无法加载网页中的图片可能是您所在的地区ip因为攻击被拉黑</font></h3>
+              <p>被拉黑大概会在几个星期左右恢复</p>
             </div>
             <div class="popup-footer">
                 <label class="popup-checkbox">
@@ -791,7 +825,7 @@
                     <p>不要破坏其他玩家的建筑！任何破坏行为都是被禁止的！</p>
                     <p>服内增加了更多遗迹Mod，您可以在这些建筑中找到各种物资。</p>
                     <p>如果您在服内看到恶意破坏行为，请立即向管理员举报！</p>
-              /rules/">点击这里查看</a>。</p>
+                    <p><a href="/rules/">点击这里查看</a>。</p>
                   
                     <h3>其他资源</h3>
                     <p>联系邮箱：<a href="mailto:weishao22@outlook.com">weishao22@outlook.com</a>（游戏问题反馈、玩家举报）</p>
@@ -837,7 +871,7 @@
         
         <div class="footer-bottom">
             <a href="https://stats.uptimerobot.com/hgMdAGlsWu" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
-            &copy; 2025 Qy Server 版权所有</a>
+            &copy; 2025-2026 Qy Server 版权所有</a>
         </div>
     </footer>
     
@@ -862,37 +896,44 @@
             }, 1500);
         });
 
-        // 图片放大辅助：在大屏幕显示模态，否则打开新标签
-        function openImageModal(src) {
-            if (document.querySelector('.image-modal-overlay')) return;
-            const overlay = document.createElement('div');
-            overlay.className = 'image-modal-overlay';
-            overlay.innerHTML = `
-                <div class="image-modal-inner">
-                    <img class="image-modal-img" src="${src}" alt="预览">
-                    <button class="image-modal-close" aria-label="关闭">×</button>
-                </div>`;
-            document.body.appendChild(overlay);
+        
+            // 图片放大辅助：在大屏幕显示模态，否则打开新标签
+            function openImageModal(src) {
+                // 避免重复打开多个模态
+                if (document.querySelector('.image-modal-overlay')) return;
 
-            // 点击遮罩空白处关闭
-            overlay.addEventListener('click', function(e) {
-                if (e.target === overlay) overlay.remove();
-            });
+                const overlay = document.createElement('div');
+                overlay.className = 'image-modal-overlay';
+                overlay.innerHTML = `
+                    <div class="image-modal-inner" role="dialog" aria-modal="true">
+                        <button class="image-modal-close" aria-label="关闭">×</button>
+                        <img class="image-modal-img" src="${src}" alt="放大图片">
+                    </div>`;
 
-            // 关闭按钮
-            overlay.querySelector('.image-modal-close').addEventListener('click', function() {
-                overlay.remove();
-            });
+                document.body.appendChild(overlay);
 
-            // ESC 关闭
-            const escHandler = function(e) {
-                if (e.key === 'Escape') {
-                    overlay.remove();
-                    document.removeEventListener('keydown', escHandler);
+                // 点击遮罩空白处关闭
+                overlay.addEventListener('click', function(e) {
+                    if (e.target === overlay) removeOverlay();
+                });
+
+                // 关闭按钮、点击图片不关闭（只用于展示）
+                const closeBtn = overlay.querySelector('.image-modal-close');
+                closeBtn.addEventListener('click', removeOverlay);
+
+                // ESC 关闭
+                function escHandler(e) {
+                    if (e.key === 'Escape') removeOverlay();
                 }
-            };
-            document.addEventListener('keydown', escHandler);
-        }
+                document.addEventListener('keydown', escHandler);
+
+                // 移除 overlay 及相关监听
+                function removeOverlay() {
+                    if (!overlay || !overlay.parentNode) return;
+                    document.removeEventListener('keydown', escHandler);
+                    overlay.remove();
+                }
+            }
 
         function handleImageClick(src) {
             if (window.innerWidth >= 900) {
@@ -905,10 +946,14 @@
 // 在页面加载时检查是否应该显示弹窗
 document.addEventListener('DOMContentLoaded', function() {
     // 检查localStorage中是否有"dontShowPopu"标志
-    if (localStorage.getItem('dontShowPopu1') !== 'true') {
-        // 显示弹窗
+    if (localStorage.getItem('dontShowPopu') !== 'true') {
+        // 显示弹窗并锁定背景滚动
         setTimeout(function() {
-            document.getElementById('popupOverlay').style.display = 'flex';
+            const po = document.getElementById('popupOverlay');
+            if (po) {
+                po.style.display = 'flex';
+                document.body.classList.add('no-scroll');
+            }
         }, 2000);
     }
     
@@ -916,15 +961,18 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('popupConfirm').addEventListener('click', function() {
         // 如果勾选了"不再显示"，则保存到localStorage
         if (document.getElementById('dontShowAgain').checked) {
-            localStorage.setItem('dontShowPopu1', 'true');
+            localStorage.setItem('dontShowPopu', 'true');
         }
-        document.getElementById('popupOverlay').style.display = 'none';
+        const po = document.getElementById('popupOverlay');
+        if (po) po.style.display = 'none';
+        document.body.classList.remove('no-scroll');
     });
     
     // 点击遮罩层也可关闭弹窗
     document.getElementById('popupOverlay').addEventListener('click', function(e) {
         if (e.target === this) {
             this.style.display = 'none';
+            document.body.classList.remove('no-scroll');
         }
     });
     // 弹窗图片点击查看大图（大屏幕模态 / 小屏幕新标签）
@@ -935,6 +983,26 @@ document.addEventListener('DOMContentLoaded', function() {
             handleImageClick(this.src);
         });
     }
+
+    document.querySelectorAll('#content img, .content-image img, .popup-image img').forEach(img => {
+        if (!img) return;
+        if (img.id === 'musicIcon') return; // 排除控制图标
+
+        const inCarousel = img.closest && img.closest('.carousel');
+        const wrappedByLink = img.closest && img.closest('a');
+
+        // 如果在轮播里并且被链接包裹，则不绑定（保留跳转行为）
+        if (inCarousel && wrappedByLink) return;
+
+        // 其它情况绑定放大行为（轮播内未被链接包裹的图片也会在此绑定）
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function(e) {
+            // 如果 img 在 <a> 内，但我们仍在绑定（保护性检查），不阻止默认行为
+            const parentLink = this.closest && this.closest('a');
+            if (parentLink) return; // 交给链接处理
+            handleImageClick(this.src);
+        });
+    });
 });
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
@@ -995,6 +1063,8 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             
             document.body.appendChild(popup);
+            // 锁定背景滚动并隐藏页面右侧滚动条
+            document.body.classList.add('no-scroll');
             // 为弹窗内图片绑定放大/打开行为（大屏模态 / 小屏新标签）
             const popupImg = popup.querySelector('.popup-image img');
             if (popupImg) {
@@ -1011,17 +1081,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 const minecraftLink = `minecraft://?addExternalServer=Qy server|${serverIp}:${serverPort}`;
                 window.location.href = minecraftLink;
                 popup.remove();
+                document.body.classList.remove('no-scroll');
             });
             
             // 取消加入
             popup.querySelector('#cancelJoin').addEventListener('click', function() {
                 popup.remove();
+                document.body.classList.remove('no-scroll');
             });
             
             // 点击遮罩层关闭
             popup.addEventListener('click', function(e) {
                 if (e.target === popup) {
                     popup.remove();
+                    document.body.classList.remove('no-scroll');
                 }
             });
         });
