@@ -30,8 +30,11 @@
 ### **规则**
 - **Cubic Wiki** 
 - [https://nitwikit.8aka.cn/](https://nitwikit.8aka.cn/)
-- 
-  服务器引用的规则
+- 服务器引用的规则
+
+### **评论系统**
+- **Twikoo**
+- [https://twikoo.js.org/](https://twikoo.js.org/)
  ## 其他说明
  
  ###### 本项目大部分代码由AI辅助生成
