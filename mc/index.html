@@ -7,7 +7,7 @@
   <meta http-equiv="refresh" content="130">
   <title>Qy server | 线状态查询</title>
   <link rel="stylesheet" href="assets/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/all.css">
   <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg" type="image/x-icon">
   <script src="/chart.js"></script>
   <style>
@@ -37,6 +37,17 @@
         color: #5F5F5F;
         scroll-behavior: smooth;
     }
+        /* 隐藏页面右侧默认滚动条（保留滚动功能） */
+        html, body {
+            -ms-overflow-style: none; /* IE 10+ */
+            scrollbar-width: none; /* Firefox */
+        }
+
+        html::-webkit-scrollbar {
+            width: 0;
+            height: 0;
+            display: none;
+        }
     
     a {
         text-decoration: none;
@@ -869,10 +880,10 @@
             <div class="footer-section">
                 <h3>快速链接</h3>
                 <div class="footer-links">
-                    <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
-                    <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
-                    <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
-                    <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
+                    <a href="http://qyserver.s.odn.cc/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
+                    <a href="http://qyserver.s.odn.cc/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
+                    <a href="http://qyserver.s.odn.cc/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
+                    <a href="http://qyserver.s.odn.cc/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
                     <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-arrow-right"></i> 地图</a>
                     <a href="http://qyserver.s.odn.cc/" id="resetPopup"><i class="fas fa-arrow-right"></i>重置弹窗</a>
                 </div>
@@ -890,7 +901,7 @@
         
         <div class="footer-bottom">
             <a href="https://stats.uptimerobot.com/hgMdAGlsWu" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
-            &copy; 2025 Qy Server 版权所有</a>
+            &copy; 2025-2026 Qy Server 版权所有</a>
         </div>
     </footer>
 
