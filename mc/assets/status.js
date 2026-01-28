@@ -1,7 +1,7 @@
-const serverHost = 'qymc.fucku.top';
+const serverHost = 'qyserver.s.odn.cc';
 const serverPort = 41657; 
-const statusUrl = 'http://103.205.253.104:59528/api/status';
-const historyUrl = `http://103.205.253.104:59528/api/history`;
+const statusUrl = 'http://103.205.253.87:15698/api/status';
+const historyUrl = `http://103.205.253.87:15698/api/history`;
 
 function fetchStatus() {
   fetch(statusUrl)
