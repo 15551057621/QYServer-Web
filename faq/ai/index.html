@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 对话 - Qy Server</title>
+  <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg" type="image/x-icon">
+  <link rel="stylesheet" href="/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "微软雅黑", "Microsoft YaHei", Roboto, Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: #333;
+      padding-top: 80px; /* 为固定导航栏留出空间 */
+    }
+
+    /* 固定背景层 */
+    .bg-fixed {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      pointer-events: none;
+    }
+
+    /* 隐藏滚动条 */
+    html, body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    html::-webkit-scrollbar {
+      display: none;
+    }
+    .messages::-webkit-scrollbar {
+      width: 6px;
+    }
+    .messages::-webkit-scrollbar-track {
+      background: #f9f9f9;
+    }
+    .messages::-webkit-scrollbar-thumb {
+      background: hsla(339, 86%, 81%, 0.548);
+      border-radius: 3px;
+    }
+    .messages {
+      scrollbar-width: thin;
+      scrollbar-color: hsla(339, 86%, 81%, 0.548) #f9f9f9;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ===== 导航栏 ===== */
+    #menu-box {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 60px;
+      background: none;
+      z-index: 100;
+      transition: all 0.4s ease;
+      display: flex;
+      justify-content: center;
+    }
+
+    .menu {
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+    }
+
+    .logo h2 {
+      color: #C6CDD4;
+      font-size: 28px;
+      transition: all 0.4s ease;
+    }
+
+    .logo h2:hover {
+      color: white;
+      font-size: 30px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-links a {
+      color: #C6CDD4;
+      padding: 8px 15px;
+      border-radius: 4px;
+      transition: all 0.4s ease;
+      font-size: 16px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.1);
+      font-size: 17px;
+    }
+
+    /* ===== AI 对话区域 ===== */
+    #content {
+      padding: 60px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content-box {
+      max-width: 920px;
+      margin: 40px auto;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .content-box h2 {
+      font-size: 2.2rem;
+      color: #333;
+      margin-bottom: 30px;
+      position: relative;
+      padding-bottom: 15px;
+      text-align: center;
+    }
+
+    .content-box h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: #f8a5c2;
+      border-radius: 2px;
+    }
+
+    /* 新增警示条样式 */
+    .ai-warning {
+      background: #fff3cd;
+      border: 1px solid #ffeeba;
+      color: #856404;
+      padding: 10px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+    .ai-warning i {
+      font-size: 1.2rem;
+    }
+
+    .chat-window {
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.98);
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .messages {
+      max-height: 56vh;
+      overflow-y: auto;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .msg {
+      margin: 0;
+      padding: 10px 14px;
+      border-radius: 10px;
+      display: inline-block;
+      max-width: 75%;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    .msg.user {
+      background: #f8a5c2;
+      color: #fff;
+      align-self: flex-end;
+    }
+
+    .msg.bot {
+      background: #f1f1f1;
+      color: #333;
+      align-self: flex-start;
+    }
+
+    .input-area {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .input-area input[type="text"] {
+      flex: 1;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .input-area button {
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: #f8a5c2;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* ===== 页脚样式（与 index.html 保持一致） ===== */
+    #footer {
+      background: #333;
+      color: #ddd;
+      padding: 50px 0 20px;
+      position: relative;
+      margin-top: 60px;
+    }
+
+    #footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('') center/cover fixed;
+      opacity: 0.1;
+      z-index: 0;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-section {
+      flex: 1;
+      min-width: 300px;
+      margin-bottom: 30px;
+    }
+
+    .footer-section h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #fff;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-section h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: #f8a5c2;
+    }
+
+    .footer-links a {
+      display: block;
+      padding: 8px 0;
+      transition: all 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: #f8a5c2;
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid #444;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-bottom a {
+      color: #f8a5c2;
+      transition: all 0.3s;
+    }
+
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== 响应式 ===== */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      .menu {
+        justify-content: center;
+      }
+      .footer-section {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 固定背景层 -->
+  <div class="bg-fixed" style="background-image: url('https://t.alcy.cc/pc');"></div>
+
+  <!-- 导航栏 -->
+  <div id="menu-box">
+    <div class="menu">
+      <div class="logo">
+        <h2><a href="/"><i class="fas fa-cube"></i> Qy Server</a></h2>
+      </div>
+      <div class="nav-links">
+        <a href="/"><i class="fas fa-home"></i> 首页</a>
+        <a href="/down/"><i class="fas fa-download"></i> 客户端</a>
+        <a href="/mc/"><i class="fas fa-search"></i> 在线查询</a>
+        <a href="/UpdateLog/"><i class="fas fa-history"></i> 更新日志</a>
+        <a href="/map/"><i class="fas fa-map"></i> 地图</a>
+        <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
+        <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI 对话区域 -->
+  <section id="content">
+    <div class="content-box">
+      <h2>AI 助手</h2>
+      <!-- 新增警示条：内容仅供参考 -->
+      <div class="ai-warning">
+        <i class="fas fa-exclamation-triangle"></i> 提示：AI回答由模型生成，内容仅供参考，请自行判断准确性。
+      </div>
+      <div class="chat-window">
+        <div class="messages" id="messages"></div>
+        <div class="input-area">
+          <input id="prompt" type="text" placeholder="输入你的问题，按回车或点击发送" />
+          <button id="sendBtn">发送</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚（与 index.html 一致） -->
+  <footer id="footer">
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>关于我们</h3>
+        <p>Qy Server是一个专注于Minecraft基岩版的生存服务器，提供稳定、有趣的游戏环境，让玩家可以自由建造、探索和社交。</p>
+      </div>
+      
+      <div class="footer-section">
+        <h3>快速链接</h3>
+        <div class="footer-links">
+          <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
+          <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
+          <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
+          <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
+          <a href="/Map/"><i class="fas fa-arrow-right"></i> 地图</a>
+          <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
+          <a href="http://Docs.s.odn.cc/"><i class="fas fa-arrow-right"></i> Qy server Docs</a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h3>联系我们</h3>
+        <div class="footer-links">
+          <a href="mailto:qy@qyserver.cc"><i class="fas fa-envelope"></i> qy@qyserver.cc</a>
+          <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fab fa-qq"></i> QQ群: 1029879634</a>
+          <a href="https://discord.gg/WGcKjt7BNG"><i class="fab fa-discord"></i> Discord</a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <a href="/1/bot/" target="_blank">Uptime Robot</a> | 
+      <a href="https://github.com/weishao22/Qy-server" target="_blank">&copy; 2025-2026 Qy Server 版权所有</a>
+    </div>
+  </footer>
+
+  <!-- 原有 AI 功能脚本 -->
+  <script src="ai.js"></script>
+  <script src="marked.min.js"></script>
+
+  <!-- 导航栏滚动效果（参考 index.html） -->
+  <script>
+    (function() {
+      const menuBox = document.getElementById('menu-box');
+      
+      function updateMenuBar() {
+        // 滚动超过 60px 时改变导航栏背景
+        if (window.scrollY > 60) {
+          menuBox.style.background = '#FFFFFF';
+          menuBox.style.boxShadow = '0px 0px 15px rgba(0,0,0,0.1)';
+        } else {
+          menuBox.style.background = 'none';
+          menuBox.style.boxShadow = 'none';
+        }
+      }
+
+      window.addEventListener('scroll', updateMenuBar);
+      updateMenuBar(); // 初始化调用
+    })();
+  </script>
+</body>
+</html>
