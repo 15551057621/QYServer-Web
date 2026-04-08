@@ -8,7 +8,7 @@
     <meta property="og:image" content="https://qycloudreve.s.odn.cc/f/aDPhK/2025-08-25_16.33.51.webp">
     <title>Qy Server | 基岩版1.21.50+</title>
     <link rel="stylesheet" href="/all.css">
-  <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg" type="image/x-icon">
+    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg" type="image/x-icon">
     <style>
         * {
             margin: 0;
@@ -24,7 +24,6 @@
             color: #5F5F5F;
             scroll-behavior: smooth;
         }
-        /* 隐藏页面右侧默认滚动条（保留滚动功能） */
         html, body {
             -ms-overflow-style: none; /* IE 10+ */
             scrollbar-width: none; /* Firefox */
@@ -274,8 +273,8 @@
         .content-image {
             float: right;
             margin: 20px 0 20px 40px;
-                width: 60%;
-                max-width: 600px;
+            width: 60%;
+            max-width: 600px;
         }
 
         .carousel {
@@ -285,7 +284,7 @@
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 8px 8px 20px rgba(234, 234, 234, 0.8);
-                max-width: 100%;
+            max-width: 100%;
             background: #fff;
         }
 
@@ -390,6 +389,116 @@
             background: #f78fb3;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(248, 165, 194, 0.6);
+        }
+        
+        /* ===== AI 对话样式（从 index.html 移植） ===== */
+        .ai-chat-section {
+            clear: both;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #EBEBEB;
+        }
+        
+        .ai-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+        .ai-warning i {
+            font-size: 1.2rem;
+        }
+
+        .chat-window {
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #f0f0f0;
+        }
+
+        .messages {
+            max-height: 56vh;
+            overflow-y: auto;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .messages::-webkit-scrollbar {
+            width: 6px;
+        }
+        .messages::-webkit-scrollbar-track {
+            background: #f9f9f9;
+        }
+        .messages::-webkit-scrollbar-thumb {
+            background: hsla(339, 86%, 81%, 0.548);
+            border-radius: 3px;
+        }
+        .messages {
+            scrollbar-width: thin;
+            scrollbar-color: hsla(339, 86%, 81%, 0.548) #f9f9f9;
+        }
+
+        .msg {
+            margin: 0;
+            padding: 10px 14px;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 75%;
+            word-break: break-word;
+            white-space: pre-wrap;
+        }
+
+        .msg.user {
+            background: #f8a5c2;
+            color: #fff;
+            align-self: flex-end;
+        }
+
+        .msg.bot {
+            background: #f1f1f1;
+            color: #333;
+            align-self: flex-start;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .input-area input[type="text"] {
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        .input-area button {
+            padding: 10px 14px;
+            border-radius: 8px;
+            background: #f8a5c2;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .input-area button:hover {
+            background: #f78fb3;
         }
         
         /* 页脚 */
@@ -706,6 +815,101 @@
                 font-size: 2rem;
             }
         }
+        
+
+        /* ========== Twikoo 评论区域自定义样式 ========== */
+        /* 评论区域整体样式 */
+        .comments-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+        }
+        
+        /* Twikoo 自定义样式 */
+        .tk-comments-container {
+            font-family: "微软雅黑", "Microsoft YaHei", sans-serif;
+        }
+        
+        .tk-avatar {
+            border-radius: 50% !important;
+        }
+        
+        .tk-nick {
+            color: #f8a5c2 !important;
+            font-weight: bold;
+        }
+        
+        .tk-time {
+            color: #888 !important;
+        }
+        
+        .tk-content {
+            color: #555 !important;
+            line-height: 1.6;
+        }
+        
+        .tk-submit {
+            background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%) !important;
+            border: none !important;
+            border-radius: 5px !important;
+            color: white !important;
+            padding: 10px 20px !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .tk-submit:hover {
+            box-shadow: 0 5px 15px rgba(248, 165, 194, 0.4) !important;
+        }
+        
+        .tk-row-actions .tk-action-link {
+            color: #f8a5c2 !important;
+        }
+        
+        .tk-meta-input {
+            border: 1px solid #e0e0e0 !important;
+            border-radius: 5px !important;
+            padding: 10px !important;
+            transition: border-color 0.3s ease !important;
+        }
+        
+        .tk-meta-input:focus {
+            border-color: #f8a5c2 !important;
+            outline: none !important;
+            box-shadow: 0 0 0 2px rgba(248, 165, 194, 0.1) !important;
+        }
+        
+        .tk-textarea {
+            border: 1px solid #e0e0e0 !important;
+            border-radius: 5px !important;
+            padding: 15px !important;
+            transition: border-color 0.3s ease !important;
+        }
+        
+        .tk-textarea:focus {
+            border-color: #f8a5c2 !important;
+            outline: none !important;
+            box-shadow: 0 0 0 2px rgba(248, 165, 194, 0.1) !important;
+        }
+        
+        .tk-extra {
+            color: #888 !important;
+        }
+        
+        .tk-tag-green {
+            background: rgba(248, 165, 194, 0.1) !important;
+            color: #f8a5c2 !important;
+            border: 1px solid rgba(248, 165, 194, 0.3) !important;
+        }
+        
+        .video {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
@@ -720,16 +924,23 @@
     <!-- 弹窗提醒 -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-content">
-            <div class="popup-title">重要提醒</div>
+            <div class="popup-title"><h2>公告</h2></div>
             <div class="popup-message">
-                <p>欢迎来到Qy Server！我们是一个基岩版1.21.50+的Minecraft服务器</p>
+                <p>欢迎来到Qy Server！</p>
                 <p>请务必遵守服务器规则，共同维护良好的游戏环境</p>
-              <div class="popup-image">
-                  <img src="https://qycloudreve.s.odn.cc/f/VdOIr/2026-01-01_00.01.51.webp" alt="">
-                </div>
+                <video 
+                src="/1/%E5%85%89%E9%81%87%E4%B8%BB%E5%9F%8E.mp4"
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                webkit-playsinline="true"
+                preload="none">
+                    您的浏览器不支
+                    </video>
+
               <p>游戏延迟高输入 /server 来切换线路</p>
-              <h3><font color="＃FF0000">网页地图因被攻击而暂时关闭<br>如果您无法加载网页中的图片可能是您所在的地区ip因为攻击被拉黑</font></h3>
-              <p>被拉黑大概会在几个星期左右恢复</p>
+              <p>推荐的互通服务器<br>🎮java版地址：mcje.qyserver.cc<br>端口无需填写<br>📱 基岩版地址：qyjavabe.s.odn.cc<br>端口默认<br><br>📌 支持版本：<br>• Java版：1.8 - 1.26.x (推荐 1.21.8)<br>• 基岩版：1.21.111 - 最新版本</p>
             </div>
             <div class="popup-footer">
                 <label class="popup-checkbox">
@@ -747,11 +958,11 @@
                 <h2><a href="/"><i class="fas fa-cube"></i> Qy Server</a></h2>
             </div>
             <div class="nav-links">
-                <a href="http://qyserver.s.odn.cc/"><i class="fas fa-home"></i> 首页</a>
+                <a href="/"><i class="fas fa-home"></i> 首页</a>
                 <a href="/down/"><i class="fas fa-download"></i> 客户端</a>
                 <a href="/mc/"><i class="fas fa-search"></i> 在线查询</a>
                 <a href="/UpdateLog/"><i class="fas fa-history"></i> 更新日志</a>
-                <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-map"></i> 地图</a>
+                <a href="/map/"><i class="fas fa-map"></i> 地图</a>
                 <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
                 <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
             </div>
@@ -768,7 +979,7 @@
             <div class="join-buttons">
                 <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fas fa-user-plus"></i> 加入♂我们</a>
                 <a href="/mc/"><i class="fas fa-search"></i> 在线♂查询</a>
-                <a href="http://qyserver.s.odn.cc/down/"><i class="fas fa-download"></i> 客户端下载</a>
+                <a href="/down/"><i class="fas fa-download"></i> 客户端下载</a>
             </div>
         </div>
     </section>
@@ -779,39 +990,38 @@
             <h2>欢迎来到Qy Server</h2>
             <hr class="divider">
             
-                        <div class="content-section">
-                                <div class="content-image">
-                                    <div class="carousel" id="heroCarousel">
-                                        <div class="carousel-track">
-                                          
-                                            <div class="carousel-item">
-                                                <a href="http://qyserver.s.odn.cc/tl/detail.html?img=https://qycloudreve.s.odn.cc/f/dA3iY/%E5%89%AA%E8%B4%B4%E6%9D%BF%201767282759502.jpg&title=%E5%85%83%E6%97%A6%E5%90%88%E7%85%A7&desc=&date=2026.01.01&loc=%E6%B4%BB%E5%8A%A8%E6%9C%8D&author=weishao22&uthor=">
-                                                    <img src="https://qycloudreve.s.odn.cc/f/1EAtW/2026-01-01_22.09.18_2.webp" alt="">
-                                                </a>
-                                        </div>
-                                            <div class="carousel-item">
-                                                <a href="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp">
-                                                    <img src="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp" alt="中秋节合照">
-                                                </a>
-                                        </div>
-                                            <div class="carousel-item">
-                                                    <img src="https://qycloudreve.s.odn.cc/f/aDPhK/2025-08-25_16.33.51.webp" alt="1">
-                                        </div>
-                                            <div class="carousel-item">
-                                                    <img src="https://qycloudreve.s.odn.cc/f/En5Fp/2025-08-01_12.58.08.webp" alt="2">
-                                        </div>
-                                            <div class="carousel-item">
-                                                    <img src="https://qycloudreve.s.odn.cc/f/jlJul/2025-07-05_14.0lo5.40.webp" alt="3">
-                                        </div>
-                                            <div class="carousel-item">
-                                                    <img src="https://qycloudreve.s.odn.cc/f/bjLU6/2025-10-12_20.46.38.webp" alt="4">
-                                        </div>
-                                        </div>
-                                        <button class="carousel-prev" aria-label="上一张">‹</button>
-                                        <button class="carousel-next" aria-label="下一张">›</button>
-                                        <div class="carousel-dots" aria-hidden="false"></div>
-                                    </div>
-                                </div>
+            <div class="content-section">
+                <div class="content-image">
+                    <div class="carousel" id="heroCarousel">
+                        <div class="carousel-track">
+                            <div class="carousel-item">
+                                <a href="/tl/detail.html?img=https://qycloudreve.s.odn.cc/f/dA3iY/%E5%89%AA%E8%B4%B4%E6%9D%BF%201767282759502.jpg&title=%E5%85%83%E6%97%A6%E5%90%88%E7%85%A7&desc=&date=2026.01.01&loc=%E6%B4%BB%E5%8A%A8%E6%9C%8D&author=weishao22&uthor=">
+                                    <img src="https://qycloudreve.s.odn.cc/f/1EAtW/2026-01-01_22.09.18_2.webp" alt="">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <a href="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp">
+                                    <img src="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp" alt="中秋节合照">
+                                </a>
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://qycloudreve.s.odn.cc/f/aDPhK/2025-08-25_16.33.51.webp" alt="1">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://qycloudreve.s.odn.cc/f/En5Fp/2025-08-01_12.58.08.webp" alt="2">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://qycloudreve.s.odn.cc/f/jlJul/2025-07-05_14.0lo5.40.webp" alt="3">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="https://qycloudreve.s.odn.cc/f/bjLU6/2025-10-12_20.46.38.webp" alt="4">
+                            </div>
+                        </div>
+                        <button class="carousel-prev" aria-label="上一张">‹</button>
+                        <button class="carousel-next" aria-label="下一张">›</button>
+                        <div class="carousel-dots" aria-hidden="false"></div>
+                    </div>
+                </div>
                 <div class="content-text">
                     <h3>想加入服务器，应该怎么做？</h3>
                     <p>非常简单，您只需要阅读<a href="/rules/">游戏规则</a>然后下载客户端即可游玩。</p>
@@ -828,11 +1038,36 @@
                     <p><a href="/rules/">点击这里查看</a>。</p>
                   
                     <h3>其他资源</h3>
-                    <p>联系邮箱：<a href="mailto:weishao22@outlook.com">weishao22@outlook.com</a>（游戏问题反馈、玩家举报）</p>
+                    <p>联系邮箱：<a href="mailto:qy@qyserver.cc">qy@qyserver.cc</a>（游戏问题反馈、玩家举报）</p>
                     <p><a href="/tl/">游戏图廊</a></p>
                     <p><a href="/xz/">文件下载</a></p>
                     <p><a href="/music/">游戏音乐</a></p>
                     <p><a href="/Video/z/">测试视频</a></p>
+                    
+                    
+                    
+                    <div class="ai-chat-section">
+                        <h3>AI 助手 <font color="#878787">测试</font></h3>
+                        <div class="ai-warning">
+                            <i class="fas fa-exclamation-triangle"></i> 提示：AI回答由模型生成，内容仅供参考，请自行判断准确性。
+                        </div>
+                        <div class="chat-window">
+                            <div class="messages" id="messages"></div>
+                            <div class="input-area">
+                                <input id="prompt" type="text" placeholder="输入你的问题，按回车或点击发送" />
+                                <button id="sendBtn">发送</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                <!-- ========== 评论区域 ========== -->
+                <div class="content-text">
+                <h3>评论</h3>
+                <hr class="divider">
+                <!-- Twikoo评论系统容器 -->
+                <div id="tcomment" class="comments-section"></div>
+                </div>
+                <!-- ========== 结束 ========== -->
                 </div>
             </div>
         </div>
@@ -846,23 +1081,22 @@
                 <p>Qy Server是一个专注于Minecraft基岩版的生存服务器，提供稳定、有趣的游戏环境，让玩家可以自由建造、探索和社交。</p>
             </div>
             
-          <div class="footer-section">
+            <div class="footer-section">
                 <h3>其他链接</h3>
                 <div class="footer-links">
                     <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
                     <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
                     <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
+                    <a href="/map/"><i class="fas fa-arrow-right"></i> 地图</a>
                     <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
-                  <a href="https://qyservermap.s.odn.cc"><i class="fas fa-arrow-right"></i> 地图</a>
-                  <a href="/qy/"><i class="fas fa-arrow-right"></i> 关于</a>
-                  <a href="http://qyserver.s.odn.cc/" id="resetPopup"><i class="fas fa-arrow-right"></i>重置弹窗</a>
+                    <a href="/qy/"><i class="fas fa-arrow-right"></i> 关于</a>
                 </div>
             </div>
             
             <div class="footer-section">
                 <h3>联系我们</h3>
                 <div class="footer-links">
-                    <a href="mailto:weishao22@outlook.com"><i class="fas fa-envelope"></i> weishao22@outlook.com</a>
+                    <a href="mailto:qy@qyserver.cc"><i class="fas fa-envelope"></i> qy@qyserver.cc</a>
                     <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fab fa-qq"></i> QQ群: 1029879634</a>
                     <a href="https://discord.gg/WGcKjt7BNG"><i class="fab fa-discord"></i> Discord</a>
                 </div>
@@ -870,8 +1104,9 @@
         </div>
         
         <div class="footer-bottom">
-            <a href="https://stats.uptimerobot.com/hgMdAGlsWu" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
-            &copy; 2025-2026 Qy Server 版权所有</a>
+            <a href="/1/bot/" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
+            &copy; 2025-2026 Qy Server 版权所有</a> 
+            <span id="twikoo_visitors">0</span>
         </div>
     </footer>
     
@@ -885,6 +1120,12 @@
         <img id="musicIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+" alt="音乐控制">
     </div>
     
+    <!-- 引入 AI 聊天所需脚本 -->
+    <script src="/faq/ai/marked.min.js"></script>
+    <script src="/faq/ai/ai.js"></script>
+    <!-- 引入 Twikoo JS 库 -->
+    <script src="https://s4.zstatic.net/npm/twikoo@1.7.3/dist/twikoo.min.js"></script>
+    
     <script>
         // 页面加载完成后隐藏加载动画
         window.addEventListener('load', function() {
@@ -897,43 +1138,43 @@
         });
 
         
-            // 图片放大辅助：在大屏幕显示模态，否则打开新标签
-            function openImageModal(src) {
-                // 避免重复打开多个模态
-                if (document.querySelector('.image-modal-overlay')) return;
+        // 图片放大辅助：在大屏幕显示模态，否则打开新标签
+        function openImageModal(src) {
+            // 避免重复打开多个模态
+            if (document.querySelector('.image-modal-overlay')) return;
 
-                const overlay = document.createElement('div');
-                overlay.className = 'image-modal-overlay';
-                overlay.innerHTML = `
-                    <div class="image-modal-inner" role="dialog" aria-modal="true">
-                        <button class="image-modal-close" aria-label="关闭">×</button>
-                        <img class="image-modal-img" src="${src}" alt="放大图片">
-                    </div>`;
+            const overlay = document.createElement('div');
+            overlay.className = 'image-modal-overlay';
+            overlay.innerHTML = `
+                <div class="image-modal-inner" role="dialog" aria-modal="true">
+                    <button class="image-modal-close" aria-label="关闭">×</button>
+                    <img class="image-modal-img" src="${src}" alt="放大图片">
+                </div>`;
 
-                document.body.appendChild(overlay);
+            document.body.appendChild(overlay);
 
-                // 点击遮罩空白处关闭
-                overlay.addEventListener('click', function(e) {
-                    if (e.target === overlay) removeOverlay();
-                });
+            // 点击遮罩空白处关闭
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) removeOverlay();
+            });
 
-                // 关闭按钮、点击图片不关闭（只用于展示）
-                const closeBtn = overlay.querySelector('.image-modal-close');
-                closeBtn.addEventListener('click', removeOverlay);
+            // 关闭按钮、点击图片不关闭（只用于展示）
+            const closeBtn = overlay.querySelector('.image-modal-close');
+            closeBtn.addEventListener('click', removeOverlay);
 
-                // ESC 关闭
-                function escHandler(e) {
-                    if (e.key === 'Escape') removeOverlay();
-                }
-                document.addEventListener('keydown', escHandler);
-
-                // 移除 overlay 及相关监听
-                function removeOverlay() {
-                    if (!overlay || !overlay.parentNode) return;
-                    document.removeEventListener('keydown', escHandler);
-                    overlay.remove();
-                }
+            // ESC 关闭
+            function escHandler(e) {
+                if (e.key === 'Escape') removeOverlay();
             }
+            document.addEventListener('keydown', escHandler);
+
+            // 移除 overlay 及相关监听
+            function removeOverlay() {
+                if (!overlay || !overlay.parentNode) return;
+                document.removeEventListener('keydown', escHandler);
+                overlay.remove();
+            }
+        }
 
         function handleImageClick(src) {
             if (window.innerWidth >= 900) {
@@ -943,67 +1184,73 @@
             }
         }
 
-// 在页面加载时检查是否应该显示弹窗
-document.addEventListener('DOMContentLoaded', function() {
-    // 检查localStorage中是否有"dontShowPopu"标志
-    if (localStorage.getItem('dontShowPopu') !== 'true') {
-        // 显示弹窗并锁定背景滚动
-        setTimeout(function() {
-            const po = document.getElementById('popupOverlay');
-            if (po) {
-                po.style.display = 'flex';
-                document.body.classList.add('no-scroll');
+        // 在页面加载时检查是否应该显示弹窗
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查localStorage中是否有"dontShowPopu"标志
+            if (localStorage.getItem('dontShowPopu022112') !== 'true') {
+                // 显示弹窗并锁定背景滚动
+                setTimeout(function() {
+                    const po = document.getElementById('popupOverlay');
+                    if (po) {
+                        po.style.display = 'flex';
+                        document.body.classList.add('no-scroll');
+                    }
+                }, 2000);
             }
-        }, 2000);
-    }
-    
-    // 确认按钮点击事件
-    document.getElementById('popupConfirm').addEventListener('click', function() {
-        // 如果勾选了"不再显示"，则保存到localStorage
-        if (document.getElementById('dontShowAgain').checked) {
-            localStorage.setItem('dontShowPopu', 'true');
-        }
-        const po = document.getElementById('popupOverlay');
-        if (po) po.style.display = 'none';
-        document.body.classList.remove('no-scroll');
-    });
-    
-    // 点击遮罩层也可关闭弹窗
-    document.getElementById('popupOverlay').addEventListener('click', function(e) {
-        if (e.target === this) {
-            this.style.display = 'none';
-            document.body.classList.remove('no-scroll');
-        }
-    });
-    // 弹窗图片点击查看大图（大屏幕模态 / 小屏幕新标签）
-    const popupMainImg = document.querySelector('#popupOverlay .popup-image img');
-    if (popupMainImg) {
-        popupMainImg.style.cursor = 'pointer';
-        popupMainImg.addEventListener('click', function() {
-            handleImageClick(this.src);
+            
+            // 确认按钮点击事件
+            document.getElementById('popupConfirm').addEventListener('click', function() {
+                // 如果勾选了"不再显示"，则保存到localStorage
+                if (document.getElementById('dontShowAgain').checked) {
+                    localStorage.setItem('dontShowPopu022112', 'true');
+                }
+                const po = document.getElementById('popupOverlay');
+                if (po) po.style.display = 'none';
+                document.body.classList.remove('no-scroll');
+            });
+            
+            // 点击遮罩层也可关闭弹窗
+            document.getElementById('popupOverlay').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.style.display = 'none';
+                    document.body.classList.remove('no-scroll');
+                }
+            });
+            // 弹窗图片点击查看大图（大屏幕模态 / 小屏幕新标签）
+            const popupMainImg = document.querySelector('#popupOverlay .popup-image img');
+            if (popupMainImg) {
+                popupMainImg.style.cursor = 'pointer';
+                popupMainImg.addEventListener('click', function() {
+                    handleImageClick(this.src);
+                });
+            }
+
+            // 为页面主要内容图片绑定放大点击事件（第2张图等也会生效）
+            // 规则：
+            // - 若图片位于 .carousel 内且被 <a> 包裹，则保留链接跳转（不绑定放大）
+            // - 若图片位于 .carousel 内但未被 <a> 包裹，则允许放大模态
+            // - 其他位置的图片一律允许放大模态
+            document.querySelectorAll('#content img, .content-image img, .popup-image img').forEach(img => {
+                if (!img) return;
+                if (img.id === 'musicIcon') return; // 排除控制图标
+
+                const inCarousel = img.closest && img.closest('.carousel');
+                const wrappedByLink = img.closest && img.closest('a');
+
+                // 如果在轮播里并且被链接包裹，则不绑定（保留跳转行为）
+                if (inCarousel && wrappedByLink) return;
+
+                // 其它情况绑定放大行为（轮播内未被链接包裹的图片也会在此绑定）
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function(e) {
+                    // 如果 img 在 <a> 内，但我们仍在绑定（保护性检查），不阻止默认行为
+                    const parentLink = this.closest && this.closest('a');
+                    if (parentLink) return; // 交给链接处理
+                    handleImageClick(this.src);
+                });
+            });
         });
-    }
-
-    document.querySelectorAll('#content img, .content-image img, .popup-image img').forEach(img => {
-        if (!img) return;
-        if (img.id === 'musicIcon') return; // 排除控制图标
-
-        const inCarousel = img.closest && img.closest('.carousel');
-        const wrappedByLink = img.closest && img.closest('a');
-
-        // 如果在轮播里并且被链接包裹，则不绑定（保留跳转行为）
-        if (inCarousel && wrappedByLink) return;
-
-        // 其它情况绑定放大行为（轮播内未被链接包裹的图片也会在此绑定）
-        img.style.cursor = 'pointer';
-        img.addEventListener('click', function(e) {
-            // 如果 img 在 <a> 内，但我们仍在绑定（保护性检查），不阻止默认行为
-            const parentLink = this.closest && this.closest('a');
-            if (parentLink) return; // 交给链接处理
-            handleImageClick(this.src);
-        });
-    });
-});
+        
         // 导航栏滚动效果
         window.addEventListener('scroll', function() {
             const menuBox = document.getElementById('menu-box');
@@ -1048,12 +1295,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="popup-title">加入Qy Server</div>
                     <div class="popup-message">
                         <p>您即将加入我们的服务器，请确保您已安装Minecraft基岩版1.21.50+</p>
-                        <p>服务器地址：<strong>qyserver.s.odn.cc</strong></p>
+                        <p>服务器地址：<strong>mc.qyserver.cc</strong></p>
                         <p>端口：<strong>41657</strong></p>
                         <p>点击下方按钮直接启动游戏</p>
-              <div class="popup-image">
-                  <img src="https://qycloudreve.s.odn.cc/f/MqMHl/2026-01-01_00.01.55.webp" alt="1">
-              </div>
+                        <div class="popup-image">
+                            <img src="https://qycloudreve.s.odn.cc/f/MqMHl/2026-01-01_00.01.55.webp" alt="1">
+                        </div>
                     </div>
                     <div class="popup-footer">
                         <button class="popup-btn" style="background:#ccc;" id="cancelJoin">取消</button>
@@ -1076,7 +1323,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // 确认加入游戏
             popup.querySelector('#confirmJoin').addEventListener('click', function() {
-                const serverIp = "qyserver.s.odn.cc";
+                const serverIp = ".mc.qyserver.cc";
                 const serverPort = 41657;
                 const minecraftLink = `minecraft://?addExternalServer=Qy server|${serverIp}:${serverPort}`;
                 window.location.href = minecraftLink;
@@ -1108,13 +1355,57 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
             });
         });
-      document.getElementById('resetPopup').addEventListener('click', function(e) {
-    e.preventDefault();
-    localStorage.removeItem('dontShowPopu');
-    alert('弹窗设置已重置，下次访问时将再次显示提示');
-});
+        
+        // ========== Twikoo 评论系统初始化 ==========
+        // 等待页面完全加载后初始化 Twikoo
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查 Twikoo 库是否已加载
+            if (typeof twikoo === 'undefined') {
+                console.error('Twikoo 库未加载，请检查网络或CDN链接');
+                return;
+            }
+            
+            // 初始化 Twikoo
+            twikoo.init({
+                // 重要：这里填写 Twikoo 后端地址，
+                envId: 'https://plapi.qyserver.cc/',
+                el: '#tcomment',
+                lang: 'zh-CN',
+                path: window.location.pathname,
+                placeholder: '来分享你对Qy Server的看法吧！支持Markdown语法~<br>使用QQ邮箱可以显示头像哦',
+                meta: [
+                    { name: '昵称', placeholder: '怎么称呼你？（必填）', required: true },
+                    { name: '邮箱', placeholder: '方便联系你（选填）', required: false },
+                    { name: '网站', placeholder: '你的个人主页（选填）', required: false }
+                ],
+                onCommentLoaded: function() {
+                    console.log('Twikoo 评论加载完成');
+                },
+                onCommentClicked: function(comment) {
+                    console.log('评论被点击', comment);
+                }
+            }).then(function() {
+                console.log('Twikoo 初始化成功');
+            }).catch(function(err) {
+                console.error('Twikoo 初始化失败:', err);
+                // 显示错误信息
+                const commentSection = document.getElementById('tcomment');
+                if (commentSection) {
+                    commentSection.innerHTML = '<p style="color: #f8a5c2; text-align: center;">评论加载失败，请检查 Twikoo 后端服务是否正常运行。</p>';
+                }
+            });
+        });
+        twikoo.init({
+            el: '#tcomment',
+            envId: 'https://plapi.qyserver.cc',
+            path: window.location.pathname 
+            
+        })
+
+        // ========== Twikoo 初始化结束 ==========
     </script>
-        <script>
+    
+    <script>
         (function(){
             const carousel = document.getElementById('heroCarousel');
             if (!carousel) return;
@@ -1160,6 +1451,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // initial update
             update();
         })();
-        </script>
+    </script>
 </body>
 </html>
