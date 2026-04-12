@@ -1,95 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于QYServer</title>
+    <title>QYServer | 关于</title>
     <link rel="stylesheet" href="/all.css">
-    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg" type="image/x-icon">
+    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg"
+        type="image/x-icon">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "微软雅黑", "Microsoft YaHei", Roboto, Arial, sans-serif;
-        }
         
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
-            background-color: #f5f5f5;
-            color: #5F5F5F;
-            scroll-behavior: smooth;
-        }
-        /* 隐藏页面右侧默认滚动条 */
-        html, body {
-            -ms-overflow-style: none; /* IE 10+ */
-            scrollbar-width: none; /* Firefox */
-        }
 
-        html::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-            display: none;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        /* 导航栏 */
-        #menu-box {
-            position: fixed;
-            width: 100%;
-            height: 60px;
-            background: none;
-            z-index: 100;
-            transition: all 0.4s ease;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .menu {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
-        
-        .logo h2 {
-            color: #C6CDD4;
-            font-size: 28px;
-            transition: all 0.4s ease;
-        }
-        
-        .logo h2:hover {
-            color: white;
-            font-size: 30px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .nav-links a {
-            color: #C6CDD4;
-            padding: 8px 15px;
-            border-radius: 4px;
-            transition: all 0.4s ease;
-            font-size: 16px;
-        }
-        
-        .nav-links a:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            font-size: 17px;
-        }
-        
         /* 横幅区域 */
         #banner {
             background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%);
@@ -103,7 +24,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .banner-content {
             position: relative;
             z-index: 2;
@@ -113,7 +34,7 @@
             width: 100%;
             text-align: center;
         }
-        
+
         .banner-content::before {
             content: '';
             position: absolute;
@@ -125,38 +46,38 @@
             opacity: 0.15;
             z-index: -1;
         }
-        
+
         .join-item {
             margin-bottom: 30px;
             color: white;
         }
-        
+
         .join-item h2 {
             font-size: 3rem;
             margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .join-item p {
             font-size: 1.3rem;
             max-width: 700px;
             line-height: 1.6;
             margin: 0 auto;
         }
-        
+
         /* 内容区域 */
         #content {
             background: white;
             padding: 80px 0;
             position: relative;
         }
-        
+
         .content-box {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .content-box h2 {
             font-size: 2.5rem;
             color: #333;
@@ -165,7 +86,7 @@
             padding-bottom: 15px;
             text-align: center;
         }
-        
+
         .content-box h2::after {
             content: '';
             position: absolute;
@@ -177,42 +98,42 @@
             background: #f8a5c2;
             border-radius: 2px;
         }
-        
+
         hr.divider {
             margin: 40px 0;
             height: 2px;
             background: #EBEBEB;
             border: none;
         }
-        
+
         .content-section {
             margin-bottom: 60px;
         }
-        
+
         .content-text h3 {
             font-size: 1.8rem;
             color: #333;
             margin: 25px 0 15px;
             line-height: 1.4;
         }
-        
+
         .content-text p {
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 15px;
         }
-        
+
         .content-text a {
             color: #337AB7;
             transition: all 0.3s;
             font-weight: bold;
         }
-        
+
         .content-text a:hover {
             color: #f8a5c2;
             text-decoration: underline;
         }
-        
+
         .content-image {
             width: 100%;
             margin: 30px 0;
@@ -220,7 +141,7 @@
             overflow: hidden;
             box-shadow: 8px 8px 20px rgba(234, 234, 234, 0.8);
         }
-        
+
         .content-image img {
             width: 100%;
             height: auto;
@@ -231,6 +152,7 @@
         .content-image img:hover {
             transform: scale(1.05);
         }
+
         /* Carousel styles (复用主页样式) */
         .carousel {
             position: relative;
@@ -259,13 +181,19 @@
             height: 100%;
         }
 
-        .carousel-item img { width: 100%; height: 100%; object-fit: cover; display:block }
+        .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
 
-        .carousel-prev, .carousel-next {
+        .carousel-prev,
+        .carousel-next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0,0,0,0.45);
+            background: rgba(0, 0, 0, 0.45);
             color: #fff;
             border: none;
             width: 40px;
@@ -279,8 +207,13 @@
             z-index: 5;
         }
 
-        .carousel-prev { left: 12px; }
-        .carousel-next { right: 12px; }
+        .carousel-prev {
+            left: 12px;
+        }
+
+        .carousel-next {
+            right: 12px;
+        }
 
         .carousel-dots {
             position: absolute;
@@ -295,34 +228,37 @@
         .carousel-dot {
             width: 10px;
             height: 10px;
-            background: rgba(255,255,255,0.7);
+            background: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
             cursor: pointer;
             transition: transform 0.2s, background 0.2s;
         }
 
-        .carousel-dot.active { background: #f8a5c2; transform: scale(1.2); }
-        
+        .carousel-dot.active {
+            background: #f8a5c2;
+            transform: scale(1.2);
+        }
+
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 30px;
             margin: 40px 0;
         }
-        
+
         .team-member {
             text-align: center;
             background: #f9f9f9;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
         }
-        
+
         .team-member:hover {
             transform: translateY(-5px);
         }
-        
+
         .team-member img {
             width: 120px;
             height: 120px;
@@ -331,24 +267,24 @@
             margin: 0 auto 15px;
             border: 5px solid #f8a5c2;
         }
-        
+
         .team-member h4 {
             font-size: 1.3rem;
             color: #333;
             margin-bottom: 5px;
         }
-        
+
         .team-member p {
             color: #666;
             margin-bottom: 10px;
         }
-        
+
         .timeline {
             position: relative;
             max-width: 800px;
             margin: 40px auto;
         }
-        
+
         .timeline::after {
             content: '';
             position: absolute;
@@ -359,133 +295,34 @@
             left: 50%;
             margin-left: -3px;
         }
-        
+
         .timeline-item {
             padding: 10px 40px;
             position: relative;
             width: 50%;
             box-sizing: border-box;
         }
-        
+
         .timeline-item:nth-child(odd) {
             left: 0;
         }
-        
+
         .timeline-item:nth-child(even) {
             left: 50%;
         }
-        
+
         .timeline-content {
             padding: 20px;
             background-color: #f9f9f9;
             position: relative;
             border-radius: 6px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .timeline-date {
             font-weight: bold;
             color: #f8a5c2;
             margin-bottom: 5px;
-        }
-        
-        /* 页脚 */
-        #footer {
-            background: #333;
-            color: #ddd;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 300px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #fff;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: #f8a5c2;
-        }
-        
-        .footer-links a {
-            display: block;
-            padding: 8px 0;
-            transition: all 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #f8a5c2;
-            padding-left: 5px;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #444;
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .footer-bottom a {
-            color: #f8a5c2;
-            transition: all 0.3s;
-        }
-        
-        .footer-bottom a:hover {
-            text-decoration: underline;
-        }
-        
-        /* 音乐控制 */
-        #musicControl {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(128, 128, 128, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        #musicControl:hover {
-            transform: scale(1.1);
-            background: rgba(248, 165, 194, 0.5) !important;
-        }
-        
-        #musicControl:active {
-            transform: scale(0.95);
-        }
-        
-        #musicIcon {
-            width: 30px;
-            height: 30px;
-            opacity: 0.9;
-            display: block;
         }
 
         /* ========== Twikoo 评论区域自定义样式 ========== */
@@ -496,32 +333,32 @@
             padding: 30px;
             background: #f9f9f9;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
-        
+
         /* Twikoo 自定义样式 */
         .tk-comments-container {
             font-family: "微软雅黑", "Microsoft YaHei", sans-serif;
         }
-        
+
         .tk-avatar {
             border-radius: 50% !important;
         }
-        
+
         .tk-nick {
             color: #f8a5c2 !important;
             font-weight: bold;
         }
-        
+
         .tk-time {
             color: #888 !important;
         }
-        
+
         .tk-content {
             color: #555 !important;
             line-height: 1.6;
         }
-        
+
         .tk-submit {
             background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%) !important;
             border: none !important;
@@ -530,86 +367,86 @@
             padding: 10px 20px !important;
             transition: all 0.3s ease !important;
         }
-        
+
         .tk-submit:hover {
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(248, 165, 194, 0.4) !important;
         }
-        
+
         .tk-row-actions .tk-action-link {
             color: #f8a5c2 !important;
         }
-        
+
         .tk-meta-input {
             border: 1px solid #e0e0e0 !important;
             border-radius: 5px !important;
             padding: 10px !important;
             transition: border-color 0.3s ease !important;
         }
-        
+
         .tk-meta-input:focus {
             border-color: #f8a5c2 !important;
             outline: none !important;
             box-shadow: 0 0 0 2px rgba(248, 165, 194, 0.1) !important;
         }
-        
+
         .tk-textarea {
             border: 1px solid #e0e0e0 !important;
             border-radius: 5px !important;
             padding: 15px !important;
             transition: border-color 0.3s ease !important;
         }
-        
+
         .tk-textarea:focus {
             border-color: #f8a5c2 !important;
             outline: none !important;
             box-shadow: 0 0 0 2px rgba(248, 165, 194, 0.1) !important;
         }
-        
+
         .tk-extra {
             color: #888 !important;
         }
-        
+
         .tk-tag-green {
             background: rgba(248, 165, 194, 0.1) !important;
             color: #f8a5c2 !important;
             border: 1px solid rgba(248, 165, 194, 0.3) !important;
         }
-        
+
         /* 响应式设计 */
         @media (max-width: 900px) {
             .join-item h2 {
                 font-size: 2.5rem;
             }
-            
+
             .join-item p {
                 font-size: 1.1rem;
             }
-            
+
             .timeline::after {
                 left: 31px;
             }
-            
+
             .timeline-item {
                 width: 100%;
                 padding-left: 70px;
                 padding-right: 25px;
             }
-            
+
             .timeline-item:nth-child(even) {
                 left: 0;
             }
         }
-        
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-            
+
             .menu {
                 justify-content: center;
             }
-            
+
             .footer-section {
                 min-width: 100%;
             }
@@ -619,20 +456,21 @@
                 margin: 20px 10px;
             }
         }
-        
+
         @media (max-width: 480px) {
             .join-item h2 {
                 font-size: 2rem;
             }
-            
+
             .join-item p {
                 font-size: 1rem;
             }
-            
+
             .content-box h2 {
                 font-size: 2rem;
             }
         }
+
         /* 图片放大模态样式（与首页保持一致） */
         .image-modal-overlay {
             position: fixed;
@@ -640,7 +478,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.8);
             z-index: 3000;
             padding: 20px;
         }
@@ -656,7 +494,7 @@
             max-width: 100%;
             max-height: 100%;
             border-radius: 8px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
         }
 
         .image-modal-close {
@@ -666,17 +504,17 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.6);
             color: #fff;
             border: none;
             font-size: 20px;
             line-height: 36px;
             cursor: pointer;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
         }
-
     </style>
 </head>
+
 <body>
     <!-- 导航栏 -->
     <div id="menu-box">
@@ -685,17 +523,16 @@
                 <h2><a href="/"><i class="fas fa-cube"></i> QYServer</a></h2>
             </div>
             <div class="nav-links">
-                <a href="/"><i class="fas fa-home"></i> 首页</a>
-                <a href="/down/"><i class="fas fa-download"></i> 客户端</a>
-                <a href="/mc/"><i class="fas fa-search"></i> 在线查询</a>
-                <a href="/UpdateLog/"><i class="fas fa-history"></i> 更新日志</a>
+                <a href="/down/"><i class="fas fa-download"></i>下载</a>
+                <a href="/mc/"><i class="fas fa-search"></i>查询</a>
+                <a href="/UpdateLog/"><i class="fas fa-history"></i>日志</a>
                 <a href="/map/"><i class="fas fa-map"></i> 地图</a>
                 <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
                 <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
             </div>
         </div>
     </div>
-    
+
     <!-- 横幅区域 -->
     <section id="banner">
         <div class="banner-content">
@@ -704,40 +541,45 @@
             </div>
         </div>
     </section>
-    
+
     <!-- 内容区域 -->
     <section id="content">
         <div class="content-box">
             <h2>我们的故事</h2>
             <hr class="divider">
-            
+
             <div class="content-section">
                 <div class="content-text">
                     <h3>QYServer的起源</h3>
                     <p>QYServer成立于2025年，是一个超小型的朋友社区Minecraft服务器。随着时间的推移，我们逐渐发展成为一个面向广大玩家的公开服务器，始终保持着友好、包容的社区氛围。</p>
-                    
+
                     <p>我们的使命是提供一个稳定、有趣的Minecraft游戏环境，让玩家可以自由建造、探索和社交，而不必担心恶意破坏或不公平的游戏体验。</p>
-                    
+
                     <div class="content-image">
                         <div class="carousel" id="qyCarousel">
                             <div class="carousel-track">
                                 <div class="carousel-item">
-                                    <img src="https://qycloudreve.s.odn.cc/f/dA3iY/%E5%89%AA%E8%B4%B4%E6%9D%BF%201767282759502.jpg" alt="1">
+                                    <img src="https://qycloudreve.s.odn.cc/f/dA3iY/%E5%89%AA%E8%B4%B4%E6%9D%BF%201767282759502.jpg"
+                                        alt="1">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="https://qycloudreve.s.odn.cc/f/nqahd/%E5%89%AA%E8%B4%B4%E6%9D%BF%201767282321860.jpg" alt="1">
+                                    <img src="https://qycloudreve.s.odn.cc/f/nqahd/%E5%89%AA%E8%B4%B4%E6%9D%BF%201767282321860.jpg"
+                                        alt="1">
                                 </div>
                                 <div class="carousel-item">
                                     <img src="https://qycloudreve.s.odn.cc/f/vW1fO/67283522417.jpg" alt="1">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp" alt="1">
+                                    <img src="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp"
+                                        alt="1">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="https://qycloudreve.s.odn.cc/f/QX6Hk/PixPin_2025-08-01_17-04-00.webp" alt="2">
+                                    <img src="https://qycloudreve.s.odn.cc/f/QX6Hk/PixPin_2025-08-01_17-04-00.webp"
+                                        alt="2">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="https://qycloudreve.s.odn.cc/f/gzKSz/%E5%89%AF%E6%9C%AC_2025-07-30_14.34.22.webp" alt="3">
+                                    <img src="https://qycloudreve.s.odn.cc/f/gzKSz/%E5%89%AF%E6%9C%AC_2025-07-30_14.34.22.webp"
+                                        alt="3">
                                 </div>
                                 <div class="carousel-item">
                                     <img src="https://qycloudreve.s.odn.cc/f/eV6Iw/2025-07-04_23.41.4v8.png" alt="4">
@@ -760,17 +602,17 @@
                                 <div class="carousel-item">
                                     <img src="https://qycloudreve.s.odn.cc/f/RqNTg/2025-08-01_10.21.35.jpg" alt="10">
                                 </div>
-                              
+
                             </div>
                             <button class="carousel-prev" aria-label="上一张">‹</button>
                             <button class="carousel-next" aria-label="下一张">›</button>
                             <div class="carousel-dots" aria-hidden="false"></div>
                         </div>
                     </div>
-                    
+
                     <h3>服务器特色</h3>
                     <p>QYServer提供原版生存体验，同时添加了一些便利性模组与插件：</p>
-                    
+
                     <ul>
                         <li>基岩版1.21.50+兼容</li>
                         <li>较为纯净生存体验，少量模组与插件</li>
@@ -778,54 +620,54 @@
                         <li>活跃的管理团队和社区</li>
                         <li>多线路支持，降低延迟问题</li>
                     </ul>
-                    
+
                 </div>
             </div>
-            
+
             <!-- <h2>发展历程</h2> -->
             <!-- <hr class="divider"> -->
             <!--  -->
             <!-- <div class="timeline"> -->
-                <!-- <div class="timeline-item"> -->
-                    <!-- <div class="timeline-content"> -->
-                        <!-- <div class="timeline-date">2025年2月</div> -->
-                        <!-- <p>QYServer成立，最初版本上线</p> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-                <!-- <div class="timeline-item"> -->
-                    <!-- <div class="timeline-content"> -->
-                        <!-- <div class="timeline-date">2025年3月</div> -->
-                        <!-- <p>首次大型更新，引入更多游戏功能</p> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-                <!-- <div class="timeline-item"> -->
-                    <!-- <div class="timeline-content"> -->
-                        <!-- <div class="timeline-date">2025年5月</div> -->
-                        <!-- <p>服务器玩家突破100人</p> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-                <!-- <div class="timeline-item"> -->
-                    <!-- <div class="timeline-content"> -->
-                        <!-- <div class="timeline-date">2025年6月</div> -->
-                        <!-- <p>引入多线路支持，解决延迟问题</p> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-                <!-- <div class="timeline-item"> -->
-                    <!-- <div class="timeline-content"> -->
-                        <!-- <div class="timeline-date">2025年10月</div> -->
-                        <!-- <p>同时在线玩家突破18+</p> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-                <!-- <div class="timeline-item"> -->
-                    <!-- <div class="timeline-content"> -->
-                        <!-- <div class="timeline-date">2026年1月</div> -->
-                        <!-- <p>同时在线玩家突破23+</p> -->
-                    <!-- </div> -->
-                <!-- </div> -->
+            <!-- <div class="timeline-item"> -->
+            <!-- <div class="timeline-content"> -->
+            <!-- <div class="timeline-date">2025年2月</div> -->
+            <!-- <p>QYServer成立，最初版本上线</p> -->
             <!-- </div> -->
-            
-            
-        <h2>发展历程</h2>
+            <!-- </div> -->
+            <!-- <div class="timeline-item"> -->
+            <!-- <div class="timeline-content"> -->
+            <!-- <div class="timeline-date">2025年3月</div> -->
+            <!-- <p>首次大型更新，引入更多游戏功能</p> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- <div class="timeline-item"> -->
+            <!-- <div class="timeline-content"> -->
+            <!-- <div class="timeline-date">2025年5月</div> -->
+            <!-- <p>服务器玩家突破100人</p> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- <div class="timeline-item"> -->
+            <!-- <div class="timeline-content"> -->
+            <!-- <div class="timeline-date">2025年6月</div> -->
+            <!-- <p>引入多线路支持，解决延迟问题</p> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- <div class="timeline-item"> -->
+            <!-- <div class="timeline-content"> -->
+            <!-- <div class="timeline-date">2025年10月</div> -->
+            <!-- <p>同时在线玩家突破18+</p> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- <div class="timeline-item"> -->
+            <!-- <div class="timeline-content"> -->
+            <!-- <div class="timeline-date">2026年1月</div> -->
+            <!-- <p>同时在线玩家突破23+</p> -->
+            <!-- </div> -->
+            <!-- </div> -->
+            <!-- </div> -->
+
+
+            <h2>发展历程</h2>
             <hr class="divider">
             <div class="timeline">
                 <div class="timeline-item">
@@ -950,13 +792,14 @@
                     </div>
                 </div>
             </div>
-            
+
             <h2>我们的团队</h2>
             <hr class="divider">
-            
+
             <div class="team-grid">
                 <div class="team-member">
-                    <img src="https://qycloudreve.s.odn.cc/f/Zllfo/novaskin-wallpaper-skydiving2%20%287%29%20%281%29.jpg" alt="服务器创始人">
+                    <img src="https://qycloudreve.s.odn.cc/f/Zllfo/novaskin-wallpaper-skydiving2%20%287%29%20%281%29.jpg"
+                        alt="服务器创始人">
                     <h4>weishao22</h4>
                     <p>腐竹</p>
                     <p>服务器提供,网页维护</p>
@@ -979,7 +822,7 @@
 
             <h2>服务器数据</h2>
             <hr class="divider">
-            
+
             <div class="content-text">
                 <p>截至目前，QYServer已经运行了超过343天：</p>
                 <ul>
@@ -992,7 +835,7 @@
                 <!-- ========== 评论区域 ========== -->
                 <h2>玩家评论</h2>
                 <hr class="divider">
-                
+
                 <!-- Twikoo评论系统容器 -->
                 <div id="tcomment" class="comments-section"></div>
                 <!-- ========== 结束 ========== -->
@@ -1000,7 +843,7 @@
             </div>
         </div>
     </section>
-    
+
     <!-- 页脚 -->
     <footer id="footer">
         <div class="footer-content">
@@ -1008,7 +851,7 @@
                 <h3>关于我们</h3>
                 <p>QYServer是一个专注于Minecraft基岩版的生存服务器，提供稳定、有趣的游戏环境，让玩家可以自由建造、探索和社交。</p>
             </div>
-            
+
             <div class="footer-section">
                 <h3>快速链接</h3>
                 <div class="footer-links">
@@ -1020,7 +863,7 @@
                     <a href="/qy/"><i class="fas fa-arrow-right"></i> 关于</a>
                 </div>
             </div>
-            
+
             <div class="footer-section">
                 <h3>联系我们</h3>
                 <div class="footer-links">
@@ -1030,33 +873,36 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="footer-bottom">
-            <a href="/1/bot/" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
-            &copy; 2025-2026 QYServer 版权所有</a>
+            <a href="/1/bot/" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server"
+                target="blank">
+                &copy; 2025-2026 QYServer 版权所有</a>
         </div>
     </footer>
-    
+
     <!-- 背景音乐 -->
     <audio id="bgMusic" loop>
         <source src="" type="audio/mpeg">
     </audio>
-    
+
     <!-- 音乐控制按钮 -->
     <div id="musicControl">
-        <img id="musicIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM3ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+" alt="音乐控制">
+        <img id="musicIcon"
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM3ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+"
+            alt="音乐控制">
     </div>
-    
+
     <!-- 引入 Twikoo JS 库 -->
     <script src="https://s4.zstatic.net/npm/twikoo@1.7.3/dist/twikoo.min.js"></script>
-    
+
     <script>
         // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const menuBox = document.getElementById('menu-box');
             const banner = document.getElementById('banner');
             const bannerHeight = banner.offsetHeight;
-            
+
             if (window.scrollY > bannerHeight * 0.2) {
                 menuBox.style.background = "#FFFFFF";
                 menuBox.style.boxShadow = "0px 0px 15px rgba(0,0,0,0.1)";
@@ -1066,14 +912,14 @@
                 menuBox.style.boxShadow = "none";
             }
         });
-        
+
         // 音乐播放控制
         const bgMusic = document.getElementById('bgMusic');
         const musicIcon = document.getElementById('musicIcon');
         let musicPlaying = false;
-        
+
         // 音乐控制按钮点击事件
-        document.getElementById('musicControl').addEventListener('click', function() {
+        document.getElementById('musicControl').addEventListener('click', function () {
             if (musicPlaying) {
                 bgMusic.pause();
                 musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM3ptMTAgNnYtMTJIMTB2MTJsMy41IDMuNS0yIDEuNS02LTYgNi02IDIgMS41LTMuNSAzLjV6Ii8+PC9zdmc+";
@@ -1083,7 +929,7 @@
             }
             musicPlaying = !musicPlaying;
         });
-        
+
         // 确保所有链接在点击时平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1094,7 +940,7 @@
             });
         });
         // 关于页轮播初始化
-        (function(){
+        (function () {
             const carousel = document.getElementById('qyCarousel');
             if (!carousel) return;
             const track = carousel.querySelector('.carousel-track');
@@ -1110,7 +956,7 @@
                 const d = document.createElement('button');
                 d.className = 'carousel-dot';
                 if (i === 0) d.classList.add('active');
-                d.addEventListener('click', function() { goTo(i); resetAutoplay(); });
+                d.addEventListener('click', function () { goTo(i); resetAutoplay(); });
                 dotsContainer.appendChild(d);
             });
             const dots = Array.from(dotsContainer.children);
@@ -1125,16 +971,16 @@
                 update();
             }
 
-            next.addEventListener('click', function() { goTo(index + 1); resetAutoplay(); });
-            prev.addEventListener('click', function() { goTo(index - 1); resetAutoplay(); });
+            next.addEventListener('click', function () { goTo(index + 1); resetAutoplay(); });
+            prev.addEventListener('click', function () { goTo(index - 1); resetAutoplay(); });
 
             // autoplay
             let autoplayInterval = 4000;
-            let timer = setInterval(function() { goTo(index + 1); }, autoplayInterval);
-            function resetAutoplay() { clearInterval(timer); timer = setInterval(function() { goTo(index + 1); }, autoplayInterval); }
+            let timer = setInterval(function () { goTo(index + 1); }, autoplayInterval);
+            function resetAutoplay() { clearInterval(timer); timer = setInterval(function () { goTo(index + 1); }, autoplayInterval); }
 
-            carousel.addEventListener('mouseenter', function() { clearInterval(timer); });
-            carousel.addEventListener('mouseleave', function() { resetAutoplay(); });
+            carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
+            carousel.addEventListener('mouseleave', function () { resetAutoplay(); });
 
             // initial update
             update();
@@ -1151,7 +997,7 @@
                     <img class="image-modal-img" src="${src}" alt="放大图片">
                 </div>`;
             document.body.appendChild(overlay);
-            overlay.addEventListener('click', function(e) {
+            overlay.addEventListener('click', function (e) {
                 if (e.target === overlay) removeOverlay();
             });
             const closeBtn = overlay.querySelector('.image-modal-close');
@@ -1181,7 +1027,7 @@
             const wrappedByLink = img.closest && img.closest('a');
             if (inCarousel && wrappedByLink) return;
             img.style.cursor = 'pointer';
-            img.addEventListener('click', function() {
+            img.addEventListener('click', function () {
                 // 若被链接包裹但未被排除，则不阻止默认跳转
                 if (this.closest && this.closest('a')) return;
                 handleImageClick(this.src);
@@ -1190,13 +1036,13 @@
 
         // ========== Twikoo 评论系统初始化 ==========
         // 等待页面完全加载后初始化 Twikoo
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // 检查 Twikoo 库是否已加载
             if (typeof twikoo === 'undefined') {
                 console.error('Twikoo 库未加载，请检查网络或CDN链接');
                 return;
             }
-            
+
             // 初始化 Twikoo
             twikoo.init({
                 // 重要：这里填写 Twikoo 后端地址，
@@ -1210,15 +1056,15 @@
                     { name: '邮箱', placeholder: '方便联系你（选填）', required: false },
                     { name: '网站', placeholder: '你的个人主页（选填）', required: false }
                 ],
-                onCommentLoaded: function() {
+                onCommentLoaded: function () {
                     console.log('Twikoo 评论加载完成');
                 },
-                onCommentClicked: function(comment) {
+                onCommentClicked: function (comment) {
                     console.log('评论被点击', comment);
                 }
-            }).then(function() {
+            }).then(function () {
                 console.log('Twikoo 初始化成功');
-            }).catch(function(err) {
+            }).catch(function (err) {
                 console.error('Twikoo 初始化失败:', err);
                 // 显示错误信息
                 const commentSection = document.getElementById('tcomment');
@@ -1230,4 +1076,5 @@
         // ========== Twikoo 初始化结束 ==========
     </script>
 </body>
+
 </html>

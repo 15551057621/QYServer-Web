@@ -3,95 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QYServer | 客户端下载</title>
+    <title>QYServer | 下载</title>
     <link rel="stylesheet" href="/all.css">
    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg" type="image/x-icon">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "微软雅黑", "Microsoft YaHei", Roboto, Arial, sans-serif;
-        }
-        
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
-            background-color: #ff9dc6;
-            color: #5F5F5F;
-            scroll-behavior: smooth;
-        }
-        /* 隐藏页面右侧默认滚动条（保留滚动功能） */
-        html, body {
-            -ms-overflow-style: none; /* IE 10+ */
-            scrollbar-width: none; /* Firefox */
-        }
-
-        html::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-            display: none;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-
-        
-        /* 导航栏 */
-        #menu-box {
-            position: fixed;
-            width: 100%;
-            height: 60px;
-            background: none;
-            z-index: 100;
-            transition: all 0.4s ease;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .menu {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
-        
-        .logo h2 {
-            color: #C6CDD4;
-            font-size: 28px;
-            transition: all 0.4s ease;
-        }
-        
-        .logo h2:hover {
-            color: white;
-            font-size: 30px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .nav-links a {
-            color: #C6CDD4;
-            padding: 8px 15px;
-            border-radius: 4px;
-            transition: all 0.4s ease;
-            font-size: 16px;
-        }
-        
-        .nav-links a:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            font-size: 17px;
-        }
-        
         /* 横幅区域 */
         #banner {
             background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%);
@@ -276,105 +191,6 @@
             background: #f78fb3;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(248, 165, 194, 0.6);
-        }
-        
-        /* 页脚 */
-        #footer {
-            background: #333;
-            color: #ddd;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 300px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #fff;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: #f8a5c2;
-        }
-        
-        .footer-links a {
-            display: block;
-            padding: 8px 0;
-            transition: all 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #f8a5c2;
-            padding-left: 5px;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #444;
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .footer-bottom a {
-            color: #f8a5c2;
-            transition: all 0.3s;
-        }
-        
-        .footer-bottom a:hover {
-            text-decoration: underline;
-        }
-        
-        /* 音乐控制 */
-        #musicControl {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(128, 128, 128, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        #musicControl:hover {
-            transform: scale(1.1);
-            background: rgba(248, 165, 194, 0.5) !important;
-        }
-        
-        #musicControl:active {
-            transform: scale(0.95);
-        }
-        
-        #musicIcon {
-            width: 30px;
-            height: 30px;
-            opacity: 0.9;
-            display: block;
         }
         
         /* 弹窗 */
@@ -646,76 +462,6 @@
             background: #f78fb3;
             transform: translateY(-2px);
         }
-        
-        /* 响应式设计 */
-        @media (max-width: 900px) {
-            .content-image {
-                float: none;
-                width: 100%;
-                max-width: 100%;
-                margin: 20px 0;
-            }
-            
-            .join-item h2 {
-                font-size: 2.8rem;
-            }
-            
-            .join-item p {
-                font-size: 1.3rem;
-            }
-            
-            .download-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .download-icon {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .menu {
-                justify-content: center;
-            }
-            
-            .join-buttons {
-                flex-direction: column;
-            }
-            
-            .join-buttons a {
-                min-width: auto;
-                width: 100%;
-            }
-            
-            .footer-section {
-                min-width: 100%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .join-item h2 {
-                font-size: 2.2rem;
-            }
-            
-            .join-item p {
-                font-size: 1.1rem;
-            }
-            
-            .content-box h2 {
-                font-size: 2rem;
-            }
-            
-            .popup-footer {
-                flex-direction: column;
-                gap: 15px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -741,16 +487,16 @@
     <div id="menu-box">
         <div class="menu">
             <div class="logo">
-                <h2><a href="/"><i class="fas fa-cube"></i> QYServer</a></h2>
+                <h2><a href="/"><i class="fas fa-cube"></i>QYServer</a></h2>
             </div>
             <div class="nav-links">
-                <a href="/"><i class="fas fa-home"></i> 首页</a>
-                <a href="/down/"><i class="fas fa-download"></i> 客户端</a>
-                <a href="/mc/"><i class="fas fa-search"></i> 在线查询</a>
-                <a href="/UpdateLog/"><i class="fas fa-history"></i> 更新日志</a>
-                <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-map"></i> 地图</a>
-                <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
-                <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
+                
+                <a href="/down/"><i class="fas fa-download"></i>下载</a>
+                <a href="/mc/"><i class="fas fa-search"></i>查询</a>
+                <a href="/UpdateLog/"><i class="fas fa-history"></i>更新日志</a>
+                <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-map"></i>网页地图</a>
+                <a href="/faq/"><i class="fas fa-question-circle"></i>FAQ</a>
+                <a href="/gy/"><i class="fas fa-info-circle"></i>关于</a>
             </div>
         </div>
     </div>
@@ -896,7 +642,7 @@
                     <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
                     <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
                   <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-arrow-right"></i> 地图</a>
-                  <a href="http://qyserver.s.odn.cc/" id="resetPopup"><i class="fas fa-arrow-right"></i>重置弹窗</a>
+                  <a href="/" id="resetPopup"><i class="fas fa-arrow-right"></i>重置弹窗</a>
                 </div>
             </div>
             
