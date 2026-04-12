@@ -701,12 +701,9 @@
                 const bannerHeight = banner.offsetHeight;
 
                 if (window.scrollY > bannerHeight * 0.2) {
-                    menuBox.style.background = "#FFFFFF";
-                    menuBox.style.boxShadow = "0px 0px 15px rgba(0,0,0,0.1)";
-                    menuBox.style.height = "60px";
+                    menuBox.classList.add('scrolled');
                 } else {
-                    menuBox.style.background = "none";
-                    menuBox.style.boxShadow = "none";
+                    menuBox.classList.remove('scrolled');
                 }
             });
 

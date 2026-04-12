@@ -3,7 +3,10 @@
    包含：重置样式、导航栏、页脚、弹窗、音乐控制等
    ======================================== */
 
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+
 /* ---------- 1. 基础重置 ---------- */
+
 * {
     margin: 0;
     padding: 0;
@@ -48,6 +51,8 @@ a {
     transition: all 0.4s ease;
     display: flex;
     justify-content: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .menu {
@@ -73,15 +78,17 @@ a {
 
 .nav-links {
     display: flex;
-    gap: 15px;
+    gap: 0px;
 }
 
 .nav-links a {
     color: #C6CDD4;
-    padding: 8px 15px;
+    padding: 8px 0;           /* 左右内边距改成 0 */
     border-radius: 4px;
     transition: all 0.4s ease;
     font-size: 16px;
+    width: 70px;              /* 👈 新增固定宽度 */
+    text-align: center;       /* 👈 文字居中 */
 }
 
 .nav-links a:hover {
@@ -91,8 +98,13 @@ a {
 }
 
 /* 导航栏滚动后的样式（由 JS 动态添加，这里定义样式） */
+/* 导航栏滚动后的样式（由 JS 动态添加，这里定义样式） */
 #menu-box.scrolled {
-    background: #FFFFFF;
+    background: rgba(255, 255, 255, 0.4);
+    /* 👈 半透明白色，数值越小越透明 */
+    backdrop-filter: blur(10px);
+    /* 👈 保持毛玻璃效果 */
+    -webkit-backdrop-filter: blur(10px);
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
 }
 
