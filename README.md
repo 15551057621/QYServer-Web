@@ -1,4 +1,4 @@
-# Qy Server 服务器网站
+# QYServer 服务器网站
 
 [点我前往官网](http://qyserver.cc/)
 
