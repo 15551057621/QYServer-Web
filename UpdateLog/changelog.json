@@ -1,4 +1,24 @@
 [
+  {
+    "date": "2026-04-05",
+    "title": "=== Updata ===",
+    "content": "fix: 无限飞行bug已修复"
+  },
+  {
+    "date": "2026-03-28",
+    "title": "=== Updata ===",
+    "content": "<h3>新功能！</h3>\n现在鱼和美西螈可以一起养了！\n>> 潜行攻击美西螈打开设置\n<a href=\"https://qycloudreve.s.odn.cc/f/V6OHr/%E5%89%AA%E8%B4%B4%E6%9D%BF%201775966976442.webp\"><img src=\"https://qycloudreve.s.odn.cc/f/V6OHr/%E5%89%AA%E8%B4%B4%E6%9D%BF%201775966976442.webp\" width=\"80%\" style=\"height:auto;\"></a>"
+  },
+  {
+    "date": "2026-03-25",
+    "title": "=== Updata ===",
+    "content": "服务器现已支持 1.21.5x - 1.26.1x加入\n并修复了空包远程崩服问题"
+  },
+  {
+    "date": "2026-03-22",
+    "title": "=== Updata ===",
+    "content": "Fix: 修复了编辑书本将导致1.26.x客户端崩溃的问题"
+  },
     {
     "date": "2026-02-15",
     "title": "=== Updata ===",
@@ -6,7 +26,7 @@
   },
   {
     "date": "2026-01-28",
-    "title": "=== Update ===",
+    "title": "=== Updata ===",
     "content": "[+] 玩偶商店<br>[+] 对联方块<br>[+] 新年红包<br>[+] 骗子方块<br>[+] 更多饰品装备<br>[+] 两种喷花方块<br>[+] 随意抚摸魔法<br>[+] 两种新年唱片<br>[+] 经济变动提示<br>[+] 五种窜天猴实体<br>[+] 34种可获取玩偶<br>[+] 五种仙女棒物品<br>[+] 两种物品合成表<br>[+] 两个新的聊天称号<br>[#] 现在可以在副手放置红旗<br>[#] 服务核心升级1.21.93<br>[#] 修复方块坐下相关bug<br>[#] 修复错误皮肤效果bug<br>[#] 修复飞机异常坠机bug<br>[#] 修复邮件无法打开bug<br>[#] 修复壁画方块模型错误<br>[#] 修复红旗模型异常闪烁<br>[#] 替换默认史蒂夫皮肤<br><br><b>其他更新信息</b><br>现在无皮肤的玩家会显示为以下皮肤<br>支持眨眼<br>仅替换无皮肤玩家 有皮肤玩家不受影响<br><a href=\"https://qycloudreve.s.odn.cc/f/ey6tw/899ef91ec66762a3b8e04aff833992eb.webp\"><img src=\"https://qycloudreve.s.odn.cc/f/ey6tw/899ef91ec66762a3b8e04aff833992eb.webp\" width=\"200\" style=\"height:auto;\"></a><br>玩偶可以使用/helmet带在头上<br>玩偶戴在头上时其特殊功能不生效<br><a href=\"https://qycloudreve.s.odn.cc/f/Eq5Up/3f99a2b1e232352b1ca3ec91be17269a.jpg\"><img src=\"https://qycloudreve.s.odn.cc/f/Eq5Up/3f99a2b1e232352b1ca3ec91be17269a.jpg\" width=\"300\" style=\"height:auto;\"></a>"
   },
   {
