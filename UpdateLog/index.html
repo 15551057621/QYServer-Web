@@ -39,39 +39,7 @@
             color: inherit;
         }
         
-        /* 加载动画 */
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #FCFCFC;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-        
-        .loading-content {
-            text-align: center;
-        }
-        
-        .loading-spinner {
-            width: 80px;
-            height: 80px;
-            border: 8px solid rgba(248, 165, 194, 0.2);
-            border-top: 8px solid #f8a5c2;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+
         
         /* 导航栏 */
         #menu-box {
@@ -323,13 +291,7 @@
     </style>
 </head>
 <body>
-    <!-- 加载动画 -->
-    <div class="loading">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h2>正在加载更新日志...</h2>
-        </div>
-    </div>
+
     
     <!-- 导航栏 -->
     <div id="menu-box">

@@ -1,14 +1,6 @@
 // main.js: 负责加载更新日志并实现图片放大 (lightbox)
 
 window.addEventListener('load', function() {
-  setTimeout(function() {
-    const loading = document.querySelector('.loading');
-    if (loading) {
-      loading.style.opacity = '0';
-      setTimeout(function() { loading.style.display = 'none'; }, 500);
-    }
-  }, 1000);
-
   loadChangelog();
 });
 
