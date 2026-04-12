@@ -511,8 +511,6 @@
             background: #f78fb3;
             transform: translateY(-2px);
         }
-
-        
     </style>
 </head>
 
@@ -524,7 +522,7 @@
                 <h2><a href="/"><i class="fas fa-cube"></i> QYServer</a></h2>
             </div>
             <div class="nav-links">
-                
+
                 <a href="/down/"><i class="fas fa-download"></i>下载</a>
                 <a href="/mc/"><i class="fas fa-search"></i>查询</a>
                 <a href="/UpdateLog/"><i class="fas fa-history"></i>日志</a>
@@ -612,20 +610,16 @@
     </div>
 
     <script>
-        // 导航栏滚动效果 - 移除滚动时的颜色变化，保持粉色
-        // ❌ 旧的写法（删掉）
+        // 导航栏滚动效果
         window.addEventListener('scroll', function () {
             const menuBox = document.getElementById('menu-box');
             const banner = document.getElementById('banner');
             const bannerHeight = banner.offsetHeight;
 
             if (window.scrollY > bannerHeight * 0.2) {
-                menuBox.style.background = "#FFFFFF";
-                menuBox.style.boxShadow = "0px 0px 15px rgba(0,0,0,0.1)";
-                menuBox.style.height = "60px";
+                menuBox.classList.add('scrolled');    // 👈 改用 class
             } else {
-                menuBox.style.background = "none";
-                menuBox.style.boxShadow = "none";
+                menuBox.classList.remove('scrolled');
             }
         });
 

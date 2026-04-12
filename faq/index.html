@@ -403,7 +403,7 @@
                 <h2><a href="/"><i class="fas fa-cube"></i> QYServer</a></h2>
             </div>
             <div class="nav-links">
-                
+
                 <a href="/down/"><i class="fas fa-download"></i>下载</a>
                 <a href="/mc/"><i class="fas fa-search"></i>查询</a>
                 <a href="/UpdateLog/"><i class="fas fa-history"></i>日志</a>
@@ -553,12 +553,9 @@
             const bannerHeight = banner.offsetHeight;
 
             if (window.scrollY > bannerHeight * 0.2) {
-                menuBox.style.background = "#FFFFFF";
-                menuBox.style.boxShadow = "0px 0px 15px rgba(0,0,0,0.1)";
-                menuBox.style.height = "60px";
+                menuBox.classList.add('scrolled');    // 👈 改用 class
             } else {
-                menuBox.style.background = "none";
-                menuBox.style.boxShadow = "none";
+                menuBox.classList.remove('scrolled');
             }
         });
 

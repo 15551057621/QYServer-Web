@@ -10,7 +10,7 @@ window.addEventListener('scroll', function() {
   if (!menuBox) return;
 
   if (window.scrollY > 20) {
-    menuBox.style.background = "rgba(255, 255, 255, 0.7)";
+    classList.add('scrolled')
     menuBox.style.boxShadow = "0px 2px 10px rgba(0,0,0,0.1)";
     menuBox.style.backdropFilter = "blur(10px)";
     menuBox.style.webkitBackdropFilter = "blur(10px)";

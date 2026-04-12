@@ -9,8 +9,6 @@
     <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg"
         type="image/x-icon">
     <style>
-        
-
         /* 横幅区域 */
         #banner {
             background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%);
@@ -904,12 +902,9 @@
             const bannerHeight = banner.offsetHeight;
 
             if (window.scrollY > bannerHeight * 0.2) {
-                menuBox.style.background = "#FFFFFF";
-                menuBox.style.boxShadow = "0px 0px 15px rgba(0,0,0,0.1)";
-                menuBox.style.height = "60px";
+                menuBox.classList.add('scrolled');    // 👈 改用 class
             } else {
-                menuBox.style.background = "none";
-                menuBox.style.boxShadow = "none";
+                menuBox.classList.remove('scrolled');
             }
         });
 

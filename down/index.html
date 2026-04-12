@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QYServer | 下载</title>
     <link rel="stylesheet" href="../all.css">
-    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg" type="image/x-icon">
+    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg"
+        type="image/x-icon">
     <style>
         /* 横幅区域 */
         #banner {
@@ -20,7 +22,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .banner-content {
             position: relative;
             z-index: 2;
@@ -29,7 +31,7 @@
             margin: 0 auto;
             width: 100%;
         }
-        
+
         .banner-content::before {
             content: '';
             position: absolute;
@@ -41,30 +43,30 @@
             opacity: 0.15;
             z-index: -1;
         }
-        
+
         .join-item {
             margin-bottom: 50px;
             color: white;
         }
-        
+
         .join-item h2 {
             font-size: 3.5rem;
             margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .join-item p {
             font-size: 1.5rem;
             max-width: 700px;
             line-height: 1.6;
         }
-        
+
         .join-buttons {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
         }
-        
+
         .join-buttons a {
             display: inline-block;
             padding: 15px 30px;
@@ -76,27 +78,27 @@
             text-align: center;
             min-width: 200px;
         }
-        
+
         .join-buttons a:hover {
             color: #f8a5c2;
             background: white;
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         /* 内容区域 */
         #content {
             background: white;
             padding: 80px 0;
             position: relative;
         }
-        
+
         .content-box {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .content-box h2 {
             font-size: 2.5rem;
             color: #333;
@@ -104,7 +106,7 @@
             position: relative;
             padding-bottom: 15px;
         }
-        
+
         .content-box h2::after {
             content: '';
             position: absolute;
@@ -115,42 +117,42 @@
             background: #f8a5c2;
             border-radius: 2px;
         }
-        
+
         hr.divider {
             margin: 40px 0;
             height: 2px;
             background: #EBEBEB;
             border: none;
         }
-        
+
         .content-section {
             margin-bottom: 60px;
         }
-        
+
         .content-text h3 {
             font-size: 1.8rem;
             color: #333;
             margin: 25px 0 15px;
             line-height: 1.4;
         }
-        
+
         .content-text p {
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 15px;
         }
-        
+
         .content-text a {
             color: #337AB7;
             transition: all 0.3s;
             font-weight: bold;
         }
-        
+
         .content-text a:hover {
             color: #f8a5c2;
             text-decoration: underline;
         }
-        
+
         .content-image {
             float: right;
             margin: 20px 0 20px 40px;
@@ -160,7 +162,7 @@
             overflow: hidden;
             box-shadow: 8px 8px 20px rgba(234, 234, 234, 0.8);
         }
-        
+
         .content-image img {
             width: 100%;
             height: auto;
@@ -171,7 +173,7 @@
         .content-image img:hover {
             transform: scale(1.05);
         }
-        
+
         .add-server-btn {
             display: inline-block;
             background: #f8a5c2;
@@ -186,13 +188,13 @@
             border: none;
             box-shadow: 0 5px 15px rgba(248, 165, 194, 0.4);
         }
-        
+
         .add-server-btn:hover {
             background: #f78fb3;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(248, 165, 194, 0.6);
         }
-        
+
         /* 弹窗 */
         .popup-overlay {
             display: none;
@@ -206,7 +208,7 @@
             justify-content: center;
             align-items: center;
         }
-        
+
         .popup-content {
             background-color: #fff;
             border-radius: 10px;
@@ -216,12 +218,19 @@
             box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
             animation: popupFadeIn 0.4s;
         }
-        
+
         @keyframes popupFadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .popup-title {
             font-size: 24px;
             font-weight: bold;
@@ -230,30 +239,30 @@
             padding-bottom: 10px;
             border-bottom: 2px solid #f8a5c2;
         }
-        
+
         .popup-message {
             margin-bottom: 25px;
             line-height: 1.7;
             color: #555;
             font-size: 16px;
         }
-        
+
         .popup-message p {
             margin-bottom: 15px;
         }
-        
+
         .popup-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .popup-checkbox {
             display: flex;
             align-items: center;
             font-size: 14px;
         }
-        
+
         .popup-btn {
             padding: 10px 25px;
             border-radius: 5px;
@@ -262,18 +271,18 @@
             font-weight: bold;
             transition: all 0.3s;
         }
-        
+
         .popup-confirm {
             background-color: #f8a5c2;
             color: white;
         }
-        
+
         .popup-confirm:hover {
             background-color: #f78fb3;
         }
-        
-        
-        
+
+
+
         /* 下载页面样式 */
         .download-container {
             max-width: 900px;
@@ -283,11 +292,11 @@
             border-radius: 10px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
-        
+
         .download-platform {
             margin-bottom: 40px;
         }
-        
+
         .download-platform h3 {
             color: #5f9ea0;
             font-size: 1.8rem;
@@ -295,7 +304,7 @@
             padding-bottom: 10px;
             border-bottom: 2px solid #f0f0f0;
         }
-        
+
         .download-item {
             background: #f9f9f9;
             padding: 20px;
@@ -306,12 +315,12 @@
             transition: all 0.3s ease;
             border: 2px solid transparent;
         }
-        
+
         .download-item:hover {
             border-color: #f8a5c2;
             transform: translateY(-5px);
         }
-        
+
         .download-icon {
             width: 60px;
             height: 60px;
@@ -324,22 +333,22 @@
             color: white;
             font-size: 1.8rem;
         }
-        
+
         .download-info {
             flex: 1;
         }
-        
+
         .download-info h4 {
             font-size: 1.4rem;
             margin-bottom: 5px;
             color: #333;
         }
-        
+
         .download-info p {
             color: #666;
             margin-bottom: 10px;
         }
-        
+
         .download-btn {
             display: inline-block;
             background: #f8a5c2;
@@ -349,16 +358,17 @@
             font-weight: bold;
             transition: all 0.3s ease;
         }
-        
+
         .download-btn:hover {
             background: #f78fb3;
             transform: translateY(-2px);
         }
     </style>
 </head>
+
 <body>
 
-    
+
     <!-- 弹窗提醒 -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-content">
@@ -391,260 +401,270 @@
             </div>
         </div>
     </div>
-    
+
     <section id="command-section" style="background-color: #f9f9f9;">
         <div class="content-box">
             <hr class="divider">
-            
+
         </div>
-    <!-- 内容区域 - 下载页面 -->
-    <section id="download-section">
-        <div class="content-box">
-            <h2>客户端下载</h2>
-            <hr class="divider">
-            
-            <div class="download-container">
-                <div class="download-platform">
-                    <h3>Windows 客户端</h3>
-                    <div class="download-item">
-                        <div class="download-icon">
-                            <i class="fab fa-windows"></i>
+        <!-- 内容区域 - 下载页面 -->
+        <section id="download-section">
+            <div class="content-box">
+                <h2>客户端下载</h2>
+                <hr class="divider">
+
+                <div class="download-container">
+                    <div class="download-platform">
+                        <h3>Windows 客户端</h3>
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fab fa-windows"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>标准版客户端</h4>
+                                <p>适用于Windows 10/11系统</p>
+                                <p>文件大小: 0.85GB | 版本: v1.21.94</p>
+                                <p>注意软件为微软应用商店上的官方原版 Minecraft，游戏文件完全没有被修改</p>
+                                <a href="https://pan.mcbebbs.cn/VVfN/Microsoft.MinecraftUWP_1.21.9401.0_x64__8wekyb3d8bbwe.Appx"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                                <a href="https://qycloudreve.s.odn.cc/yM5CB/Microsoft.MinecraftUWP_1.21.9401.0_x64__8wekyb3d8bbwe.Appx"
+                                    class="download-btn"><i class="fas fa-download"></i> 备用</a>
+                            </div>
                         </div>
-                        <div class="download-info">
-                            <h4>标准版客户端</h4>
-                            <p>适用于Windows 10/11系统</p>
-                            <p>文件大小: 0.85GB | 版本: v1.21.94</p>
-                          <p>注意软件为微软应用商店上的官方原版 Minecraft，游戏文件完全没有被修改</p>
-                            <a href="https://pan.mcbebbs.cn/VVfN/Microsoft.MinecraftUWP_1.21.9401.0_x64__8wekyb3d8bbwe.Appx" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                          <a href="https://qycloudreve.s.odn.cc/yM5CB/Microsoft.MinecraftUWP_1.21.9401.0_x64__8wekyb3d8bbwe.Appx" class="download-btn"><i class="fas fa-download"></i> 备用</a>
-                        </div>
-                    </div>
-                    
-                    <div class="download-item">
-                        <div class="download-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="download-info">
-                            <h4>高性能版客户端</h4>
-                            <p>优化版客户端，适合低配电脑使用，提升游戏流畅度</p>
-                            <p>文件大小: 850MB | 版本: v1.21.50.2</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="download-platform">
-                    <h3>移动端客户端</h3>
-                    <div class="download-item">
-                        <div class="download-icon">
-                            <i class="fab fa-android"></i>
-                        </div>
-                        <div class="download-info">
-                            <h4>Android 客户端</h4>
-                            <p>适用于安卓手机和平板设备</p>
-                            <p>文件大小: 520MB | 版本: v1.21.94</p>
-                          <p>仅供体验或供学习交流，请在24小时内删除</p>
-                            <a href="https://pan.mcbebbs.cn/Zbh9/Minecraft%20PE%201.21.94.1%20v8a.apk" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                          <a href="https://qycloudreve.s.odn.cc/pAefX/Minecraft%20PE%201.21.94.1%20v8a.apk" class="download-btn"><i class="fas fa-download"></i>备用</a>
-                        </div>
-                    </div>
-                    
-                    <div class="download-item">
-                        <div class="download-icon">
-                            <i class="fab fa-apple"></i>
-                        </div>
-                        <div class="download-info">
-                            <h4>iOS 客户端</h4>
-                            <p>适用于iPhone和iPad设备，需要iOS 14.0或更高版本</p>
-                            <p>文件大小: 574MB | 版本: v1.21.101</p>
-                          <p>注意软件为官方原版 Minecraft</p>
-                          <a href="https://qycloudreve.s.odn.cc/d/B0sL/Minecraft%201.21.101.ipa" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="download-platform">
-                    <h3>其他资源下载</h3>
-                    <div class="download-item">
-                        <div class="download-icon">
-                            <i class="fas fa-file-archive"></i>
-                        </div>
-                        <div class="download-info">
-                            <h4>预下载资源包</h4>
-                            <p>服务器资源包，解决无法在游戏下载，下载后导入即可</p>
-                            <p>文件大小: 62MB | 更新日期: 2025-12-09</p>
-                           <a href="https://qycloudreve.s.odn.cc/xjqs1/QYServer%E6%9D%90%E8%B4%A8%E7%BC%93%E5%AD%98%E5%8C%85_v1.0_20251209.mcaddon" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                        </div>
-                    </div>
-                    
-                    <div class="download-item">
-                        <div class="download-icon">
-                            <i class="fas fa-cloud-download-alt"></i>
-                        </div>
-                        <div class="download-info">
-                            <h4>服务器地图备份</h4>
-                            <p>服务器地图备份，单机游玩使用</p>
-                            <p>文件大小: 3.6GB | 更新日期: 2025-10-7</p>
-                          <a href="https://qycloudreve.s.odn.cc/J6Auw/qyserver.mcworld" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>高性能版客户端</h4>
+                                <p>优化版客户端，适合低配电脑使用，提升游戏流畅度</p>
+                                <p>文件大小: 850MB | 版本: v1.21.50.2</p>
+                            </div>
                         </div>
                     </div>
 
-                  <div class="download-item">
-                        <div class="download-icon">
-                            <i class="fab fa-windows"></i>
+                    <div class="download-platform">
+                        <h3>移动端客户端</h3>
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fab fa-android"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>Android 客户端</h4>
+                                <p>适用于安卓手机和平板设备</p>
+                                <p>文件大小: 520MB | 版本: v1.21.94</p>
+                                <p>仅供体验或供学习交流，请在24小时内删除</p>
+                                <a href="https://pan.mcbebbs.cn/Zbh9/Minecraft%20PE%201.21.94.1%20v8a.apk"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                                <a href="https://qycloudreve.s.odn.cc/pAefX/Minecraft%20PE%201.21.94.1%20v8a.apk"
+                                    class="download-btn"><i class="fas fa-download"></i>备用</a>
+                            </div>
                         </div>
-                        <div class="download-info">
-                            <h4>Windows 客户端</h4>
-                            <p>文件大小: 0.9GB | 版本: v1.21.101</p>
-                          <p>注意软件为微软应用商店上的官方原版 Minecraft，游戏文件完全没有被修改</p>
-                            <a href="https://qycloudreve.s.odn.cc/d/NZ5ck/Microsoft.MinecraftUWP_1.21.10101.0_x64__8wekyb3d8bbwe.Appx" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>iOS 客户端</h4>
+                                <p>适用于iPhone和iPad设备，需要iOS 14.0或更高版本</p>
+                                <p>文件大小: 574MB | 版本: v1.21.101</p>
+                                <p>注意软件为官方原版 Minecraft</p>
+                                <a href="https://qycloudreve.s.odn.cc/d/B0sL/Minecraft%201.21.101.ipa"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                            </div>
                         </div>
                     </div>
 
-                  <div class="download-item">
-                        <div class="download-icon">
-                            <i class="fab fa-android"></i>
+                    <div class="download-platform">
+                        <h3>其他资源下载</h3>
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fas fa-file-archive"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>预下载资源包</h4>
+                                <p>服务器资源包，解决无法在游戏下载，下载后导入即可</p>
+                                <p>文件大小: 62MB | 更新日期: 2025-12-09</p>
+                                <a href="https://qycloudreve.s.odn.cc/xjqs1/QYServer%E6%9D%90%E8%B4%A8%E7%BC%93%E5%AD%98%E5%8C%85_v1.0_20251209.mcaddon"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                            </div>
                         </div>
-                        <div class="download-info">
-                            <h4>Android版 共存精简</h4>
-                            <p>文件大小: 295MB | 版本: v1.21.94</p>
-                          <p>仅供体验或供学习交流，请在24小时内删除</p>
-                            <a href="https://qycloudreve.s.odn.cc/klghl/Minecraft_1.21.94_v8a_%E5%85%B1%E5%AD%98.apk" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                        </div>
-                    </div>
-                  
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- 页脚 -->
-    <footer id="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>关于我们</h3>
-                <p>QYServer是一个专注于Minecraft基岩版的生存服务器，提供稳定、有趣的游戏环境，让玩家可以自由建造、探索和社交。</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>快速链接</h3>
-                <div class="footer-links">
-                    <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
-                    <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
-                    <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
-                    <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
-                  <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-arrow-right"></i> 地图</a>
-                  <a href="/" id="resetPopup"><i class="fas fa-arrow-right"></i>重置弹窗</a>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h3>联系我们</h3>
-                <div class="footer-links">
-                    <a href="mailto:weishao22@outlook.com"><i class="fas fa-envelope"></i> weishao22@outlook.com</a>
-                    <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fab fa-qq"></i> QQ群: 1029879634</a>
-                    <a href="https://discord.gg/WGcKjt7BNG"><i class="fab fa-discord"></i> Discord</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <a href="https://stats.uptimerobot.com/hgMdAGlsWu" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
-            &copy; 2025-2026 QYServer 版权所有</a>
-        </div>
-    </footer>
-    
-    <!-- 背景音乐 -->
-    <audio id="bgMusic" loop>
-        <source src="http://qycloudrevetermux.s.odn.cc/f/d/lODc6/Motions.mp3" type="audio/mpeg">
-    </audio>
-    
-    <!-- 音乐控制按钮 -->
-    <div id="musicControl">
-        <img id="musicIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+" alt="音乐控制">
-    </div>
-    
-    <script>
 
-        
-        // 在页面加载时检查是否应该显示弹窗
-        document.addEventListener('DOMContentLoaded', function() {
-            // 检查localStorage中是否有"dontShowPopu"标志
-            if (localStorage.getItem('dontShowPopu') !== 'true') {
-                // 显示弹窗
-                setTimeout(function() {
-                    document.getElementById('popupOverlay').style.display = 'flex';
-                }, 2000);
-            }
-            
-            // 确认按钮点击事件
-            document.getElementById('popupConfirm').addEventListener('click', function() {
-                // 如果勾选了"不再显示"，则保存到localStorage
-                if (document.getElementById('dontShowAgain').checked) {
-                    localStorage.setItem('dontShowPopu', 'true');
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>服务器地图备份</h4>
+                                <p>服务器地图备份，单机游玩使用</p>
+                                <p>文件大小: 3.6GB | 更新日期: 2025-10-7</p>
+                                <a href="https://qycloudreve.s.odn.cc/J6Auw/qyserver.mcworld" class="download-btn"><i
+                                        class="fas fa-download"></i> 立即下载</a>
+                            </div>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fab fa-windows"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>Windows 客户端</h4>
+                                <p>文件大小: 0.9GB | 版本: v1.21.101</p>
+                                <p>注意软件为微软应用商店上的官方原版 Minecraft，游戏文件完全没有被修改</p>
+                                <a href="https://qycloudreve.s.odn.cc/d/NZ5ck/Microsoft.MinecraftUWP_1.21.10101.0_x64__8wekyb3d8bbwe.Appx"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                            </div>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fab fa-android"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>Android版 共存精简</h4>
+                                <p>文件大小: 295MB | 版本: v1.21.94</p>
+                                <p>仅供体验或供学习交流，请在24小时内删除</p>
+                                <a href="https://qycloudreve.s.odn.cc/klghl/Minecraft_1.21.94_v8a_%E5%85%B1%E5%AD%98.apk"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 页脚 -->
+        <footer id="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>关于我们</h3>
+                    <p>QYServer是一个专注于Minecraft基岩版的生存服务器，提供稳定、有趣的游戏环境，让玩家可以自由建造、探索和社交。</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>快速链接</h3>
+                    <div class="footer-links">
+                        <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
+                        <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
+                        <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
+                        <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
+                        <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-arrow-right"></i> 地图</a>
+                        <a href="/" id="resetPopup"><i class="fas fa-arrow-right"></i>重置弹窗</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h3>联系我们</h3>
+                    <div class="footer-links">
+                        <a href="mailto:weishao22@outlook.com"><i class="fas fa-envelope"></i> weishao22@outlook.com</a>
+                        <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fab fa-qq"></i> QQ群: 1029879634</a>
+                        <a href="https://discord.gg/WGcKjt7BNG"><i class="fab fa-discord"></i> Discord</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <a href="https://stats.uptimerobot.com/hgMdAGlsWu" target="_blank">Uptime Robot</a> | <a
+                    href="https://github.com/weishao22/Qy-server" target="blank">
+                    &copy; 2025-2026 QYServer 版权所有</a>
+            </div>
+        </footer>
+
+        <!-- 背景音乐 -->
+        <audio id="bgMusic" loop>
+            <source src="http://qycloudrevetermux.s.odn.cc/f/d/lODc6/Motions.mp3" type="audio/mpeg">
+        </audio>
+
+        <!-- 音乐控制按钮 -->
+        <div id="musicControl">
+            <img id="musicIcon"
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+"
+                alt="音乐控制">
+        </div>
+
+        <script>
+
+
+            // 在页面加载时检查是否应该显示弹窗
+            document.addEventListener('DOMContentLoaded', function () {
+                // 检查localStorage中是否有"dontShowPopu"标志
+                if (localStorage.getItem('dontShowPopu') !== 'true') {
+                    // 显示弹窗
+                    setTimeout(function () {
+                        document.getElementById('popupOverlay').style.display = 'flex';
+                    }, 2000);
                 }
-                document.getElementById('popupOverlay').style.display = 'none';
+
+                // 确认按钮点击事件
+                document.getElementById('popupConfirm').addEventListener('click', function () {
+                    // 如果勾选了"不再显示"，则保存到localStorage
+                    if (document.getElementById('dontShowAgain').checked) {
+                        localStorage.setItem('dontShowPopu', 'true');
+                    }
+                    document.getElementById('popupOverlay').style.display = 'none';
+                });
+
+                // 点击遮罩层也可关闭弹窗
+                document.getElementById('popupOverlay').addEventListener('click', function (e) {
+                    if (e.target === this) {
+                        this.style.display = 'none';
+                    }
+                });
             });
-            
-            // 点击遮罩层也可关闭弹窗
-            document.getElementById('popupOverlay').addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.style.display = 'none';
+
+            // 导航栏滚动效果
+            window.addEventListener('scroll', function () {
+                const menuBox = document.getElementById('menu-box');
+                const banner = document.getElementById('banner');
+                const bannerHeight = banner.offsetHeight;
+
+                if (window.scrollY > bannerHeight * 0.2) {
+                    menuBox.classList.add('scrolled');    // 👈 改用 class
+                } else {
+                    menuBox.classList.remove('scrolled');
                 }
             });
-        });
-        
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const menuBox = document.getElementById('menu-box');
-            const banner = document.getElementById('banner');
-            const bannerHeight = banner.offsetHeight;
-            
-            if (window.scrollY > bannerHeight * 0.2) {
-                menuBox.style.background = "#FFFFFF";
-                menuBox.style.boxShadow = "0px 0px 15px rgba(0,0,0,0.1)";
-                menuBox.style.height = "60px";
-            } else {
-                menuBox.style.background = "none";
-                menuBox.style.boxShadow = "none";
-            }
-        });
-        
-        // 音乐播放控制
-        const bgMusic = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        let musicPlaying = false;
-        
-        // 音乐控制按钮点击事件
-        document.getElementById('musicControl').addEventListener('click', function() {
-            if (musicPlaying) {
-                bgMusic.pause();
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM3ptMTAgNnYtMTJIMTB2MTJsMy41IDMuNS0yIDEuNS02LTYgNi02IDIgMS41LTMuNSAzLjV6Ii8+PC9zdmc+";
-            } else {
-                bgMusic.play().catch(e => console.log("播放失败:", e));
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+";
-            }
-            musicPlaying = !musicPlaying;
-        });
 
-        
-        // 确保所有链接在点击时平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            // 音乐播放控制
+            const bgMusic = document.getElementById('bgMusic');
+            const musicIcon = document.getElementById('musicIcon');
+            let musicPlaying = false;
+
+            // 音乐控制按钮点击事件
+            document.getElementById('musicControl').addEventListener('click', function () {
+                if (musicPlaying) {
+                    bgMusic.pause();
+                    musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM3ptMTAgNnYtMTJIMTB2MTJsMy41IDMuNS0yIDEuNS02LTYgNi02IDIgMS41LTMuNSAzLjV6Ii8+PC9zdmc+";
+                } else {
+                    bgMusic.play().catch(e => console.log("播放失败:", e));
+                    musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+";
+                }
+                musicPlaying = !musicPlaying;
+            });
+
+
+            // 确保所有链接在点击时平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            document.getElementById('resetPopup').addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
+                localStorage.removeItem('dontShowPopu');
+                alert('弹窗设置已重置，下次访问时将再次显示提示');
             });
-        });
-        
-        document.getElementById('resetPopup').addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.removeItem('dontShowPopu');
-            alert('弹窗设置已重置，下次访问时将再次显示提示');
-        });
-    </script>
+        </script>
 </body>
+
 </html>
