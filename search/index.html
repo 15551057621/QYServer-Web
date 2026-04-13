@@ -6,7 +6,7 @@
     <!-- 修复viewport设置 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="refresh" content="130">
-    <title>查询</title>
+    <title>QYServer | 查询</title>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="/lib/all.css">
     <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg"
@@ -390,8 +390,8 @@
         </div>
 
         <div class="footer-bottom">
-            <a href="/bot/" target="_blank">Uptime Robot</a> | <a
-                href="https://github.com/weishao22/Qy-server" target="blank">
+            <a href="/bot/" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server"
+                target="blank">
                 &copy; 2025-2026 QYServer 版权所有</a>
         </div>
     </footer>
@@ -523,7 +523,7 @@
                                     const index = context.dataIndex;
                                     return `在线人数: ${context.parsed.y} (${statuses[index]})`;
                                 },
-                                title: function(context) {
+                                title: function (context) {
                                     const idx = context && context[0] ? context[0].dataIndex : null;
                                     return (idx !== null && labels[idx]) ? labels[idx] : '';
                                 }

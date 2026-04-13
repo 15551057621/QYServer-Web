@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
+
 <head>
-  <meta name=“robots”content=“noindex”>
+    <meta name=“robots”content=“noindex”>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图片详情</title>
-  <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg" type="image/x-icon">
+    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg"
+        type="image/x-icon">
     <style>
         body {
             margin: 0;
@@ -16,10 +18,14 @@
             font-family: Arial, sans-serif;
             color: white;
         }
+
         /* 隐藏页面右侧默认滚动条（保留滚动功能） */
-        html, body {
-            -ms-overflow-style: none; /* IE 10+ */
-            scrollbar-width: none; /* Firefox */
+        html,
+        body {
+            -ms-overflow-style: none;
+            /* IE 10+ */
+            scrollbar-width: none;
+            /* Firefox */
         }
 
         html::-webkit-scrollbar {
@@ -48,7 +54,7 @@
         .back-button:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .container {
@@ -71,7 +77,7 @@
             width: 100%;
             height: auto;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         .image-info {
@@ -87,7 +93,7 @@
             font-size: 24px;
             margin-bottom: 15px;
             color: white;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .image-description {
@@ -125,11 +131,12 @@
                 margin: 20px;
                 padding: 15px;
             }
-            
+
             .image-title {
                 font-size: 20px;
             }
         }
+
         /* 放大模态样式 */
         .zoom-modal {
             position: fixed;
@@ -137,7 +144,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0, 0, 0, 0.85);
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.25s ease;
@@ -153,7 +160,7 @@
             max-width: 92%;
             max-height: 92%;
             border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
             cursor: zoom-out;
             transition: transform 0.25s ease;
         }
@@ -163,6 +170,7 @@
         }
     </style>
 </head>
+
 <body>
     <a href="javascript:history.back()" class="back-button">返回</a>
 
@@ -188,7 +196,7 @@
                     <div class="metadata-label">拍摄者</div>
                     <div class="metadata-value" id="imageAuthor"></div>
                 </div>
-              <div class="metadata-item">
+                <div class="metadata-item">
                     <div class="metadata-label">建造者</div>
                     <div class="metadata-value" id="imageUthor"></div>
                 </div>
@@ -209,14 +217,14 @@
         }
 
         // 页面加载时填充内容
-        window.onload = function() {
+        window.onload = function () {
             const imageUrl = getQueryParam('img');
             const title = getQueryParam('title') || '未知标题';
             const description = getQueryParam('desc') || '暂无描述';
             const date = getQueryParam('date') || '未知';
             const location = getQueryParam('loc') || '不愿透露';
             const author = getQueryParam('author') || '匿名';
-          const uthor = getQueryParam('uthor') || '未知';
+            const uthor = getQueryParam('uthor') || '未知';
 
             document.getElementById('displayImage').src = decodeURIComponent(imageUrl);
             document.getElementById('imageTitle').textContent = decodeURIComponent(title);
@@ -224,43 +232,44 @@
             document.getElementById('imageDate').textContent = decodeURIComponent(date);
             document.getElementById('imageLocation').textContent = decodeURIComponent(location);
             document.getElementById('imageAuthor').textContent = decodeURIComponent(author);
-          document.getElementById('imageUthor').textContent = decodeURIComponent(uthor);
-                // --- 图片放大功能 ---
-                const displayImgEl = document.getElementById('displayImage');
-                const zoomModal = document.getElementById('zoomModal');
-                const zoomImg = document.getElementById('zoomImg');
+            document.getElementById('imageUthor').textContent = decodeURIComponent(uthor);
+            // --- 图片放大功能 ---
+            const displayImgEl = document.getElementById('displayImage');
+            const zoomModal = document.getElementById('zoomModal');
+            const zoomImg = document.getElementById('zoomImg');
 
-                if (displayImgEl) {
-                    displayImgEl.addEventListener('click', function () {
-                        const src = displayImgEl.src;
-                        if (!src) return;
-                        zoomImg.src = src;
-                        zoomModal.classList.add('open');
-                        zoomModal.setAttribute('aria-hidden', 'false');
-                        document.body.style.overflow = 'hidden';
-                    });
-                }
-
-                // 点击遮罩或图片则关闭
-                zoomModal.addEventListener('click', function () {
-                    zoomModal.classList.remove('open');
-                    zoomModal.setAttribute('aria-hidden', 'true');
-                    document.body.style.overflow = '';
-                    zoomImg.src = '';
+            if (displayImgEl) {
+                displayImgEl.addEventListener('click', function () {
+                    const src = displayImgEl.src;
+                    if (!src) return;
+                    zoomImg.src = src;
+                    zoomModal.classList.add('open');
+                    zoomModal.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
                 });
+            }
 
-                // 按 Esc 键关闭
-                document.addEventListener('keydown', function (e) {
-                    if (e.key === 'Escape') {
-                        if (zoomModal.classList.contains('open')) {
-                            zoomModal.classList.remove('open');
-                            zoomModal.setAttribute('aria-hidden', 'true');
-                            document.body.style.overflow = '';
-                            zoomImg.src = '';
-                        }
+            // 点击遮罩或图片则关闭
+            zoomModal.addEventListener('click', function () {
+                zoomModal.classList.remove('open');
+                zoomModal.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                zoomImg.src = '';
+            });
+
+            // 按 Esc 键关闭
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') {
+                    if (zoomModal.classList.contains('open')) {
+                        zoomModal.classList.remove('open');
+                        zoomModal.setAttribute('aria-hidden', 'true');
+                        document.body.style.overflow = '';
+                        zoomImg.src = '';
                     }
-                });
+                }
+            });
         }
     </script>
 </body>
+
 </html>
