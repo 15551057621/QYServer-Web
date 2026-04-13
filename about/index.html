@@ -521,12 +521,12 @@
                 <h2><a href="/"><i class="fas fa-cube"></i> QYServer</a></h2>
             </div>
             <div class="nav-links">
-                <a href="/down/"><i class="fas fa-download"></i>下载</a>
-                <a href="/mc/"><i class="fas fa-search"></i>查询</a>
-                <a href="/UpdateLog/"><i class="fas fa-history"></i>日志</a>
-                <a href="/map/"><i class="fas fa-map"></i> 地图</a>
+                <a href="/download/"><i class="fas fa-download"></i>下载</a>
+                <a href="/search/"><i class="fas fa-search"></i>查询</a>
+                <a href="/UpdateLog/"><i class="fas fa-history"></i>更新</a>
+                <a href="/map/"><i class="fas fa-map"></i>地图</a>
                 <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
-                <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
+                <a href="/about/"><i class="fas fa-info-circle"></i> 关于</a>
             </div>
         </div>
     </div>
@@ -893,47 +893,8 @@
 
     <!-- 引入 Twikoo JS 库 -->
     <script src="https://s4.zstatic.net/npm/twikoo@1.7.3/dist/twikoo.min.js"></script>
-
+    <script src="/all.js"></script>
     <script>
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function () {
-            const menuBox = document.getElementById('menu-box');
-            const banner = document.getElementById('banner');
-            const bannerHeight = banner.offsetHeight;
-
-            if (window.scrollY > bannerHeight * 0.2) {
-                menuBox.classList.add('scrolled');    // 👈 改用 class
-            } else {
-                menuBox.classList.remove('scrolled');
-            }
-        });
-
-        // 音乐播放控制
-        const bgMusic = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        let musicPlaying = false;
-
-        // 音乐控制按钮点击事件
-        document.getElementById('musicControl').addEventListener('click', function () {
-            if (musicPlaying) {
-                bgMusic.pause();
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM3ptMTAgNnYtMTJIMTB2MTJsMy41IDMuNS0yIDEuNS02LTYgNi02IDIgMS41LTMuNSAzLjV6Ii8+PC9zdmc+";
-            } else {
-                bgMusic.play().catch(e => console.log("播放失败:", e));
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+";
-            }
-            musicPlaying = !musicPlaying;
-        });
-
-        // 确保所有链接在点击时平滑滚动
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
         // 关于页轮播初始化
         (function () {
             const carousel = document.getElementById('qyCarousel');

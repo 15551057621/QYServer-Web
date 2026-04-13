@@ -26,80 +26,6 @@
             scroll-behavior: smooth;
         }
 
-        /* 隐藏页面右侧默认滚动条（保留滚动功能） */
-        html,
-        body {
-            -ms-overflow-style: none;
-            /* IE 10+ */
-            scrollbar-width: none;
-            /* Firefox */
-        }
-
-        html::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-            display: none;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* 横幅区域 */
-        #banner {
-            background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%);
-            background-size: cover;
-            background-position: center;
-            width: 100%;
-            height: 60vh;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 2;
-            padding: 0 10%;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            text-align: center;
-        }
-
-        .banner-content::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 120%;
-            background: url('') center/cover;
-            opacity: 0.15;
-            z-index: -1;
-        }
-
-        .join-item {
-            margin-bottom: 30px;
-            color: white;
-        }
-
-        .join-item h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .join-item p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
         /* 内容区域 - 壁纸将在JS中设置 */
         #content {
             padding: 60px 0;
@@ -308,37 +234,6 @@
             text-decoration: underline;
         }
 
-        /* 音乐控制 */
-        #musicControl {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(128, 128, 128, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        #musicControl:hover {
-            transform: scale(1.1);
-            background: rgba(248, 165, 194, 0.5) !important;
-        }
-
-        #musicControl:active {
-            transform: scale(0.95);
-        }
-
-        #musicIcon {
-            width: 30px;
-            height: 30px;
-            opacity: 0.9;
-            display: block;
-        }
-
         /* 响应式设计 */
         @media (max-width: 900px) {
             .join-item h2 {
@@ -347,47 +242,6 @@
 
             .join-item p {
                 font-size: 1.1rem;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .menu {
-                justify-content: center;
-            }
-
-            .footer-section {
-                min-width: 100%;
-            }
-
-            #banner {
-                height: 50vh;
-                min-height: 350px;
-            }
-
-            /* 移动设备专用背景样式 */
-            .mobile-background {
-                background-size: cover !important;
-                background-position: center !important;
-                background-repeat: no-repeat !important;
-                background-attachment: scroll !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .join-item h2 {
-                font-size: 2rem;
-            }
-
-            .join-item p {
-                font-size: 1rem;
-            }
-
-            .content-box h2 {
-                font-size: 1.8rem;
             }
         }
     </style>
@@ -404,12 +258,12 @@
             </div>
             <div class="nav-links">
 
-                <a href="/down/"><i class="fas fa-download"></i>下载</a>
-                <a href="/mc/"><i class="fas fa-search"></i>查询</a>
-                <a href="/UpdateLog/"><i class="fas fa-history"></i>日志</a>
+                <a href="/download/"><i class="fas fa-download"></i>下载</a>
+                <a href="/search/"><i class="fas fa-search"></i>查询</a>
+                <a href="/UpdateLog/"><i class="fas fa-history"></i>更新</a>
                 <a href="/map/"><i class="fas fa-map"></i> 地图</a>
                 <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
-                <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
+                <a href="/about/"><i class="fas fa-info-circle"></i> 关于</a>
             </div>
         </div>
     </div>
@@ -444,7 +298,7 @@
                     <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
                     <a href="/map/"><i class="fas fa-arrow-right"></i> 地图</a>
                     <a href="/ai/"><i class="fas fa-solid fa-robot"></i> AI 助手</a>
-                    <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
+                    <a href="/about/"><i class="fas fa-info-circle"></i> 关于</a>
                     <a href="http://docs.s.odn.cc/"><i class="fas fa-arrow-right"></i>QYServer Docs</a>
                 </div>
             </div>
@@ -478,6 +332,7 @@
             alt="音乐控制">
     </div>
 
+    <script src="/all.js"></script>
     <script>
         // 壁纸配置
         const wallpapers = {
@@ -534,46 +389,13 @@
             });
         }
 
-        // 页面加载完成后隐藏加载动画
+        // 页面加载完成后
         window.addEventListener('load', function () {
             // 设置壁纸
             setWallpaper();
 
             // 初始化问题列表
             renderList();
-        });
-
-        // 搜索功能
-        document.getElementById('search').addEventListener('input', e => renderList(e.target.value));
-
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function () {
-            const menuBox = document.getElementById('menu-box');
-            const banner = document.getElementById('banner');
-            const bannerHeight = banner.offsetHeight;
-
-            if (window.scrollY > bannerHeight * 0.2) {
-                menuBox.classList.add('scrolled');    // 👈 改用 class
-            } else {
-                menuBox.classList.remove('scrolled');
-            }
-        });
-
-        // 音乐播放控制
-        const bgMusic = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        let musicPlaying = false;
-
-        // 音乐控制按钮点击事件
-        document.getElementById('musicControl').addEventListener('click', function () {
-            if (musicPlaying) {
-                bgMusic.pause();
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM3ptMTAgNnYtMTJIMTB2MTJsMy41IDMuNS0yIDEuNS02LTYgNi02IDIgMS41LTMuNSAzLjV6Ii8+PC9zdmc+";
-            } else {
-                bgMusic.play().catch(e => console.log("播放失败:", e));
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+";
-            }
-            musicPlaying = !musicPlaying;
         });
 
         function setWallpaper() {

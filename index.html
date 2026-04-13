@@ -762,12 +762,12 @@
                 <h2><a href="/"><i class="fas fa-cube"></i> QYServer</a></h2>
             </div>
             <div class="nav-links">
-                <a href="/down/"><i class="fas fa-download"></i>下载</a>
-                <a href="/mc/"><i class="fas fa-search"></i>查询</a>
-                <a href="/UpdateLog/"><i class="fas fa-history"></i>日志</a>
-                <a href="/map/"><i class="fas fa-map"></i> 地图</a>
+                <a href="/download/"><i class="fas fa-download"></i>下载</a>
+                <a href="/search/"><i class="fas fa-search"></i>查询</a>
+                <a href="/UpdateLog/"><i class="fas fa-history"></i>更新</a>
+                <a href="/map/"><i class="fas fa-map"></i>地图</a>
                 <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
-                <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
+                <a href="/about/"><i class="fas fa-info-circle"></i> 关于</a>
             </div>
         </div>
     </div>
@@ -780,9 +780,9 @@
                 <p>生存 · 养老 · 基岩版 · 1.21.50+ Server</p>
             </div>
             <div class="join-buttons">
-                <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fas fa-user-plus"></i> 加入♂我们</a>
-                <a href="/mc/"><i class="fas fa-search"></i> 在线♂查询</a>
-                <a href="/down/"><i class="fas fa-download"></i> 客户端下载</a>
+                <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fas fa-user-plus"></i> 加入我们</a>
+                <a href="/search/"><i class="fas fa-search"></i> 在线查询</a>
+                <a href="/download/"><i class="fas fa-download"></i> 文件下载</a>
             </div>
         </div>
     </section>
@@ -893,7 +893,7 @@
                     <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
                     <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
                     <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
-                    <a href="/map/"><i class="fas fa-arrow-right"></i> 地图</a>
+                    <a href="/map/"><i class="fas fa-arrow-right"></i> 网页地图</a>
                     <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
                     <a href="/qy/"><i class="fas fa-arrow-right"></i> 关于</a>
                 </div>
@@ -928,6 +928,8 @@
             src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+"
             alt="音乐控制">
     </div>
+
+    <script src="/all.js"></script>
 
     <!-- 引入 AI 聊天所需脚本 -->
     <script src="/faq/ai/marked.min.js"></script>
@@ -1047,36 +1049,6 @@
                     handleImageClick(this.src);
                 });
             });
-        });
-
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function () {
-            const menuBox = document.getElementById('menu-box');
-            const banner = document.getElementById('banner');
-            const bannerHeight = banner.offsetHeight;
-
-            if (window.scrollY > bannerHeight * 0.2) {
-                menuBox.classList.add('scrolled');    // 👈 改用 class
-            } else {
-                menuBox.classList.remove('scrolled');
-            }
-        });
-
-        // 音乐播放控制
-        const bgMusic = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        let musicPlaying = false;
-
-        // 音乐控制按钮点击事件
-        document.getElementById('musicControl').addEventListener('click', function () {
-            if (musicPlaying) {
-                bgMusic.pause();
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM3ptMTAgNnYtMTJIMTB2MTJsMy41IDMuNS0yIDEuNS02LTYgNi02IDIgMS41LTMuNSAzLjV6Ii8+PC9zdmc+";
-            } else {
-                bgMusic.play().catch(e => console.log("播放失败:", e));
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+";
-            }
-            musicPlaying = !musicPlaying;
         });
 
         // 一键加入游戏

@@ -7,7 +7,7 @@
     <title>问题详情 - QYServer</title>
     <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg"
         type="image/x-icon">
-    <link rel="stylesheet" href="/all.min.css">
+    <link rel="stylesheet" href="/all.css">
     <script src="/faq/marked.min.js"></script>
     <style>
         .bg-fixed {
@@ -19,102 +19,6 @@
             z-index: 0;
             background: url('https://t.alcy.cc/ycy') center/cover no-repeat;
             pointer-events: none;
-        }
-
-        #content,
-        .loading,
-        #menu-box,
-        #footer {
-            position: relative;
-            z-index: 1;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "微软雅黑", "Microsoft YaHei", Roboto, Arial, sans-serif;
-        }
-
-        html,
-        body {
-            width: 100%;
-            overflow-x: hidden;
-            background-color: #f5f5f5;
-            color: #5F5F5F;
-            scroll-behavior: smooth;
-        }
-
-        /* 隐藏页面右侧默认滚动条（保留滚动功能） */
-        html,
-        body {
-            -ms-overflow-style: none;
-            /* IE 10+ */
-            scrollbar-width: none;
-            /* Firefox */
-        }
-
-        html::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-            display: none;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* 导航栏 */
-        #menu-box {
-            position: fixed;
-            width: 100%;
-            height: 60px;
-            background: none;
-            z-index: 100;
-            transition: all 0.4s ease;
-            display: flex;
-            justify-content: center;
-        }
-
-        .menu {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
-
-        .logo h2 {
-            color: #C6CDD4;
-            font-size: 28px;
-            transition: all 0.4s ease;
-        }
-
-        .logo h2:hover {
-            color: white;
-            font-size: 30px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-
-        .nav-links a {
-            color: #C6CDD4;
-            padding: 8px 15px;
-            border-radius: 4px;
-            transition: all 0.4s ease;
-            font-size: 16px;
-        }
-
-        .nav-links a:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            font-size: 17px;
         }
 
         /* 横幅区域 */
@@ -371,29 +275,6 @@
             text-decoration: underline;
         }
 
-        /* 加载动画 */
-        @keyframes loading {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        #problem-content[data-loading="true"]::before {
-            content: "";
-            display: block;
-            width: 40px;
-            height: 40px;
-            margin: 20px auto;
-            border: 4px solid rgba(248, 165, 194, 0.2);
-            border-top: 4px solid #f8a5c2;
-            border-radius: 50%;
-            animation: loading 1s linear infinite;
-        }
-
         /* 页脚 */
         #footer {
             background: #333;
@@ -479,37 +360,6 @@
             text-decoration: underline;
         }
 
-        /* 音乐控制 */
-        #musicControl {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(128, 128, 128, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-
-        #musicControl:hover {
-            transform: scale(1.1);
-            background: rgba(248, 165, 194, 0.5) !important;
-        }
-
-        #musicControl:active {
-            transform: scale(0.95);
-        }
-
-        #musicIcon {
-            width: 30px;
-            height: 30px;
-            opacity: 0.9;
-            display: block;
-        }
-
         /* 响应式设计 */
         @media (max-width: 900px) {
             .join-item h2 {
@@ -519,54 +369,6 @@
             #banner {
                 height: 35vh;
                 min-height: 250px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .menu {
-                justify-content: center;
-            }
-
-            .footer-section {
-                min-width: 100%;
-            }
-
-            #content {
-                background-attachment: scroll;
-            }
-
-            #problem-content {
-                padding: 1.5em;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .join-item h2 {
-                font-size: 1.8rem;
-            }
-
-            .problem-header h2 {
-                font-size: 1.8rem;
-            }
-
-            #problem-content {
-                padding: 1.2em;
-            }
-
-            #problem-content h1 {
-                font-size: 1.5rem;
-            }
-
-            #problem-content h2 {
-                font-size: 1.4rem;
-            }
-
-            #problem-content h3 {
-                font-size: 1.2rem;
             }
         }
 
@@ -636,13 +438,6 @@
 <body>
     <!-- 固定背景层 -->
     <div class="bg-fixed"></div>
-    <!-- 加载动画 -->
-    <div class="loading">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h2>正在加载问题详情...</h2>
-        </div>
-    </div>
 
     <!-- 导航栏 -->
     <div id="menu-box">
@@ -728,6 +523,7 @@
             alt="音乐控制">
     </div>
 
+    <script src="/all.js"></script>
     <script>
         // 问题列表配置（与index.js保持同步）
         const problems = [
@@ -799,7 +595,6 @@
                     contentElement.removeAttribute('data-loading');
                 });
         }
-    });
 
         // 图片放大（大屏模态 / 小屏新标签）
         function openImageModal(src) {
@@ -824,36 +619,6 @@
         function handleImageClick(src) {
             openImageModal(src);
         }
-
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function () {
-            const menuBox = document.getElementById('menu-box');
-            const banner = document.getElementById('banner');
-            const bannerHeight = banner.offsetHeight;
-
-            if (window.scrollY > bannerHeight * 0.2) {
-                menuBox.classList.add('scrolled');    // 👈 改用 class
-            } else {
-                menuBox.classList.remove('scrolled');
-            }
-        });
-
-        // 音乐播放控制
-        const bgMusic = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        let musicPlaying = false;
-
-        // 音乐控制按钮点击事件
-        document.getElementById('musicControl').addEventListener('click', function () {
-            if (musicPlaying) {
-                bgMusic.pause();
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM3ptMTAgNnYtMTJIMTB2MTJsMy41IDMuPS0yIDEuNS02LTYgNi02IDIgMS41LTMuNSAzLjV6Ii8+PC9zdmc+";
-            } else {
-                bgMusic.play().catch(e => console.log("播放失败:", e));
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY6aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+";
-            }
-            musicPlaying = !musicPlaying;
-        });
     </script>
 </body>
 
