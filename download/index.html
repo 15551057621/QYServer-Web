@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QYServer | 规则</title>
+    <title>QYServer | 下载</title>
     <link rel="stylesheet" href="/lib/all.css">
     <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg"
         type="image/x-icon">
@@ -39,7 +39,7 @@
             left: 0;
             width: 100%;
             height: 120%;
-            background: url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070') center/cover;
+            background: url('') center/cover;
             opacity: 0.15;
             z-index: -1;
         }
@@ -281,8 +281,10 @@
             background-color: #f78fb3;
         }
 
-        /* 规则页面样式 */
-        .rules-container {
+
+
+        /* 下载页面样式 */
+        .download-container {
             max-width: 900px;
             margin: 0 auto;
             background: #fff;
@@ -291,49 +293,88 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
 
-        .rule-category {
+        .download-platform {
             margin-bottom: 40px;
         }
 
-        .rule-category h3 {
-            color: #f8a5c2;
+        .download-platform h3 {
+            color: #5f9ea0;
             font-size: 1.8rem;
             margin-bottom: 20px;
             padding-bottom: 10px;
             border-bottom: 2px solid #f0f0f0;
         }
 
-        .rule-item {
+        .download-item {
             background: #f9f9f9;
             padding: 20px;
             border-radius: 8px;
-            margin-bottom: 15px;
-            border-left: 4px solid #f8a5c2;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
         }
 
-        .rule-item h4 {
+        .download-item:hover {
+            border-color: #f8a5c2;
+            transform: translateY(-5px);
+        }
+
+        .download-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .download-info {
+            flex: 1;
+        }
+
+        .download-info h4 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
             color: #333;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
         }
 
-        .rule-item p {
+        .download-info p {
             color: #666;
-            line-height: 1.6;
+            margin-bottom: 10px;
         }
 
-        
+        .download-btn {
+            display: inline-block;
+            background: #f8a5c2;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background: #f78fb3;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 
 <body>
+
+
     <!-- 弹窗提醒 -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-content">
             <div class="popup-title">重要提醒</div>
             <div class="popup-message">
                 <p>欢迎来到QYServer！我们是一个基岩版1.21.50+的Minecraft服务器</p>
-                <p>请注意：网站背景音乐来自FreePD</p>
                 <p>请务必遵守服务器规则，共同维护良好的游戏环境</p>
             </div>
             <div class="popup-footer">
@@ -348,16 +389,15 @@
     <div id="menu-box">
         <div class="menu">
             <div class="logo">
-                <h2><a href="/"><i class="fas fa-cube"></i> QYServer</a></h2>
+                <h2><a href="/"><i class="fas fa-cube"></i>QYServer</a></h2>
             </div>
             <div class="nav-links">
-
                 <a href="/download/"><i class="fas fa-download"></i>下载</a>
                 <a href="/search/"><i class="fas fa-search"></i>查询</a>
                 <a href="/updatelog/"><i class="fas fa-history"></i>更新</a>
-                <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-map"></i> 地图</a>
-                <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
-                <a href="/about/"><i class="fas fa-info-circle"></i> 关于</a>
+                <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-map"></i>地图</a>
+                <a href="/faq/"><i class="fas fa-question-circle"></i>FAQ</a>
+                <a href="/about/"><i class="fas fa-info-circle"></i>关于</a>
             </div>
         </div>
     </div>
@@ -365,80 +405,134 @@
     <section id="command-section" style="background-color: #f9f9f9;">
         <div class="content-box">
             <hr class="divider">
+
         </div>
-        <!-- 内容区域 - 规则页面 -->
-        <section id="content">
+        <!-- 内容区域 - 下载页面 -->
+        <section id="download-section">
             <div class="content-box">
-                <h2>服务器规则</h2>
+                <h2>客户端下载</h2>
                 <hr class="divider">
 
-                <div class="rules-container">
-                    <div class="rule-category">
-                        <h3>基本规则</h3>
-                        <div class="rule-item">
-                            <h4>禁止破坏他人建筑</h4>
-                            <p>任何未经允许破坏他人建筑、设施的行为都将受到严厉惩罚，包括永久封禁。</p>
-                        </div>
-                        <div class="rule-item">
-                            <h4>禁止使用作弊客户端</h4>
-                            <p>使用任何形式的作弊客户端（飞行、穿墙、自动挖掘等）将被永久封禁。</p>
+                <div class="download-container">
+                    <div class="download-platform">
+                        <h3>Windows 客户端</h3>
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fab fa-windows"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>标准版客户端</h4>
+                                <p>适用于Windows 10/11系统</p>
+                                <p>文件大小: 0.85GB | 版本: v1.21.94</p>
+                                <p>注意软件为微软应用商店上的官方原版 Minecraft，游戏文件完全没有被修改</p>
+                                <a href="https://pan.mcbebbs.cn/VVfN/Microsoft.MinecraftUWP_1.21.9401.0_x64__8wekyb3d8bbwe.Appx"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                                <a href="https://qycloudreve.s.odn.cc/yM5CB/Microsoft.MinecraftUWP_1.21.9401.0_x64__8wekyb3d8bbwe.Appx"
+                                    class="download-btn"><i class="fas fa-download"></i> 备用</a>
+                            </div>
                         </div>
 
-                        <div class="rule-item">
-                            <h4>禁止内繁殖大量生物</h4>
-                            <p>违反将清除区域生物</p>
-                        </div>
-                        <div class="rule-item">
-                            <h4>禁止偷盗</h4>
-                            <p>未经他人允许就从不属于自己的箱子中拿走物品，反者给予警告或封禁处罚</p>
-                        </div>
-                        <div class="rule-item">
-                            <h4>禁止发布广告</h4>
-                            <p>包括其他服务器的广告，或其他产品的广告,部分用户除外</p>
-                        </div>
-                        <div class="rule-item">
-                            <h4>禁止散布谣言</h4>
-                            <p>无论是否与服务器相关</p>
-                        </div>
-                        <div class="rule-item">
-                            <h4>禁止在公共区域建造大量无意义的建筑</h4>
-                            <p>一经发现将立即全部拆除，不予补偿</p>
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>高性能版客户端</h4>
+                                <p>优化版客户端，适合低配电脑使用，提升游戏流畅度</p>
+                                <p>文件大小: 850MB | 版本: v1.21.50.2</p>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="rule-category">
-                        <h3>游戏行为规范</h3>
-                        <div class="rule-item">
-                            <h4>资源区域管理</h4>
-                            <p>在公共资源区域（如刷怪塔、公共农场）请遵守秩序，禁止独占资源。</p>
+                    <div class="download-platform">
+                        <h3>移动端客户端</h3>
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fab fa-android"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>Android 客户端</h4>
+                                <p>适用于安卓手机和平板设备</p>
+                                <p>文件大小: 520MB | 版本: v1.21.94</p>
+                                <p>仅供体验或供学习交流，请在24小时内删除</p>
+                                <a href="https://pan.mcbebbs.cn/Zbh9/Minecraft%20PE%201.21.94.1%20v8a.apk"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                                <a href="https://qycloudreve.s.odn.cc/pAefX/Minecraft%20PE%201.21.94.1%20v8a.apk"
+                                    class="download-btn"><i class="fas fa-download"></i>备用</a>
+                            </div>
                         </div>
-                        <div class="rule-item">
-                            <h4>禁止恶意PVP</h4>
-                            <p>在非PVP区域禁止攻击其他玩家，PVP区域需双方同意后才可进行战斗。</p>
-                        </div>
-                        <div class="rule-item">
-                            <h4>建筑规范</h4>
-                            <p>禁止建造淫秽、政治敏感或引起他人不适的建筑。管理员有权拆除违规建筑。</p>
-                        </div>
-                        <div class="rule-item">
-                            <h4>尊重其他玩家</h4>
-                            <p>禁止辱骂、歧视、恶意骚扰其他玩家。违反者将视情节严重程度给予警告或封禁处罚。</p>
+
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fab fa-apple"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>iOS 客户端</h4>
+                                <p>适用于iPhone和iPad设备，需要iOS 14.0或更高版本</p>
+                                <p>文件大小: 574MB | 版本: v1.21.101</p>
+                                <p>注意软件为官方原版 Minecraft</p>
+                                <a href="https://qycloudreve.s.odn.cc/d/B0sL/Minecraft%201.21.101.ipa"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="rule-category">
-                        <h3>经济系统规则</h3>
-                    </div>
-                    <div class="rule-item">
-                        <h4>禁止复制物品</h4>
-                        <p>利用游戏漏洞复制物品将被视为严重违规，涉事玩家将清除漏洞所得物品或永久封禁。</p>
-                    </div>
-                    <div class="rule-item">
-                        <h4>交易安全</h4>
-                        <p>所有交易需在安全区域进行，因私下交易造成的损失服务器概不负责。</p>
+                    <div class="download-platform">
+                        <h3>其他资源下载</h3>
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fas fa-file-archive"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>预下载资源包</h4>
+                                <p>服务器资源包，解决无法在游戏下载，下载后导入即可</p>
+                                <p>文件大小: 62MB | 更新日期: 2025-12-09</p>
+                                <a href="https://qycloudreve.s.odn.cc/xjqs1/QYServer%E6%9D%90%E8%B4%A8%E7%BC%93%E5%AD%98%E5%8C%85_v1.0_20251209.mcaddon"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                            </div>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fas fa-cloud-download-alt"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>服务器地图备份</h4>
+                                <p>服务器地图备份，单机游玩使用</p>
+                                <p>文件大小: 3.6GB | 更新日期: 2025-10-7</p>
+                                <a href="https://qycloudreve.s.odn.cc/J6Auw/qyserver.mcworld" class="download-btn"><i
+                                        class="fas fa-download"></i> 立即下载</a>
+                            </div>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fab fa-windows"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>Windows 客户端</h4>
+                                <p>文件大小: 0.9GB | 版本: v1.21.101</p>
+                                <p>注意软件为微软应用商店上的官方原版 Minecraft，游戏文件完全没有被修改</p>
+                                <a href="https://qycloudreve.s.odn.cc/d/NZ5ck/Microsoft.MinecraftUWP_1.21.10101.0_x64__8wekyb3d8bbwe.Appx"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                            </div>
+                        </div>
+
+                        <div class="download-item">
+                            <div class="download-icon">
+                                <i class="fab fa-android"></i>
+                            </div>
+                            <div class="download-info">
+                                <h4>Android版 共存精简</h4>
+                                <p>文件大小: 295MB | 版本: v1.21.94</p>
+                                <p>仅供体验或供学习交流，请在24小时内删除</p>
+                                <a href="https://qycloudreve.s.odn.cc/klghl/Minecraft_1.21.94_v8a_%E5%85%B1%E5%AD%98.apk"
+                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-            </div>
             </div>
         </section>
 
@@ -466,7 +560,7 @@
                     <h3>联系我们</h3>
                     <div class="footer-links">
                         <a href="mailto:weishao22@outlook.com"><i class="fas fa-envelope"></i> weishao22@outlook.com</a>
-                        <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fab fa-qq"></i> QQ群</a>
+                        <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fab fa-qq"></i> QQ群: 1029879634</a>
                         <a href="https://discord.gg/WGcKjt7BNG"><i class="fab fa-discord"></i> Discord</a>
                     </div>
                 </div>
@@ -475,13 +569,13 @@
             <div class="footer-bottom">
                 <a href="https://stats.uptimerobot.com/hgMdAGlsWu" target="_blank">Uptime Robot</a> | <a
                     href="https://github.com/weishao22/Qy-server" target="blank">
-                    &copy; 2025 QYServer 版权所有</a>
+                    &copy; 2025-2026 QYServer 版权所有</a>
             </div>
         </footer>
 
         <!-- 背景音乐 -->
         <audio id="bgMusic" loop>
-            <source src="https://qycloudrevetermux.s.odn.cc/f/d/lODc6/Motions.mp3" type="audio/mpeg">
+            <source src="http://qycloudrevetermux.s.odn.cc/f/d/lODc6/Motions.mp3" type="audio/mpeg">
         </audio>
 
         <!-- 音乐控制按钮 -->

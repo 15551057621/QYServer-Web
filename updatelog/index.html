@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Qy Server更新日志</title>
-    <link rel="stylesheet" href="/all.css">
+    <title>QYServer | 日志</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/lib/all.css">
     <link rel="icon" href="https://qycloudreve.s.odn.cc/f/D6Dh5/novaskin-wallpaper-insummer%20%281%29.webp" type="image/x-icon">
     <style>
         * {
@@ -38,94 +38,7 @@
             text-decoration: none;
             color: inherit;
         }
-        
-        /* 加载动画 */
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #FCFCFC;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-        
-        .loading-content {
-            text-align: center;
-        }
-        
-        .loading-spinner {
-            width: 80px;
-            height: 80px;
-            border: 8px solid rgba(248, 165, 194, 0.2);
-            border-top: 8px solid #f8a5c2;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* 导航栏 */
-        #menu-box {
-            position: fixed;
-            width: 100%;
-            height: 60px;
-            background: none;
-            z-index: 100;
-            transition: all 0.4s ease;
-            display: flex;
-            justify-content: center;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-        }
-        
-        .menu {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
-        
-        .logo h2 {
-            color: #C6CDD4;
-            font-size: 28px;
-            transition: all 0.4s ease;
-        }
-        
-        .logo h2:hover {
-            color: white;
-            font-size: 30px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .nav-links a {
-            color: #C6CDD4;
-            padding: 8px 15px;
-            border-radius: 4px;
-            transition: all 0.4s ease;
-            font-size: 16px;
-        }
-        
-        .nav-links a:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            font-size: 17px;
-        }
+
         /* https://qycloudrevetermux.s.odn.cc/f/d/2BMfE/2025-07-05_14.dfgdfgdg20.03.png */
         /* 内容区域 */
         #content {
@@ -289,62 +202,24 @@
         .footer-bottom a:hover {
             text-decoration: underline;
         }
-        
-        /* 响应式设计 */
-        @media (max-width: 900px) {
-            .content-box h2 {
-                font-size: 2rem;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .menu {
-                justify-content: center;
-            }
-            
-            .footer-section {
-                min-width: 100%;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .content-box h2 {
-                font-size: 1.8rem;
-            }
-            
-            .changelog-item {
-                padding: 15px;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- 加载动画 -->
-    <div class="loading">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h2>正在加载更新日志...</h2>
-        </div>
-    </div>
+
     
     <!-- 导航栏 -->
     <div id="menu-box">
         <div class="menu">
             <div class="logo">
-                <h2><a href="/"><i class="fas fa-cube"></i> Qy Server</a></h2>
+                <h2><a href="/"><i class="fas fa-cube"></i>QYServer</a></h2>
             </div>
             <div class="nav-links">
-                <a href="/"><i class="fas fa-home"></i> 首页</a>
-                <a href="/down/"><i class="fas fa-download"></i> 客户端</a>
-                <a href="/mc/"><i class="fas fa-search"></i> 在线查询</a>
-                <a href="/UpdateLog/"><i class="fas fa-history"></i> 更新日志</a>
-                <a href="/map/"><i class="fas fa-map"></i> 地图</a>
-                <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
-                <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
+                <a href="/download/"><i class="fas fa-download"></i>下载</a>
+                <a href="/search/"><i class="fas fa-search"></i>查询</a>
+                <a href="/updatelog/"><i class="fas fa-history"></i>更新</a>
+                <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-map"></i>地图</a>
+                <a href="/faq/"><i class="fas fa-question-circle"></i>FAQ</a>
+                <a href="/about/"><i class="fas fa-info-circle"></i>关于</a>
             </div>
         </div>
     </div>
@@ -352,7 +227,7 @@
     <!-- 内容区域 -->
     <section id="content">
         <div class="content-box">
-            <h2>Qy Server更新日志</h2>
+            <h2>QYServer更新日志</h2>
             
             <div class="changelog-container" id="changelog-list">
                 <!-- 更新日志内容将通过JavaScript动态加载 -->
@@ -365,7 +240,7 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>关于我们</h3>
-                <p>Qy Server是一个专注于Minecraft基岩版的生存服务器，提供稳定、有趣的游戏环境，让玩家可以自由建造、探索和社交。</p>
+                <p>QYServer是一个专注于Minecraft基岩版的生存服务器，提供稳定、有趣的游戏环境，让玩家可以自由建造、探索和社交。</p>
             </div>
             
             <div class="footer-section">
@@ -373,10 +248,9 @@
                 <div class="footer-links">
                     <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
                     <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
-                    <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
-                    <a href="/map/"><i class="fas fa-arrow-right"></i> 地图</a>
+                    <a href="/updatelog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
                     <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
-                    <a href="/qy/"><i class="fas fa-arrow-right"></i> 关于</a>
+                    <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-arrow-right"></i> 地图</a>
                 </div>
             </div>
             
@@ -391,11 +265,11 @@
         </div>
         
         <div class="footer-bottom">
-            <a href="/1/bot/" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
-            &copy; 2025-2026 Qy Server 版权所有</a>
+            <a href="https://stats.uptimerobot.com/hgMdAGlsWu" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
+            &copy; 2025-2026 QYServer 版权所有</a>
         </div>
     </footer>
-    
+    <script src="/lib/all.js"></script>
     <script src="main.js"></script>
     <script>
         // Lightbox 功能：保留带链接跳转，未带链接则放大

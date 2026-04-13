@@ -1,131 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Qy Server是一个Minecraft基岩版的生存服务器">
-    <meta name="keywords" content="Minecraft,基岩版,生存服务器,我的世界,Qy Server,qyserver">
+    <meta name="description" content="QYServer是一个Minecraft基岩版的生存服务器">
+    <meta name="keywords" content="Minecraft,基岩版,生存服务器,我的世界,QYServer,qyserver">
     <meta property="og:image" content="https://qycloudreve.s.odn.cc/f/aDPhK/2025-08-25_16.33.51.webp">
-    <title>Qy Server | 基岩版1.21.50+</title>
-    <link rel="stylesheet" href="/all.css">
-    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg" type="image/x-icon">
+    <title>QYServer | 基岩版1.21.50+</title>
+    <link rel="stylesheet" href="/lib/all.css">
+    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg"
+        type="image/x-icon">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "微软雅黑", "Microsoft YaHei", Roboto, Arial, sans-serif;
-        }
-        
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
-            background-color: #f5f5f5;
-            color: #5F5F5F;
-            scroll-behavior: smooth;
-        }
-        html, body {
-            -ms-overflow-style: none; /* IE 10+ */
-            scrollbar-width: none; /* Firefox */
-        }
-
-        html::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-            display: none;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-        
-        /* 加载动画 */
-        .loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #FCFCFC;
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-        
-        .loading-content {
-            text-align: center;
-        }
-        
-        .loading-spinner {
-            width: 80px;
-            height: 80px;
-            border: 8px solid rgba(248, 165, 194, 0.2);
-            border-top: 8px solid #f8a5c2;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        /* 导航栏 */
-        #menu-box {
-            position: fixed;
-            width: 100%;
-            height: 60px;
-            background: none;
-            z-index: 100;
-            transition: all 0.4s ease;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .menu {
-            width: 100%;
-            max-width: 1200px;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
-        
-        .logo h2 {
-            color: #C6CDD4;
-            font-size: 28px;
-            transition: all 0.4s ease;
-        }
-        
-        .logo h2:hover {
-            color: white;
-            font-size: 30px;
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .nav-links a {
-            color: #C6CDD4;
-            padding: 8px 15px;
-            border-radius: 4px;
-            transition: all 0.4s ease;
-            font-size: 16px;
-        }
-        
-        .nav-links a:hover {
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            font-size: 17px;
-        }
-        
         /* 横幅区域 */
         #banner {
             background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%);
@@ -139,7 +25,7 @@
             position: relative;
             overflow: hidden;
         }
-        
+
         .banner-content {
             position: relative;
             z-index: 2;
@@ -148,7 +34,7 @@
             margin: 0 auto;
             width: 100%;
         }
-        
+
         .banner-content::before {
             content: '';
             position: absolute;
@@ -160,30 +46,30 @@
             opacity: 0.15;
             z-index: -1;
         }
-        
+
         .join-item {
             margin-bottom: 50px;
             color: white;
         }
-        
+
         .join-item h2 {
             font-size: 3.5rem;
             margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
-        
+
         .join-item p {
             font-size: 1.5rem;
             max-width: 700px;
             line-height: 1.6;
         }
-        
+
         .join-buttons {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
         }
-        
+
         .join-buttons a {
             display: inline-block;
             padding: 15px 30px;
@@ -195,27 +81,27 @@
             text-align: center;
             min-width: 200px;
         }
-        
+
         .join-buttons a:hover {
             color: #f8a5c2;
             background: white;
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
-        
+
         /* 内容区域 */
         #content {
             background: white;
             padding: 80px 0;
             position: relative;
         }
-        
+
         .content-box {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .content-box h2 {
             font-size: 2.5rem;
             color: #333;
@@ -223,7 +109,7 @@
             position: relative;
             padding-bottom: 15px;
         }
-        
+
         .content-box h2::after {
             content: '';
             position: absolute;
@@ -234,42 +120,42 @@
             background: #f8a5c2;
             border-radius: 2px;
         }
-        
+
         hr.divider {
             margin: 40px 0;
             height: 2px;
             background: #EBEBEB;
             border: none;
         }
-        
+
         .content-section {
             margin-bottom: 60px;
         }
-        
+
         .content-text h3 {
             font-size: 1.8rem;
             color: #333;
             margin: 25px 0 15px;
             line-height: 1.4;
         }
-        
+
         .content-text p {
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 15px;
         }
-        
+
         .content-text a {
             color: #337AB7;
             transition: all 0.3s;
             font-weight: bold;
         }
-        
+
         .content-text a:hover {
             color: #f8a5c2;
             text-decoration: underline;
         }
-        
+
         .content-image {
             float: right;
             margin: 20px 0 20px 40px;
@@ -280,7 +166,8 @@
         .carousel {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 8; /* 比例 */
+            aspect-ratio: 16 / 8;
+            /* 比例 */
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 8px 8px 20px rgba(234, 234, 234, 0.8);
@@ -307,18 +194,24 @@
         .carousel-item img {
             width: 100%;
             height: 100%;
-            object-fit: cover; 
+            object-fit: cover;
             display: block;
         }
 
 
-        .carousel-overlay img { width: 100%; height: 100%; object-fit: cover; display:block }
+        .carousel-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block
+        }
 
-        .carousel-prev, .carousel-next {
+        .carousel-prev,
+        .carousel-next {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(0,0,0,0.45);
+            background: rgba(0, 0, 0, 0.45);
             color: #fff;
             border: none;
             width: 40px;
@@ -332,8 +225,13 @@
             z-index: 5;
         }
 
-        .carousel-prev { left: 12px; }
-        .carousel-next { right: 12px; }
+        .carousel-prev {
+            left: 12px;
+        }
+
+        .carousel-next {
+            right: 12px;
+        }
 
         .carousel-dots {
             position: absolute;
@@ -348,7 +246,7 @@
         .carousel-dot {
             width: 10px;
             height: 10px;
-            background: rgba(255,255,255,0.7);
+            background: rgba(255, 255, 255, 0.7);
             border-radius: 50%;
             cursor: pointer;
             transition: transform 0.2s, background 0.2s;
@@ -358,7 +256,7 @@
             background: #f8a5c2;
             transform: scale(1.2);
         }
-        
+
         .content-image img {
             width: 100%;
             height: auto;
@@ -369,7 +267,7 @@
         .content-image img:hover {
             transform: scale(1.05);
         }
-        
+
         .add-server-btn {
             display: inline-block;
             background: #f8a5c2;
@@ -384,13 +282,13 @@
             border: none;
             box-shadow: 0 5px 15px rgba(248, 165, 194, 0.4);
         }
-        
+
         .add-server-btn:hover {
             background: #f78fb3;
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(248, 165, 194, 0.6);
         }
-        
+
         /* ===== AI 对话样式（从 index.html 移植） ===== */
         .ai-chat-section {
             clear: both;
@@ -398,7 +296,7 @@
             padding-top: 30px;
             border-top: 2px solid #EBEBEB;
         }
-        
+
         .ai-warning {
             background: #fff3cd;
             border: 1px solid #ffeeba;
@@ -411,6 +309,7 @@
             gap: 8px;
             font-size: 0.95rem;
         }
+
         .ai-warning i {
             font-size: 1.2rem;
         }
@@ -438,13 +337,16 @@
         .messages::-webkit-scrollbar {
             width: 6px;
         }
+
         .messages::-webkit-scrollbar-track {
             background: #f9f9f9;
         }
+
         .messages::-webkit-scrollbar-thumb {
             background: hsla(339, 86%, 81%, 0.548);
             border-radius: 3px;
         }
+
         .messages {
             scrollbar-width: thin;
             scrollbar-color: hsla(339, 86%, 81%, 0.548) #f9f9f9;
@@ -500,111 +402,13 @@
         .input-area button:hover {
             background: #f78fb3;
         }
-        
-        /* 页脚 */
-        #footer {
-            background: #333;
-            color: #ddd;
-            padding: 50px 0 20px;
-        }
-        
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 300px;
-            margin-bottom: 30px;
-        }
-        
-        .footer-section h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #fff;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-section h3::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 50px;
-            height: 3px;
-            background: #f8a5c2;
-        }
-        
-        .footer-links a {
-            display: block;
-            padding: 8px 0;
-            transition: all 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #f8a5c2;
-            padding-left: 5px;
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #444;
-            margin-top: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .footer-bottom a {
-            color: #f8a5c2;
-            transition: all 0.3s;
-        }
-        
-        .footer-bottom a:hover {
-            text-decoration: underline;
-        }
-        
-        /* 音乐控制 */
-        #musicControl {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            background: rgba(128, 128, 128, 0.3);
-            backdrop-filter: blur(10px);
-            padding: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        #musicControl:hover {
-            transform: scale(1.1);
-            background: rgba(248, 165, 194, 0.5) !important;
-        }
-        
-        #musicControl:active {
-            transform: scale(0.95);
-        }
-        
-        #musicIcon {
-            width: 30px;
-            height: 30px;
-            opacity: 0.9;
-            display: block;
-        }
-        
+
         /* 弹窗 */
         .popup-overlay {
             display: none;
             position: fixed;
-            inset: 0; /* top:0; right:0; bottom:0; left:0 */
+            inset: 0;
+            /* top:0; right:0; bottom:0; left:0 */
             width: 100vw;
             height: 100vh;
             right: 0;
@@ -614,9 +418,10 @@
             justify-content: center;
             align-items: center;
             box-sizing: border-box;
-            padding: 20px; /* 保证移动端有内边距 */
+            padding: 20px;
+            /* 保证移动端有内边距 */
         }
-        
+
         .popup-content {
             background-color: #fff;
             border-radius: 10px;
@@ -640,9 +445,12 @@
             height: 0;
             display: none;
         }
+
         .popup-overlay .popup-content {
-            -ms-overflow-style: none; /* IE 10+ */
-            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;
+            /* IE 10+ */
+            scrollbar-width: none;
+            /* Firefox */
         }
 
         /* 在显示弹窗时锁定页面滚动 */
@@ -662,56 +470,63 @@
             height: auto;
             display: inline-block;
             border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
-        
-            /* 图片模态放大层 */
-            .image-modal-overlay {
-                position: fixed;
-                inset: 0;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                background: rgba(0,0,0,0.8);
-                z-index: 3000;
-                padding: 20px;
-            }
 
-            .image-modal-inner {
-                max-width: 95vw;
-                max-height: 95vh;
-                position: relative;
-            }
+        /* 图片模态放大层 */
+        .image-modal-overlay {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 3000;
+            padding: 20px;
+        }
 
-            .image-modal-img {
-                display: block;
-                max-width: 100%;
-                max-height: 100%;
-                border-radius: 8px;
-                box-shadow: 0 20px 40px rgba(0,0,0,0.6);
-            }
+        .image-modal-inner {
+            max-width: 95vw;
+            max-height: 95vh;
+            position: relative;
+        }
 
-            .image-modal-close {
-                position: absolute;
-                top: -10px;
-                right: -10px;
-                width: 36px;
-                height: 36px;
-                border-radius: 50%;
-                background: rgba(0,0,0,0.6);
-                color: #fff;
-                border: none;
-                font-size: 20px;
-                line-height: 36px;
-                cursor: pointer;
-                box-shadow: 0 6px 18px rgba(0,0,0,0.4);
-            }
-        
+        .image-modal-img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            font-size: 20px;
+            line-height: 36px;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+        }
+
         @keyframes popupFadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        
+
         .popup-title {
             font-size: 24px;
             font-weight: bold;
@@ -720,30 +535,30 @@
             padding-bottom: 10px;
             border-bottom: 2px solid #f8a5c2;
         }
-        
+
         .popup-message {
             margin-bottom: 25px;
             line-height: 1.7;
             color: #555;
             font-size: 16px;
         }
-        
+
         .popup-message p {
             margin-bottom: 15px;
         }
-        
+
         .popup-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        
+
         .popup-checkbox {
             display: flex;
             align-items: center;
             font-size: 14px;
         }
-        
+
         .popup-btn {
             padding: 10px 25px;
             border-radius: 5px;
@@ -752,16 +567,16 @@
             font-weight: bold;
             transition: all 0.3s;
         }
-        
+
         .popup-confirm {
             background-color: #f8a5c2;
             color: white;
         }
-        
+
         .popup-confirm:hover {
             background-color: #f78fb3;
         }
-        
+
         @media (max-width: 900px) {
             .content-image {
                 float: none;
@@ -769,53 +584,52 @@
                 max-width: 100%;
                 margin: 20px 0;
             }
-            
+
             .join-item h2 {
                 font-size: 2.8rem;
             }
-            
+
             .join-item p {
                 font-size: 1.3rem;
             }
         }
-        
+
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-            
+
             .menu {
                 justify-content: center;
             }
-            
+
             .join-buttons {
                 flex-direction: column;
             }
-            
+
             .join-buttons a {
                 min-width: auto;
                 width: 100%;
             }
-            
+
             .footer-section {
                 min-width: 100%;
             }
         }
-        
+
         @media (max-width: 480px) {
             .join-item h2 {
                 font-size: 2.2rem;
             }
-            
+
             .join-item p {
                 font-size: 1.1rem;
             }
-            
+
             .content-box h2 {
                 font-size: 2rem;
             }
         }
-        
 
         /* ========== Twikoo 评论区域自定义样式 ========== */
         /* 评论区域整体样式 */
@@ -825,32 +639,32 @@
             padding: 30px;
             background: #f9f9f9;
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
-        
+
         /* Twikoo 自定义样式 */
         .tk-comments-container {
             font-family: "微软雅黑", "Microsoft YaHei", sans-serif;
         }
-        
+
         .tk-avatar {
             border-radius: 50% !important;
         }
-        
+
         .tk-nick {
             color: #f8a5c2 !important;
             font-weight: bold;
         }
-        
+
         .tk-time {
             color: #888 !important;
         }
-        
+
         .tk-content {
             color: #555 !important;
             line-height: 1.6;
         }
-        
+
         .tk-submit {
             background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%) !important;
             border: none !important;
@@ -859,51 +673,51 @@
             padding: 10px 20px !important;
             transition: all 0.3s ease !important;
         }
-        
+
         .tk-submit:hover {
             box-shadow: 0 5px 15px rgba(248, 165, 194, 0.4) !important;
         }
-        
+
         .tk-row-actions .tk-action-link {
             color: #f8a5c2 !important;
         }
-        
+
         .tk-meta-input {
             border: 1px solid #e0e0e0 !important;
             border-radius: 5px !important;
             padding: 10px !important;
             transition: border-color 0.3s ease !important;
         }
-        
+
         .tk-meta-input:focus {
             border-color: #f8a5c2 !important;
             outline: none !important;
             box-shadow: 0 0 0 2px rgba(248, 165, 194, 0.1) !important;
         }
-        
+
         .tk-textarea {
             border: 1px solid #e0e0e0 !important;
             border-radius: 5px !important;
             padding: 15px !important;
             transition: border-color 0.3s ease !important;
         }
-        
+
         .tk-textarea:focus {
             border-color: #f8a5c2 !important;
             outline: none !important;
             box-shadow: 0 0 0 2px rgba(248, 165, 194, 0.1) !important;
         }
-        
+
         .tk-extra {
             color: #888 !important;
         }
-        
+
         .tk-tag-green {
             background: rgba(248, 165, 194, 0.1) !important;
             color: #f8a5c2 !important;
             border: 1px solid rgba(248, 165, 194, 0.3) !important;
         }
-        
+
         .video {
             display: block;
             width: 100%;
@@ -912,35 +726,25 @@
         }
     </style>
 </head>
+
 <body>
-    <!-- 加载动画 -->
-    <div class="loading">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <h2>正在加载Qy Server... </h2>
-        </div>
-    </div>
-    
     <!-- 弹窗提醒 -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-content">
-            <div class="popup-title"><h2>公告</h2></div>
+            <div class="popup-title">
+                <h2>公告</h2>
+            </div>
             <div class="popup-message">
-                <p>欢迎来到Qy Server！</p>
+                <p>欢迎来到QYServer！</p>
                 <p>请务必遵守服务器规则，共同维护良好的游戏环境</p>
-                <video 
-                src="/1/%E5%85%89%E9%81%87%E4%B8%BB%E5%9F%8E.mp4"
-                autoplay 
-                muted 
-                loop 
-                playsinline 
-                webkit-playsinline="true"
-                preload="none">
+                <video src="/1/%E5%85%89%E9%81%87%E4%B8%BB%E5%9F%8E.mp4" autoplay muted loop playsinline
+                    webkit-playsinline="true" preload="none">
                     您的浏览器不支
-                    </video>
+                </video>
 
-              <p>游戏延迟高输入 /server 来切换线路</p>
-              <p>推荐的互通服务器<br>🎮java版地址：mcje.qyserver.cc<br>端口无需填写<br>📱 基岩版地址：qyjavabe.s.odn.cc<br>端口默认<br><br>📌 支持版本：<br>• Java版：1.8 - 1.26.x (推荐 1.21.8)<br>• 基岩版：1.21.111 - 最新版本</p>
+                <p>游戏延迟高输入 /server 来切换线路</p>
+                <p>推荐的互通服务器<br>🎮java版地址：mcje.qyserver.cc<br>端口无需填写<br>📱 基岩版地址：qyjavabe.s.odn.cc<br>端口默认<br><br>📌
+                    支持版本：<br>• Java版：1.8 - 1.26.x (推荐 1.21.8)<br>• 基岩版：1.21.111 - 最新版本</p>
             </div>
             <div class="popup-footer">
                 <label class="popup-checkbox">
@@ -950,58 +754,59 @@
             </div>
         </div>
     </div>
-    
+
     <!-- 导航栏 -->
     <div id="menu-box">
         <div class="menu">
             <div class="logo">
-                <h2><a href="/"><i class="fas fa-cube"></i> Qy Server</a></h2>
+                <h2><a href="/"><i class="fas fa-cube"></i> QYServer</a></h2>
             </div>
             <div class="nav-links">
-                <a href="/"><i class="fas fa-home"></i> 首页</a>
-                <a href="/down/"><i class="fas fa-download"></i> 客户端</a>
-                <a href="/mc/"><i class="fas fa-search"></i> 在线查询</a>
-                <a href="/UpdateLog/"><i class="fas fa-history"></i> 更新日志</a>
-                <a href="/map/"><i class="fas fa-map"></i> 地图</a>
+                <a href="/download/"><i class="fas fa-download"></i>下载</a>
+                <a href="/search/"><i class="fas fa-search"></i>查询</a>
+                <a href="/updatelog/"><i class="fas fa-history"></i>更新</a>
+                <a href="/map/"><i class="fas fa-map"></i>地图</a>
                 <a href="/faq/"><i class="fas fa-question-circle"></i> FAQ</a>
-                <a href="/gy/"><i class="fas fa-info-circle"></i> 关于</a>
+                <a href="/about/"><i class="fas fa-info-circle"></i> 关于</a>
             </div>
         </div>
     </div>
-    
+
     <!-- 横幅区域 -->
     <section id="banner">
         <div class="banner-content">
             <div class="join-item">
-                <h2>Qy Server</h2>
+                <h2>QYServer</h2>
                 <p>生存 · 养老 · 基岩版 · 1.21.50+ Server</p>
             </div>
             <div class="join-buttons">
-                <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fas fa-user-plus"></i> 加入♂我们</a>
-                <a href="/mc/"><i class="fas fa-search"></i> 在线♂查询</a>
-                <a href="/down/"><i class="fas fa-download"></i> 客户端下载</a>
+                <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fas fa-user-plus"></i> 加入我们</a>
+                <a href="/search/"><i class="fas fa-search"></i> 在线查询</a>
+                <a href="/download/"><i class="fas fa-download"></i> 文件下载</a>
             </div>
         </div>
     </section>
-    
+
     <!-- 内容区域 -->
     <section id="content">
         <div class="content-box">
-            <h2>欢迎来到Qy Server</h2>
+            <h2>欢迎来到QYServer</h2>
             <hr class="divider">
-            
+
             <div class="content-section">
                 <div class="content-image">
                     <div class="carousel" id="heroCarousel">
                         <div class="carousel-track">
                             <div class="carousel-item">
-                                <a href="/tl/detail.html?img=https://qycloudreve.s.odn.cc/f/dA3iY/%E5%89%AA%E8%B4%B4%E6%9D%BF%201767282759502.jpg&title=%E5%85%83%E6%97%A6%E5%90%88%E7%85%A7&desc=&date=2026.01.01&loc=%E6%B4%BB%E5%8A%A8%E6%9C%8D&author=weishao22&uthor=">
+                                <a
+                                    href="/tl/detail.html?img=https://qycloudreve.s.odn.cc/f/dA3iY/%E5%89%AA%E8%B4%B4%E6%9D%BF%201767282759502.jpg&title=%E5%85%83%E6%97%A6%E5%90%88%E7%85%A7&desc=&date=2026.01.01&loc=%E6%B4%BB%E5%8A%A8%E6%9C%8D&author=weishao22&uthor=">
                                     <img src="https://qycloudreve.s.odn.cc/f/1EAtW/2026-01-01_22.09.18_2.webp" alt="">
                                 </a>
                             </div>
                             <div class="carousel-item">
                                 <a href="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp">
-                                    <img src="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp" alt="中秋节合照">
+                                    <img src="https://qycloudreve.s.odn.cc/f/kvkIl/94f10f21969dfc23b8ab767d4a21a7fb.webp"
+                                        alt="中秋节合照">
                                 </a>
                             </div>
                             <div class="carousel-item">
@@ -1025,7 +830,7 @@
                 <div class="content-text">
                     <h3>想加入服务器，应该怎么做？</h3>
                     <p>非常简单，您只需要阅读<a href="/rules/">游戏规则</a>然后下载客户端即可游玩。</p>
-                    
+
                     <button class="add-server-btn" id="add-server-btn">
                         <i class="fas fa-plus-circle"></i> 一键加入游戏
                     </button>
@@ -1036,18 +841,19 @@
                     <p>服内增加了更多遗迹Mod，您可以在这些建筑中找到各种物资。</p>
                     <p>如果您在服内看到恶意破坏行为，请立即向管理员举报！</p>
                     <p><a href="/rules/">点击这里查看</a>。</p>
-                  
+
                     <h3>其他资源</h3>
                     <p>联系邮箱：<a href="mailto:qy@qyserver.cc">qy@qyserver.cc</a>（游戏问题反馈、玩家举报）</p>
                     <p><a href="/tl/">游戏图廊</a></p>
                     <p><a href="/xz/">文件下载</a></p>
                     <p><a href="/music/">游戏音乐</a></p>
                     <p><a href="/Video/z/">测试视频</a></p>
-                    
-                    
-                    
+
+
+
                     <div class="ai-chat-section">
-                        <h3>AI 助手 <font color="#878787">测试</font></h3>
+                        <h3>AI 助手 <font color="#878787">测试</font>
+                        </h3>
                         <div class="ai-warning">
                             <i class="fas fa-exclamation-triangle"></i> 提示：AI回答由模型生成，内容仅供参考，请自行判断准确性。
                         </div>
@@ -1059,40 +865,40 @@
                             </div>
                         </div>
                     </div>
-                    
-                <!-- ========== 评论区域 ========== -->
-                <div class="content-text">
-                <h3>评论</h3>
-                <hr class="divider">
-                <!-- Twikoo评论系统容器 -->
-                <div id="tcomment" class="comments-section"></div>
-                </div>
-                <!-- ========== 结束 ========== -->
+
+                    <!-- ========== 评论区域 ========== -->
+                    <div class="content-text">
+                        <h3>评论</h3>
+                        <hr class="divider">
+                        <!-- Twikoo评论系统容器 -->
+                        <div id="tcomment" class="comments-section"></div>
+                    </div>
+                    <!-- ========== 结束 ========== -->
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- 页脚 -->
     <footer id="footer">
         <div class="footer-content">
             <div class="footer-section">
                 <h3>关于我们</h3>
-                <p>Qy Server是一个专注于Minecraft基岩版的生存服务器，提供稳定、有趣的游戏环境，让玩家可以自由建造、探索和社交。</p>
+                <p>QYServer是一个专注于Minecraft基岩版的生存服务器，提供稳定、有趣的游戏环境，让玩家可以自由建造、探索和社交。</p>
             </div>
-            
+
             <div class="footer-section">
                 <h3>其他链接</h3>
                 <div class="footer-links">
                     <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
                     <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
-                    <a href="/UpdateLog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
-                    <a href="/map/"><i class="fas fa-arrow-right"></i> 地图</a>
+                    <a href="/updatelog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
+                    <a href="/map/"><i class="fas fa-arrow-right"></i> 网页地图</a>
                     <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
                     <a href="/qy/"><i class="fas fa-arrow-right"></i> 关于</a>
                 </div>
             </div>
-            
+
             <div class="footer-section">
                 <h3>联系我们</h3>
                 <div class="footer-links">
@@ -1102,42 +908,36 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="footer-bottom">
-            <a href="/1/bot/" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
-            &copy; 2025-2026 Qy Server 版权所有</a> 
+            <a href="/1/bot/" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server"
+                target="blank">
+                &copy; 2025-2026 QYServer 版权所有</a>
             <span id="twikoo_visitors">0</span>
         </div>
     </footer>
-    
+
     <!-- 背景音乐 -->
     <audio id="bgMusic" loop>
         <source src="https://qycloudrevetermux.s.odn.cc/f/d/lODc6/Motions.mp3" type="audio/mpeg">
     </audio>
-    
+
     <!-- 音乐控制按钮 -->
     <div id="musicControl">
-        <img id="musicIcon" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+" alt="音乐控制">
+        <img id="musicIcon"
+            src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+"
+            alt="音乐控制">
     </div>
-    
+
+    <script src="/lib/all.js"></script>
+
     <!-- 引入 AI 聊天所需脚本 -->
-    <script src="/faq/ai/marked.min.js"></script>
+    <script src="/lib/marked.min.js"></script>
     <script src="/faq/ai/ai.js"></script>
     <!-- 引入 Twikoo JS 库 -->
     <script src="https://s4.zstatic.net/npm/twikoo@1.7.3/dist/twikoo.min.js"></script>
-    
-    <script>
-        // 页面加载完成后隐藏加载动画
-        window.addEventListener('load', function() {
-            setTimeout(function() {
-                document.querySelector('.loading').style.opacity = '0';
-                setTimeout(function() {
-                    document.querySelector('.loading').style.display = 'none';
-                }, 500);
-            }, 1500);
-        });
 
-        
+    <script>
         // 图片放大辅助：在大屏幕显示模态，否则打开新标签
         function openImageModal(src) {
             // 避免重复打开多个模态
@@ -1154,7 +954,7 @@
             document.body.appendChild(overlay);
 
             // 点击遮罩空白处关闭
-            overlay.addEventListener('click', function(e) {
+            overlay.addEventListener('click', function (e) {
                 if (e.target === overlay) removeOverlay();
             });
 
@@ -1185,11 +985,11 @@
         }
 
         // 在页面加载时检查是否应该显示弹窗
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // 检查localStorage中是否有"dontShowPopu"标志
             if (localStorage.getItem('dontShowPopu022112') !== 'true') {
                 // 显示弹窗并锁定背景滚动
-                setTimeout(function() {
+                setTimeout(function () {
                     const po = document.getElementById('popupOverlay');
                     if (po) {
                         po.style.display = 'flex';
@@ -1197,9 +997,9 @@
                     }
                 }, 2000);
             }
-            
+
             // 确认按钮点击事件
-            document.getElementById('popupConfirm').addEventListener('click', function() {
+            document.getElementById('popupConfirm').addEventListener('click', function () {
                 // 如果勾选了"不再显示"，则保存到localStorage
                 if (document.getElementById('dontShowAgain').checked) {
                     localStorage.setItem('dontShowPopu022112', 'true');
@@ -1208,9 +1008,9 @@
                 if (po) po.style.display = 'none';
                 document.body.classList.remove('no-scroll');
             });
-            
+
             // 点击遮罩层也可关闭弹窗
-            document.getElementById('popupOverlay').addEventListener('click', function(e) {
+            document.getElementById('popupOverlay').addEventListener('click', function (e) {
                 if (e.target === this) {
                     this.style.display = 'none';
                     document.body.classList.remove('no-scroll');
@@ -1220,7 +1020,7 @@
             const popupMainImg = document.querySelector('#popupOverlay .popup-image img');
             if (popupMainImg) {
                 popupMainImg.style.cursor = 'pointer';
-                popupMainImg.addEventListener('click', function() {
+                popupMainImg.addEventListener('click', function () {
                     handleImageClick(this.src);
                 });
             }
@@ -1242,7 +1042,7 @@
 
                 // 其它情况绑定放大行为（轮播内未被链接包裹的图片也会在此绑定）
                 img.style.cursor = 'pointer';
-                img.addEventListener('click', function(e) {
+                img.addEventListener('click', function (e) {
                     // 如果 img 在 <a> 内，但我们仍在绑定（保护性检查），不阻止默认行为
                     const parentLink = this.closest && this.closest('a');
                     if (parentLink) return; // 交给链接处理
@@ -1250,49 +1050,16 @@
                 });
             });
         });
-        
-        // 导航栏滚动效果
-        window.addEventListener('scroll', function() {
-            const menuBox = document.getElementById('menu-box');
-            const banner = document.getElementById('banner');
-            const bannerHeight = banner.offsetHeight;
-            
-            if (window.scrollY > bannerHeight * 0.2) {
-                menuBox.style.background = "#FFFFFF";
-                menuBox.style.boxShadow = "0px 0px 15px rgba(0,0,0,0.1)";
-                menuBox.style.height = "60px";
-            } else {
-                menuBox.style.background = "none";
-                menuBox.style.boxShadow = "none";
-            }
-        });
-        
-        // 音乐播放控制
-        const bgMusic = document.getElementById('bgMusic');
-        const musicIcon = document.getElementById('musicIcon');
-        let musicPlaying = false;
-        
-        // 音乐控制按钮点击事件
-        document.getElementById('musicControl').addEventListener('click', function() {
-            if (musicPlaying) {
-                bgMusic.pause();
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM3ptMTAgNnYtMTJIMTB2MTJsMy41IDMuNS0yIDEuNS02LTYgNi02IDIgMS41LTMuNSAzLjV6Ii8+PC9zdmc+";
-            } else {
-                bgMusic.play().catch(e => console.log("播放失败:", e));
-                musicIcon.src = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZiI+PHBhdGggZD0iTTMgOXY2aDNsNS41IDVWMTRsLTQuNS00LjVIM1ptMTAtMi41VjNIMTB2MTMuNWwtMi41LTIuNS0yIDIgNSA1IDUtNVY2LjV6Ii8+PC9zdmc+";
-            }
-            musicPlaying = !musicPlaying;
-        });
-        
+
         // 一键加入游戏
-        document.getElementById("add-server-btn").addEventListener("click", function() {
+        document.getElementById("add-server-btn").addEventListener("click", function () {
             // 创建加入服务器弹窗
             const popup = document.createElement('div');
             popup.className = 'popup-overlay';
             popup.style.display = 'flex';
             popup.innerHTML = `
                 <div class="popup-content">
-                    <div class="popup-title">加入Qy Server</div>
+                    <div class="popup-title">加入QYServer</div>
                     <div class="popup-message">
                         <p>您即将加入我们的服务器，请确保您已安装Minecraft基岩版1.21.50+</p>
                         <p>服务器地址：<strong>mc.qyserver.cc</strong></p>
@@ -1308,7 +1075,7 @@
                     </div>
                 </div>
             `;
-            
+
             document.body.appendChild(popup);
             // 锁定背景滚动并隐藏页面右侧滚动条
             document.body.classList.add('no-scroll');
@@ -1316,36 +1083,36 @@
             const popupImg = popup.querySelector('.popup-image img');
             if (popupImg) {
                 popupImg.style.cursor = 'pointer';
-                popupImg.addEventListener('click', function() {
+                popupImg.addEventListener('click', function () {
                     handleImageClick(this.src);
                 });
             }
-            
+
             // 确认加入游戏
-            popup.querySelector('#confirmJoin').addEventListener('click', function() {
+            popup.querySelector('#confirmJoin').addEventListener('click', function () {
                 const serverIp = ".mc.qyserver.cc";
                 const serverPort = 41657;
-                const minecraftLink = `minecraft://?addExternalServer=Qy server|${serverIp}:${serverPort}`;
+                const minecraftLink = `minecraft://?addExternalServer=QYServer|${serverIp}:${serverPort}`;
                 window.location.href = minecraftLink;
                 popup.remove();
                 document.body.classList.remove('no-scroll');
             });
-            
+
             // 取消加入
-            popup.querySelector('#cancelJoin').addEventListener('click', function() {
+            popup.querySelector('#cancelJoin').addEventListener('click', function () {
                 popup.remove();
                 document.body.classList.remove('no-scroll');
             });
-            
+
             // 点击遮罩层关闭
-            popup.addEventListener('click', function(e) {
+            popup.addEventListener('click', function (e) {
                 if (e.target === popup) {
                     popup.remove();
                     document.body.classList.remove('no-scroll');
                 }
             });
         });
-        
+
         // 确保所有链接在点击时平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1355,16 +1122,16 @@
                 });
             });
         });
-        
+
         // ========== Twikoo 评论系统初始化 ==========
         // 等待页面完全加载后初始化 Twikoo
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // 检查 Twikoo 库是否已加载
             if (typeof twikoo === 'undefined') {
                 console.error('Twikoo 库未加载，请检查网络或CDN链接');
                 return;
             }
-            
+
             // 初始化 Twikoo
             twikoo.init({
                 // 重要：这里填写 Twikoo 后端地址，
@@ -1372,21 +1139,21 @@
                 el: '#tcomment',
                 lang: 'zh-CN',
                 path: window.location.pathname,
-                placeholder: '来分享你对Qy Server的看法吧！支持Markdown语法~<br>使用QQ邮箱可以显示头像哦',
+                placeholder: '来分享你对QYServer的看法吧！支持Markdown语法~<br>使用QQ邮箱可以显示头像哦',
                 meta: [
                     { name: '昵称', placeholder: '怎么称呼你？（必填）', required: true },
                     { name: '邮箱', placeholder: '方便联系你（选填）', required: false },
                     { name: '网站', placeholder: '你的个人主页（选填）', required: false }
                 ],
-                onCommentLoaded: function() {
+                onCommentLoaded: function () {
                     console.log('Twikoo 评论加载完成');
                 },
-                onCommentClicked: function(comment) {
+                onCommentClicked: function (comment) {
                     console.log('评论被点击', comment);
                 }
-            }).then(function() {
+            }).then(function () {
                 console.log('Twikoo 初始化成功');
-            }).catch(function(err) {
+            }).catch(function (err) {
                 console.error('Twikoo 初始化失败:', err);
                 // 显示错误信息
                 const commentSection = document.getElementById('tcomment');
@@ -1398,59 +1165,60 @@
         twikoo.init({
             el: '#tcomment',
             envId: 'https://plapi.qyserver.cc',
-            path: window.location.pathname 
-            
+            path: window.location.pathname
+
         })
 
         // ========== Twikoo 初始化结束 ==========
     </script>
-    
+
     <script>
-        (function(){
-            const carousel = document.getElementById('heroCarousel');
-            if (!carousel) return;
-            const track = carousel.querySelector('.carousel-track');
-            const items = Array.from(track.children);
-            const prev = carousel.querySelector('.carousel-prev');
-            const next = carousel.querySelector('.carousel-next');
-            const dotsContainer = carousel.querySelector('.carousel-dots');
-            let index = 0;
-            const total = items.length || 1;
+            (function () {
+                const carousel = document.getElementById('heroCarousel');
+                if (!carousel) return;
+                const track = carousel.querySelector('.carousel-track');
+                const items = Array.from(track.children);
+                const prev = carousel.querySelector('.carousel-prev');
+                const next = carousel.querySelector('.carousel-next');
+                const dotsContainer = carousel.querySelector('.carousel-dots');
+                let index = 0;
+                const total = items.length || 1;
 
-            // create dots
-            items.forEach((_, i) => {
-                const d = document.createElement('button');
-                d.className = 'carousel-dot';
-                if (i === 0) d.classList.add('active');
-                d.addEventListener('click', function() { goTo(i); resetAutoplay(); });
-                dotsContainer.appendChild(d);
-            });
-            const dots = Array.from(dotsContainer.children);
+                // create dots
+                items.forEach((_, i) => {
+                    const d = document.createElement('button');
+                    d.className = 'carousel-dot';
+                    if (i === 0) d.classList.add('active');
+                    d.addEventListener('click', function () { goTo(i); resetAutoplay(); });
+                    dotsContainer.appendChild(d);
+                });
+                const dots = Array.from(dotsContainer.children);
 
-            function update() {
-                track.style.transform = `translateX(-${index * 100}%)`;
-                dots.forEach((d, i) => d.classList.toggle('active', i === index));
-            }
+                function update() {
+                    track.style.transform = `translateX(-${index * 100}%)`;
+                    dots.forEach((d, i) => d.classList.toggle('active', i === index));
+                }
 
-            function goTo(i) {
-                index = ((i % total) + total) % total;
+                function goTo(i) {
+                    index = ((i % total) + total) % total;
+                    update();
+                }
+
+                next.addEventListener('click', function () { goTo(index + 1); resetAutoplay(); });
+                prev.addEventListener('click', function () { goTo(index - 1); resetAutoplay(); });
+
+                // autoplay
+                let autoplayInterval = 4000;
+                let timer = setInterval(function () { goTo(index + 1); }, autoplayInterval);
+                function resetAutoplay() { clearInterval(timer); timer = setInterval(function () { goTo(index + 1); }, autoplayInterval); }
+
+                carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
+                carousel.addEventListener('mouseleave', function () { resetAutoplay(); });
+
+                // initial update
                 update();
-            }
-
-            next.addEventListener('click', function() { goTo(index + 1); resetAutoplay(); });
-            prev.addEventListener('click', function() { goTo(index - 1); resetAutoplay(); });
-
-            // autoplay
-            let autoplayInterval = 4000;
-            let timer = setInterval(function() { goTo(index + 1); }, autoplayInterval);
-            function resetAutoplay() { clearInterval(timer); timer = setInterval(function() { goTo(index + 1); }, autoplayInterval); }
-
-            carousel.addEventListener('mouseenter', function() { clearInterval(timer); });
-            carousel.addEventListener('mouseleave', function() { resetAutoplay(); });
-
-            // initial update
-            update();
-        })();
+            })();
     </script>
 </body>
+
 </html>
