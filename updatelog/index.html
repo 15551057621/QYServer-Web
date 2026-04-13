@@ -1,44 +1,16 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QYServer | 日志</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="/lib/all.css">
-    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/D6Dh5/novaskin-wallpaper-insummer%20%281%29.webp" type="image/x-icon">
+    <script src="/lib/AllComponents.js"></script>
+    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/D6Dh5/novaskin-wallpaper-insummer%20%281%29.webp"
+        type="image/x-icon">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: "微软雅黑", "Microsoft YaHei", Roboto, Arial, sans-serif;
-        }
-        
-        html, body {
-            width: 100%;
-            overflow-x: hidden;
-            background-color: #f5f5f5;
-            color: #5F5F5F;
-            scroll-behavior: smooth;
-        }
-        /* 隐藏页面右侧默认滚动条（保留滚动功能） */
-        html, body {
-            -ms-overflow-style: none; /* IE 10+ */
-            scrollbar-width: none; /* Firefox */
-        }
-
-        html::-webkit-scrollbar {
-            width: 0;
-            height: 0;
-            display: none;
-        }
-        
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
         /* https://qycloudrevetermux.s.odn.cc/f/d/2BMfE/2025-07-05_14.dfgdfgdg20.03.png */
         /* 内容区域 */
         #content {
@@ -48,13 +20,13 @@
             position: relative;
             min-height: calc(100vh - 60px);
         }
-        
+
         .content-box {
             max-width: 1000px;
             margin: 0 auto;
             padding: 0 20px;
         }
-        
+
         .content-box h2 {
             font-size: 2.2rem;
             color: #333;
@@ -63,8 +35,18 @@
             padding-bottom: 15px;
             text-align: center;
         }
-        
-        .content-box h2::after {
+
+        .changelog-intro {
+            text-align: center;
+            color: #ffffff;
+            font-size: 0.9rem;
+            margin-top: -20px;
+            margin-bottom: 30px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .changelog-intro::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -75,73 +57,75 @@
             background: #f8a5c2;
             border-radius: 2px;
         }
-        
+
         .changelog-container {
             margin-top: 40px;
         }
-        
+
         .changelog-item {
             background: rgba(255, 255, 255, 0.85);
             border-radius: 10px;
             padding: 25px;
             margin-bottom: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
             transition: all 0.3s ease;
             border-left: 4px solid #f8a5c2;
             backdrop-filter: blur(10px);
-            text-align: left; /* 确保内容文字不居中 */
+            text-align: left;
+            /* 确保内容文字不居中 */
         }
-        
+
         .changelog-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             background: rgba(255, 255, 255, 0.95);
         }
-        
+
         .changelog-date {
             color: #888;
             font-size: 0.95em;
             margin-bottom: 10px;
         }
-        
+
         .changelog-title {
             font-weight: bold;
             font-size: 1.4em;
             margin-bottom: 15px;
             color: #333;
         }
-        
+
         .changelog-content {
             color: #555;
             line-height: 1.7;
-            text-align: left; /* 确保内容文字不居中 */
+            text-align: left;
+            /* 确保内容文字不居中 */
         }
-        
+
         .changelog-content img {
             max-width: 100%;
             border-radius: 8px;
             margin: 15px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        
+
         .changelog-content a {
             color: #337AB7;
             transition: all 0.3s;
             font-weight: bold;
         }
-        
+
         .changelog-content a:hover {
             color: #f8a5c2;
             text-decoration: underline;
         }
-        
+
         /* 页脚 */
         #footer {
             background: #333;
             color: #ddd;
             padding: 50px 0 20px;
         }
-        
+
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
@@ -150,13 +134,13 @@
             flex-wrap: wrap;
             justify-content: space-between;
         }
-        
+
         .footer-section {
             flex: 1;
             min-width: 300px;
             margin-bottom: 30px;
         }
-        
+
         .footer-section h3 {
             font-size: 1.5rem;
             margin-bottom: 20px;
@@ -164,7 +148,7 @@
             position: relative;
             padding-bottom: 10px;
         }
-        
+
         .footer-section h3::after {
             content: '';
             position: absolute;
@@ -174,18 +158,18 @@
             height: 3px;
             background: #f8a5c2;
         }
-        
+
         .footer-links a {
             display: block;
             padding: 8px 0;
             transition: all 0.3s;
         }
-        
+
         .footer-links a:hover {
             color: #f8a5c2;
             padding-left: 5px;
         }
-        
+
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
@@ -193,91 +177,43 @@
             margin-top: 20px;
             font-size: 0.9rem;
         }
-        
+
         .footer-bottom a {
             color: #f8a5c2;
             transition: all 0.3s;
         }
-        
+
         .footer-bottom a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
+
 <body>
 
-    
-    <!-- 导航栏 -->
-    <div id="menu-box">
-        <div class="menu">
-            <div class="logo">
-                <h2><a href="/"><i class="fas fa-cube"></i>QYServer</a></h2>
-            </div>
-            <div class="nav-links">
-                <a href="/download/"><i class="fas fa-download"></i>下载</a>
-                <a href="/search/"><i class="fas fa-search"></i>查询</a>
-                <a href="/updatelog/"><i class="fas fa-history"></i>更新</a>
-                <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-map"></i>地图</a>
-                <a href="/faq/"><i class="fas fa-question-circle"></i>FAQ</a>
-                <a href="/about/"><i class="fas fa-info-circle"></i>关于</a>
-            </div>
-        </div>
-    </div>
-    
+
+
     <!-- 内容区域 -->
     <section id="content">
         <div class="content-box">
-            <h2>QYServer更新日志</h2>
-            
+            <h2 style="font-weight: 700;">更新日志</h2>
+            <p class="changelog-intro" style="font-weight: 700;">记录服务器的每一次成长与变化 ✨</p>
+
             <div class="changelog-container" id="changelog-list">
                 <!-- 更新日志内容将通过JavaScript动态加载 -->
             </div>
         </div>
     </section>
-    
-    <!-- 页脚 -->
-    <footer id="footer">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>关于我们</h3>
-                <p>QYServer是一个专注于Minecraft基岩版的生存服务器，提供稳定、有趣的游戏环境，让玩家可以自由建造、探索和社交。</p>
-            </div>
-            
-            <div class="footer-section">
-                <h3>其他链接</h3>
-                <div class="footer-links">
-                    <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
-                    <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
-                    <a href="/updatelog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
-                    <a href="/map/"><i class="fas fa-arrow-right"></i> 网页地图</a>
-                    <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
-                    <a href="/about/"><i class="fas fa-arrow-right"></i> 关于</a>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h3>联系我们</h3>
-                <div class="footer-links">
-                    <a href="mailto:qy@qyserver.cc"><i class="fas fa-envelope"></i> qy@qyserver.cc</a>
-                    <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fab fa-qq"></i> QQ群: 1029879634</a>
-                    <a href="https://discord.gg/WGcKjt7BNG"><i class="fab fa-discord"></i> Discord</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <a href="/bot/" target="_blank">Uptime Robot</a> | <a href="https://github.com/weishao22/Qy-server" target="blank">
-            &copy; 2025-2026 QYServer 版权所有</a>
-        </div>
-    </footer>
+
+
     <script src="/lib/all.js"></script>
     <script src="main.js"></script>
     <script>
         // Lightbox 功能：保留带链接跳转，未带链接则放大
-        (function(){
-            function openLightbox(src){
-                if(!src) return;
-                if(document.querySelector('.lightbox.open')) return;
+        (function () {
+            function openLightbox(src) {
+                if (!src) return;
+                if (document.querySelector('.lightbox.open')) return;
                 const lb = document.createElement('div');
                 lb.className = 'lightbox open';
                 lb.innerHTML = `
@@ -285,50 +221,50 @@
                     <img class="lightbox-img" src="${src}">
                 `;
                 document.body.appendChild(lb);
-                function remove(){
-                    if(!lb || !lb.parentNode) return;
+                function remove() {
+                    if (!lb || !lb.parentNode) return;
                     lb.classList.remove('open');
                     lb.remove();
                     document.removeEventListener('keydown', onKey);
                 }
-                lb.addEventListener('click', function(e){ if(e.target === lb) remove(); });
+                lb.addEventListener('click', function (e) { if (e.target === lb) remove(); });
                 lb.querySelector('.lightbox-close').addEventListener('click', remove);
-                function onKey(e){ if(e.key === 'Escape') remove(); }
+                function onKey(e) { if (e.key === 'Escape') remove(); }
                 document.addEventListener('keydown', onKey);
             }
 
-            function bindImage(img){
-                if(!img) return;
+            function bindImage(img) {
+                if (!img) return;
                 // 排除音乐图标等控件
-                if(img.id === 'musicIcon') return;
+                if (img.id === 'musicIcon') return;
                 const wrappedByLink = img.closest && img.closest('a');
                 if (wrappedByLink) return;
 
                 img.style.cursor = 'zoom-in';
                 if (img._lightboxBound) return; // 防重复
                 img._lightboxBound = true;
-                img.addEventListener('click', function(e){
+                img.addEventListener('click', function (e) {
                     e && e.preventDefault && e.preventDefault();
                     openLightbox(this.src);
                 });
             }
 
             // 初始绑定（已有静态图片）
-            document.addEventListener('DOMContentLoaded', function(){
+            document.addEventListener('DOMContentLoaded', function () {
                 document.querySelectorAll('#content img, .changelog-content img').forEach(bindImage);
             });
 
             // 监测动态插入（main.js 可能异步加载日志）
             const list = document.getElementById('changelog-list');
-            if(list){
-                const mo = new MutationObserver(function(muts){
+            if (list) {
+                const mo = new MutationObserver(function (muts) {
                     muts.forEach(m => {
                         m.addedNodes.forEach(node => {
-                            if(node.nodeType !== 1) return;
+                            if (node.nodeType !== 1) return;
                             // 新增的日志项内图片
                             node.querySelectorAll && node.querySelectorAll('img').forEach(bindImage);
                             // 若整个列表被替换，重复绑定所有图片作为兜底
-                            if(node.id === 'changelog-list' || node.classList && node.classList.contains('changelog-container')){
+                            if (node.id === 'changelog-list' || node.classList && node.classList.contains('changelog-container')) {
                                 document.querySelectorAll('#content img, .changelog-content img').forEach(bindImage);
                             }
                         });
@@ -339,4 +275,5 @@
         })();
     </script>
 </body>
+
 </html>
