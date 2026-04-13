@@ -277,24 +277,6 @@
 </head>
 
 <body>
-
-
-    <!-- 弹窗提醒 -->
-    <div class="popup-overlay" id="popupOverlay">
-        <div class="popup-content">
-            <div class="popup-title">重要提醒</div>
-            <div class="popup-message">
-                <p>欢迎来到QYServer！我们是一个基岩版1.21.50+的Minecraft服务器</p>
-                <p>请务必遵守服务器规则，共同维护良好的游戏环境</p>
-            </div>
-            <div class="popup-footer">
-                <label class="popup-checkbox">
-                    <input type="checkbox" id="dontShowAgain"> 不再显示此消息
-                </label>
-                <button class="popup-btn popup-confirm" id="popupConfirm">知道了</button>
-            </div>
-        </div>
-    </div>
     <!-- 导航栏 -->
     <div id="menu-box">
         <div class="menu">
@@ -547,34 +529,6 @@
         </div>
 
         <script src="/lib/all.js"></script>
-        <script>
-            // 在页面加载时检查是否应该显示弹窗
-            document.addEventListener('DOMContentLoaded', function () {
-                // 检查localStorage中是否有"dontShowPopu"标志
-                if (localStorage.getItem('dontShowPopu') !== 'true') {
-                    // 显示弹窗
-                    setTimeout(function () {
-                        document.getElementById('popupOverlay').style.display = 'flex';
-                    }, 2000);
-                }
-
-                // 确认按钮点击事件
-                document.getElementById('popupConfirm').addEventListener('click', function () {
-                    // 如果勾选了"不再显示"，则保存到localStorage
-                    if (document.getElementById('dontShowAgain').checked) {
-                        localStorage.setItem('dontShowPopu', 'true');
-                    }
-                    document.getElementById('popupOverlay').style.display = 'none';
-                });
-
-                // 点击遮罩层也可关闭弹窗
-                document.getElementById('popupOverlay').addEventListener('click', function (e) {
-                    if (e.target === this) {
-                        this.style.display = 'none';
-                    }
-                });
-            });
-        </script>
 </body>
 
 </html>
