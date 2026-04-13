@@ -6,7 +6,7 @@
     <!-- 修复viewport设置 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="refresh" content="130">
-    <title>QYServer | 查询</title>
+    <title>查询</title>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="/lib/all.css">
     <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg"
@@ -373,16 +373,16 @@
                     <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
                     <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
                     <a href="/updatelog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
+                    <a href="/map/"><i class="fas fa-arrow-right"></i> 网页地图</a>
                     <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
-                    <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-arrow-right"></i> 地图</a>
-                    <a href="/" id="resetPopup"><i class="fas fa-arrow-right"></i>重置弹窗</a>
+                    <a href="/about/"><i class="fas fa-arrow-right"></i> 关于</a>
                 </div>
             </div>
 
             <div class="footer-section">
                 <h3>联系我们</h3>
                 <div class="footer-links">
-                    <a href="mailto:weishao22@outlook.com"><i class="fas fa-envelope"></i> weishao22@outlook.com</a>
+                    <a href="mailto:qy@qyserver.cc"><i class="fas fa-envelope"></i> qy@qyserver.cc</a>
                     <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fab fa-qq"></i> QQ群: 1029879634</a>
                     <a href="https://discord.gg/WGcKjt7BNG"><i class="fab fa-discord"></i> Discord</a>
                 </div>
@@ -390,7 +390,7 @@
         </div>
 
         <div class="footer-bottom">
-            <a href="https://stats.uptimerobot.com/hgMdAGlsWu" target="_blank">Uptime Robot</a> | <a
+            <a href="/bot/" target="_blank">Uptime Robot</a> | <a
                 href="https://github.com/weishao22/Qy-server" target="blank">
                 &copy; 2025-2026 QYServer 版权所有</a>
         </div>
@@ -410,7 +410,10 @@
     </div>
     <script src="/lib/all.js"></script>
     <script>
-        // 创建图表函数
+        // 全局图表引用，便于销毁重建
+        let historyChart = null;
+
+        // 创建图表函数（格式化时间为 HH:MM，并保持横向显示）
         function createHistoryChart() {
             const table = document.getElementById('history-table');
             const tbody = table.querySelector('tbody');
@@ -421,7 +424,7 @@
                 return;
             }
 
-            // 提取数据
+            // 提取并格式化数据为 HH:MM
             const labels = [];
             const data = [];
             const statuses = [];
@@ -429,7 +432,21 @@
             rows.forEach(row => {
                 const cells = row.querySelectorAll('td');
                 if (cells.length >= 3) {
-                    labels.push(cells[0].textContent);
+                    const raw = cells[0].textContent.trim();
+                    let dt = new Date(raw);
+                    if (isNaN(dt.getTime())) dt = new Date(raw.replace(/-/g, '/'));
+
+                    let hhmm = raw;
+                    if (!isNaN(dt.getTime())) {
+                        const hh = String(dt.getHours()).padStart(2, '0');
+                        const mm = String(dt.getMinutes()).padStart(2, '0');
+                        hhmm = `${hh}:${mm}`;
+                    } else {
+                        const m = raw.match(/(\d{1,2}:\d{2})/);
+                        if (m) hhmm = m[1];
+                    }
+
+                    labels.push(hhmm);
                     data.push(parseInt(cells[1].textContent) || 0);
                     statuses.push(cells[2].textContent);
                 }
@@ -443,8 +460,20 @@
             // 获取Canvas上下文
             const ctx = document.getElementById('history-chart').getContext('2d');
 
+            // 销毁已有图表实例
+            if (historyChart) {
+                try { historyChart.destroy(); } catch (e) { /* ignore */ }
+                historyChart = null;
+            }
+
+            // 根据屏宽调整最大刻度数量，避免拥挤
+            const sw = window.innerWidth || document.documentElement.clientWidth || 1024;
+            const labelsCount = labels.length || 0;
+            const isDesktopWide = sw > 900;
+            const maxTicks = isDesktopWide ? Math.min(labelsCount, 20) : (sw <= 360 ? 3 : sw <= 480 ? 4 : sw <= 768 ? 6 : 10);
+
             // 创建图表
-            const chart = new Chart(ctx, {
+            historyChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: labels,
@@ -460,9 +489,9 @@
                         },
                         pointBorderColor: 'rgba(248, 165, 194, 1)',
                         pointBorderWidth: 2,
-                        pointRadius: 6,
+                        pointRadius: sw <= 480 ? 4 : 6,
                         pointHoverRadius: 8,
-                        tension: 0.3
+                        tension: 0.25
                     }]
                 },
                 options: {
@@ -475,14 +504,15 @@
                                 display: true,
                                 text: '在线人数'
                             },
-                            ticks: {
-                                stepSize: 1
-                            }
+                            ticks: { stepSize: 1 }
                         },
                         x: {
-                            title: {
-                                display: true,
-                                text: '时间'
+                            title: { display: true, text: '时间' },
+                            ticks: {
+                                autoSkip: true,
+                                maxTicksLimit: maxTicks,
+                                maxRotation: 0,
+                                minRotation: 0
                             }
                         }
                     },
@@ -492,13 +522,17 @@
                                 label: function (context) {
                                     const index = context.dataIndex;
                                     return `在线人数: ${context.parsed.y} (${statuses[index]})`;
+                                },
+                                title: function(context) {
+                                    const idx = context && context[0] ? context[0].dataIndex : null;
+                                    return (idx !== null && labels[idx]) ? labels[idx] : '';
                                 }
                             }
                         },
-                        legend: {
-                            display: false
-                        }
-                    }
+                        legend: { display: false }
+                    },
+                    interaction: { mode: 'nearest', intersect: false },
+                    elements: { point: { hitRadius: 8 } }
                 }
             });
         }

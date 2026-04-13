@@ -1,7 +1,7 @@
 const serverHost = 'mc.qyserver.cc';
 const serverPort = 41657; 
-const statusUrl = 'http://103.205.253.87:15698/api/status';
-const historyUrl = `http://103.205.253.87:15698/api/history`;
+const statusUrl = 'https://mcapi.qyserver.cc/api/status';
+const historyUrl = `https://mcapi.qyserver.cc/api/history`;
 
 function fetchStatus() {
   fetch(statusUrl)

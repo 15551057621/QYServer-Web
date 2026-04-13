@@ -3,7 +3,7 @@
    包含：重置样式、导航栏、页脚、弹窗、音乐控制等
    ======================================== */
 
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+@import url('/lib/fontawesome-free-7.2.0-web/css/all.min.css');
 
 /* ---------- 1. 基础重置 ---------- */
 

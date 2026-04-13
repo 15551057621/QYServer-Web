@@ -367,24 +367,6 @@
 </head>
 
 <body>
-
-
-    <!-- 弹窗提醒 -->
-    <div class="popup-overlay" id="popupOverlay">
-        <div class="popup-content">
-            <div class="popup-title">重要提醒</div>
-            <div class="popup-message">
-                <p>欢迎来到QYServer！我们是一个基岩版1.21.50+的Minecraft服务器</p>
-                <p>请务必遵守服务器规则，共同维护良好的游戏环境</p>
-            </div>
-            <div class="popup-footer">
-                <label class="popup-checkbox">
-                    <input type="checkbox" id="dontShowAgain"> 不再显示此消息
-                </label>
-                <button class="popup-btn popup-confirm" id="popupConfirm">知道了</button>
-            </div>
-        </div>
-    </div>
     <!-- 导航栏 -->
     <div id="menu-box">
         <div class="menu">
@@ -408,133 +390,99 @@
 
         </div>
         <!-- 内容区域 - 下载页面 -->
-        <section id="download-section">
-            <div class="content-box">
-                <h2>客户端下载</h2>
-                <hr class="divider">
-
-                <div class="download-container">
-                    <div class="download-platform">
-                        <h3>Windows 客户端</h3>
-                        <div class="download-item">
-                            <div class="download-icon">
-                                <i class="fab fa-windows"></i>
-                            </div>
-                            <div class="download-info">
-                                <h4>标准版客户端</h4>
-                                <p>适用于Windows 10/11系统</p>
-                                <p>文件大小: 0.85GB | 版本: v1.21.94</p>
-                                <p>注意软件为微软应用商店上的官方原版 Minecraft，游戏文件完全没有被修改</p>
-                                <a href="https://pan.mcbebbs.cn/VVfN/Microsoft.MinecraftUWP_1.21.9401.0_x64__8wekyb3d8bbwe.Appx"
-                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                                <a href="https://qycloudreve.s.odn.cc/yM5CB/Microsoft.MinecraftUWP_1.21.9401.0_x64__8wekyb3d8bbwe.Appx"
-                                    class="download-btn"><i class="fas fa-download"></i> 备用</a>
-                            </div>
+    <section id="download-section">
+        <div class="content-box">
+            <h2>客户端下载</h2>
+            <hr class="divider">
+            
+            <div class="download-container">
+                <div class="download-platform">
+                    <h3>Windows 客户端</h3>
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <i class="fab fa-windows"></i>
                         </div>
-
-                        <div class="download-item">
-                            <div class="download-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <div class="download-info">
-                                <h4>高性能版客户端</h4>
-                                <p>优化版客户端，适合低配电脑使用，提升游戏流畅度</p>
-                                <p>文件大小: 850MB | 版本: v1.21.50.2</p>
-                            </div>
+                        <div class="download-info">
+                            <h4>标准版客户端</h4>
+                            <p>适用于Windows 10/11系统</p>
+                            <p>文件大小: 0.85GB | 版本: v1.21.94</p>
+                          <p>注意软件为微软应用商店上的官方原版 Minecraft，游戏文件完全没有被修改</p>
+                            <a href="https://pan.mcbebbs.cn/f/VVfN/Microsoft.MinecraftUWP_1.21.9401.0_x64__8wekyb3d8bbwe.Appx" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                          <a href="https://qycloudreve.s.odn.cc/f/yM5CB/Microsoft.MinecraftUWP_1.21.9401.0_x64__8wekyb3d8bbwe.Appx" class="download-btn"><i class="fas fa-download"></i> 备用</a>
                         </div>
                     </div>
-
-                    <div class="download-platform">
-                        <h3>移动端客户端</h3>
-                        <div class="download-item">
-                            <div class="download-icon">
-                                <i class="fab fa-android"></i>
-                            </div>
-                            <div class="download-info">
-                                <h4>Android 客户端</h4>
-                                <p>适用于安卓手机和平板设备</p>
-                                <p>文件大小: 520MB | 版本: v1.21.94</p>
-                                <p>仅供体验或供学习交流，请在24小时内删除</p>
-                                <a href="https://pan.mcbebbs.cn/Zbh9/Minecraft%20PE%201.21.94.1%20v8a.apk"
-                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                                <a href="https://qycloudreve.s.odn.cc/pAefX/Minecraft%20PE%201.21.94.1%20v8a.apk"
-                                    class="download-btn"><i class="fas fa-download"></i>备用</a>
-                            </div>
+                    
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <i class="fas fa-bolt"></i>
                         </div>
-
-                        <div class="download-item">
-                            <div class="download-icon">
-                                <i class="fab fa-apple"></i>
-                            </div>
-                            <div class="download-info">
-                                <h4>iOS 客户端</h4>
-                                <p>适用于iPhone和iPad设备，需要iOS 14.0或更高版本</p>
-                                <p>文件大小: 574MB | 版本: v1.21.101</p>
-                                <p>注意软件为官方原版 Minecraft</p>
-                                <a href="https://qycloudreve.s.odn.cc/d/B0sL/Minecraft%201.21.101.ipa"
-                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                            </div>
+                        <div class="download-info">
+                            <h4>高性能版客户端</h4>
+                            <p>优化版客户端，适合低配电脑使用，提升游戏流畅度</p>
+                            <p>文件大小: 850MB | 版本: v1.21.50.2</p>
                         </div>
-                    </div>
-
-                    <div class="download-platform">
-                        <h3>其他资源下载</h3>
-                        <div class="download-item">
-                            <div class="download-icon">
-                                <i class="fas fa-file-archive"></i>
-                            </div>
-                            <div class="download-info">
-                                <h4>预下载资源包</h4>
-                                <p>服务器资源包，解决无法在游戏下载，下载后导入即可</p>
-                                <p>文件大小: 62MB | 更新日期: 2025-12-09</p>
-                                <a href="https://qycloudreve.s.odn.cc/xjqs1/QYServer%E6%9D%90%E8%B4%A8%E7%BC%93%E5%AD%98%E5%8C%85_v1.0_20251209.mcaddon"
-                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                            </div>
-                        </div>
-
-                        <div class="download-item">
-                            <div class="download-icon">
-                                <i class="fas fa-cloud-download-alt"></i>
-                            </div>
-                            <div class="download-info">
-                                <h4>服务器地图备份</h4>
-                                <p>服务器地图备份，单机游玩使用</p>
-                                <p>文件大小: 3.6GB | 更新日期: 2025-10-7</p>
-                                <a href="https://qycloudreve.s.odn.cc/J6Auw/qyserver.mcworld" class="download-btn"><i
-                                        class="fas fa-download"></i> 立即下载</a>
-                            </div>
-                        </div>
-
-                        <div class="download-item">
-                            <div class="download-icon">
-                                <i class="fab fa-windows"></i>
-                            </div>
-                            <div class="download-info">
-                                <h4>Windows 客户端</h4>
-                                <p>文件大小: 0.9GB | 版本: v1.21.101</p>
-                                <p>注意软件为微软应用商店上的官方原版 Minecraft，游戏文件完全没有被修改</p>
-                                <a href="https://qycloudreve.s.odn.cc/d/NZ5ck/Microsoft.MinecraftUWP_1.21.10101.0_x64__8wekyb3d8bbwe.Appx"
-                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                            </div>
-                        </div>
-
-                        <div class="download-item">
-                            <div class="download-icon">
-                                <i class="fab fa-android"></i>
-                            </div>
-                            <div class="download-info">
-                                <h4>Android版 共存精简</h4>
-                                <p>文件大小: 295MB | 版本: v1.21.94</p>
-                                <p>仅供体验或供学习交流，请在24小时内删除</p>
-                                <a href="https://qycloudreve.s.odn.cc/klghl/Minecraft_1.21.94_v8a_%E5%85%B1%E5%AD%98.apk"
-                                    class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
+                
+                <div class="download-platform">
+                    <h3>移动端客户端</h3>
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <i class="fab fa-android"></i>
+                        </div>
+                        <div class="download-info">
+                            <h4>Android 客户端共存</h4>
+                            <p>适用于安卓手机和平板设备</p>
+                            <p>文件大小: 520MB | 版本: v26.0</p>
+                          <p>仅供体验或供学习交流，请在24小时内删除</p>
+                            <a href="https://qycloudreve.s.odn.cc/f/0DEc3/Minecraft_PE_1.26.0.2%20_v8a_%E5%85%B1%E5%AD%98.apk" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                        </div>
+                    </div>
+                    
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <i class="fab fa-apple"></i>
+                        </div>
+                        <div class="download-info">
+                            <h4>iOS 客户端</h4>
+                            <p>适用于iPhone和iPad设备，需要iOS 14.0或更高版本</p>
+                            <p>文件大小: 574MB | 版本: v1.21.101</p>
+                          <p>注意软件为官方原版 Minecraft</p>
+                          <a href="https://qycloudreve.s.odn.cc/f/d/B0sL/Minecraft%201.21.101.ipa" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="download-platform">
+                    <h3>其他资源下载</h3>
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <i class="fas fa-file-archive"></i>
+                        </div>
+                        <div class="download-info">
+                            <h4>预下载资源包</h4>
+                            <p>服务器资源包，解决无法在游戏下载，下载后导入即可</p>
+                            <p>文件大小: 62MB | 更新日期: 2025-12-09</p>
+                           <a href="https://qycloudreve.s.odn.cc/f/xjqs1/QYServer%E6%9D%90%E8%B4%A8%E7%BC%93%E5%AD%98%E5%8C%85_v1.0_20251209.mcaddon" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                        </div>
+                    </div>
+                    
+                    <div class="download-item">
+                        <div class="download-icon">
+                            <i class="fas fa-cloud-download-alt"></i>
+                        </div>
+                        <div class="download-info">
+                            <h4>服务器地图备份</h4>
+                            <p>服务器地图备份，单机游玩使用</p>
+                            <p>文件大小: 8GB | 更新日期: 2026-1-9</p>
+                          <a href="https://qycloudreve.s.odn.cc/f/nLaId/qyserver2026-01-29.mcworld" class="download-btn"><i class="fas fa-download"></i> 立即下载</a>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
         <!-- 页脚 -->
         <footer id="footer">
@@ -546,20 +494,20 @@
 
                 <div class="footer-section">
                     <h3>快速链接</h3>
-                    <div class="footer-links">
-                        <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
-                        <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
-                        <a href="/updatelog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
-                        <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
-                        <a href="https://qyservermap.s.odn.cc/"><i class="fas fa-arrow-right"></i> 地图</a>
-                        <a href="/" id="resetPopup"><i class="fas fa-arrow-right"></i>重置弹窗</a>
-                    </div>
+                <div class="footer-links">
+                    <a href="/rules/"><i class="fas fa-arrow-right"></i> 服务器规则</a>
+                    <a href="/command/"><i class="fas fa-arrow-right"></i> 服务器指令</a>
+                    <a href="/updatelog/"><i class="fas fa-arrow-right"></i> 更新日志</a>
+                    <a href="/map/"><i class="fas fa-arrow-right"></i> 网页地图</a>
+                    <a href="/faq/"><i class="fas fa-arrow-right"></i> 常见问题</a>
+                    <a href="/about/"><i class="fas fa-arrow-right"></i> 关于</a>
+                </div>
                 </div>
 
                 <div class="footer-section">
                     <h3>联系我们</h3>
                     <div class="footer-links">
-                        <a href="mailto:weishao22@outlook.com"><i class="fas fa-envelope"></i> weishao22@outlook.com</a>
+                        <a href="mailto:qy@qyserver.cc"><i class="fas fa-envelope"></i> qy@qyserver.cc</a>
                         <a href="https://qm.qq.com/q/Ur5Pf31XMG"><i class="fab fa-qq"></i> QQ群: 1029879634</a>
                         <a href="https://discord.gg/WGcKjt7BNG"><i class="fab fa-discord"></i> Discord</a>
                     </div>
@@ -567,7 +515,7 @@
             </div>
 
             <div class="footer-bottom">
-                <a href="https://stats.uptimerobot.com/hgMdAGlsWu" target="_blank">Uptime Robot</a> | <a
+                <a href="/bot/" target="_blank">Uptime Robot</a> | <a
                     href="https://github.com/weishao22/Qy-server" target="blank">
                     &copy; 2025-2026 QYServer 版权所有</a>
             </div>
@@ -586,34 +534,6 @@
         </div>
 
         <script src="/lib/all.js"></script>
-        <script>
-            // 在页面加载时检查是否应该显示弹窗
-            document.addEventListener('DOMContentLoaded', function () {
-                // 检查localStorage中是否有"dontShowPopu"标志
-                if (localStorage.getItem('dontShowPopu') !== 'true') {
-                    // 显示弹窗
-                    setTimeout(function () {
-                        document.getElementById('popupOverlay').style.display = 'flex';
-                    }, 2000);
-                }
-
-                // 确认按钮点击事件
-                document.getElementById('popupConfirm').addEventListener('click', function () {
-                    // 如果勾选了"不再显示"，则保存到localStorage
-                    if (document.getElementById('dontShowAgain').checked) {
-                        localStorage.setItem('dontShowPopu', 'true');
-                    }
-                    document.getElementById('popupOverlay').style.display = 'none';
-                });
-
-                // 点击遮罩层也可关闭弹窗
-                document.getElementById('popupOverlay').addEventListener('click', function (e) {
-                    if (e.target === this) {
-                        this.style.display = 'none';
-                    }
-                });
-            });
-        </script>
 </body>
 
 </html>
