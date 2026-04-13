@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QYServer | 调试面板</title>
+    <link rel="stylesheet" href="/lib/all.css">
+    <link rel="icon" href="https://qycloudreve.s.odn.cc/f/XDZfr/novaskin-wallpaper-insummer%20%281%29.jpg"
+        type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            font-family: "微软雅黑", "Microsoft YaHei", sans-serif;
+            padding: 100px 20px 40px;
+        }
+
+        .debug-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .debug-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .debug-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease;
+        }
+
+        .debug-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .debug-card h3 {
+            color: #333;
+            font-size: 1.3rem;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f8a5c2;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .debug-card h3 i {
+            color: #f8a5c2;
+        }
+
+        .debug-btn {
+            display: block;
+            width: 100%;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            background: #f5f5f5;
+            color: #333;
+            border-left: 4px solid transparent;
+        }
+
+        .debug-btn:hover {
+            background: #f8a5c2;
+            color: #fff;
+            border-left-color: #a56de2;
+            transform: translateX(5px);
+        }
+
+        .debug-btn.danger {
+            background: #fff3f3;
+            color: #e74c3c;
+        }
+
+        .debug-btn.danger:hover {
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        .debug-btn.success {
+            background: #f0fff4;
+            color: #27ae60;
+        }
+
+        .debug-btn.success:hover {
+            background: #27ae60;
+            color: #fff;
+        }
+
+        .debug-info {
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 16px;
+            font-size: 13px;
+        }
+
+        .debug-info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .debug-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .debug-info-label {
+            color: #888;
+        }
+
+        .debug-info-value {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .toast-message {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        .toast-message.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="debug-container">
+        <h1><i class="fas fa-bug"></i> 调试面板</h1>
+        <p class="subtitle">开发者工具 · 快速调试 · 状态管理</p>
+
+        <div class="debug-grid">
+            <!-- 弹窗控制 -->
+            <div class="debug-card">
+                <h3><i class="fas fa-window-restore"></i> 弹窗控制</h3>
+                <button class="debug-btn" onclick="debugActions.resetPopup()">
+                    <i class="fas fa-undo"></i> 重置首页弹窗
+                </button>
+                <button class="debug-btn" onclick="debugActions.forceShowPopup()">
+                    <i class="fas fa-eye"></i> 强制显示首页弹窗
+                </button>
+                <button class="debug-btn" onclick="debugActions.testJoinPopup()">
+                    <i class="fas fa-gamepad"></i> 测试加入游戏弹窗
+                </button>
+                <div class="debug-info">
+                    <div class="debug-info-item">
+                        <span class="debug-info-label">弹窗状态</span>
+                        <span class="debug-info-value" id="popupStatus">检查中...</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 存储控制 -->
+            <div class="debug-card">
+                <h3><i class="fas fa-database"></i> 本地存储</h3>
+                <button class="debug-btn danger" onclick="debugActions.clearAllStorage()">
+                    <i class="fas fa-trash"></i> 清除所有 localStorage
+                </button>
+                <button class="debug-btn" onclick="debugActions.clearPopupFlag()">
+                    <i class="fas fa-flag"></i> 仅清除弹窗标记
+                </button>
+                <button class="debug-btn" onclick="debugActions.viewStorage()">
+                    <i class="fas fa-list"></i> 查看所有存储数据
+                </button>
+                <div class="debug-info" id="storageInfo">
+                    <div class="debug-info-item">
+                        <span class="debug-info-label">存储项数量</span>
+                        <span class="debug-info-value" id="storageCount">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 页面信息 -->
+            <div class="debug-card">
+                <h3><i class="fas fa-info-circle"></i> 页面信息</h3>
+                <button class="debug-btn" onclick="debugActions.refreshInfo()">
+                    <i class="fas fa-sync"></i> 刷新信息
+                </button>
+                <div class="debug-info" id="pageInfo">
+                    <div class="debug-info-item">
+                        <span class="debug-info-label">当前页面</span>
+                        <span class="debug-info-value" id="currentPage">-</span>
+                    </div>
+                    <div class="debug-info-item">
+                        <span class="debug-info-label">屏幕尺寸</span>
+                        <span class="debug-info-value" id="screenSize">-</span>
+                    </div>
+                    <div class="debug-info-item">
+                        <span class="debug-info-label">User Agent</span>
+                        <span class="debug-info-value" id="userAgent">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 组件测试 -->
+            <div class="debug-card">
+                <h3><i class="fas fa-puzzle-piece"></i> 组件测试</h3>
+                <button class="debug-btn" onclick="debugActions.testLoadingAnimation()">
+                    <i class="fas fa-spinner"></i> 测试加载动画 (3秒)
+                </button>
+                <button class="debug-btn success" onclick="debugActions.showToast('操作成功！', 'success')">
+                    <i class="fas fa-check-circle"></i> 测试 Toast 提示
+                </button>
+                <button class="debug-btn" onclick="debugActions.testMusicControl()">
+                    <i class="fas fa-music"></i> 切换音乐状态
+                </button>
+            </div>
+
+            <!-- 导航链接 -->
+            <div class="debug-card">
+                <h3><i class="fas fa-link"></i> 快速导航</h3>
+                <a href="/" style="text-decoration: none;"><button class="debug-btn"><i class="fas fa-home"></i>
+                        首页</button></a>
+                <a href="/about/" style="text-decoration: none;"><button class="debug-btn"><i class="fas fa-users"></i>
+                        关于页面</button></a>
+                <a href="/faq/" style="text-decoration: none;"><button class="debug-btn"><i
+                            class="fas fa-question-circle"></i> FAQ 页面</button></a>
+                <a href="/gallery/" style="text-decoration: none;"><button class="debug-btn"><i
+                            class="fas fa-images"></i> 图廊页面</button></a>
+                <a href="/updatelog/" style="text-decoration: none;"><button class="debug-btn"><i
+                            class="fas fa-history"></i> 更新日志</button></a>
+            </div>
+
+            <!-- 缓存控制 -->
+            <div class="debug-card">
+                <h3><i class="fas fa-bolt"></i> 缓存控制</h3>
+                <button class="debug-btn danger" onclick="debugActions.hardRefresh()">
+                    <i class="fas fa-redo-alt"></i> 强制刷新 (清除缓存)
+                </button>
+                <button class="debug-btn" onclick="debugActions.reloadCSS()">
+                    <i class="fas fa-paint-brush"></i> 重新加载样式
+                </button>
+                <button class="debug-btn" onclick="debugActions.clearCache()">
+                    <i class="fas fa-eraser"></i> 清除 Application Cache
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 提示 -->
+    <div id="toast" class="toast-message"></div>
+
+    <script>
+        const debugActions = {
+            // 重置弹窗
+            resetPopup() {
+                localStorage.removeItem('dontShowPopu022112');
+                this.showToast('弹窗标记已重置，下次访问首页将显示弹窗');
+                this.updatePopupStatus();
+            },
+
+            // 强制显示弹窗
+            forceShowPopup() {
+                localStorage.removeItem('dontShowPopu022112');
+                this.showToast('已清除标记，正在跳转到首页...');
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1000);
+            },
+
+            // 测试加入游戏弹窗
+            testJoinPopup() {
+                const popup = document.createElement('div');
+                popup.className = 'popup-overlay';
+                popup.style.display = 'flex';
+                popup.innerHTML = `
+                    <div class="popup-content">
+                        <div class="popup-title">测试加入弹窗</div>
+                        <div class="popup-message">
+                            <p>这是一个测试弹窗</p>
+                            <p>服务器地址：<strong>mc.qyserver.cc</strong></p>
+                            <p>端口：<strong>41657</strong></p>
+                        </div>
+                        <div class="popup-footer">
+                            <button class="popup-btn" onclick="this.closest('.popup-overlay').remove()">取消</button>
+                            <button class="popup-btn popup-confirm" onclick="this.closest('.popup-overlay').remove();debugActions.showToast('模拟加入游戏')">加入游戏</button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(popup);
+                popup.addEventListener('click', (e) => {
+                    if (e.target === popup) popup.remove();
+                });
+            },
+
+            // 清除所有存储
+            clearAllStorage() {
+                const count = localStorage.length;
+                localStorage.clear();
+                this.showToast(`已清除 ${count} 个存储项`);
+                this.updateStorageInfo();
+            },
+
+            // 仅清除弹窗标记
+            clearPopupFlag() {
+                localStorage.removeItem('dontShowPopu022112');
+                this.showToast('弹窗标记已清除');
+                this.updateStorageInfo();
+                this.updatePopupStatus();
+            },
+
+            // 查看存储数据
+            viewStorage() {
+                const items = [];
+                for (let i = 0; i < localStorage.length; i++) {
+                    const key = localStorage.key(i);
+                    const value = localStorage.getItem(key);
+                    items.push(`${key}: ${value}`);
+                }
+                if (items.length === 0) {
+                    alert('当前没有任何存储数据');
+                } else {
+                    alert('存储数据：\n\n' + items.join('\n'));
+                }
+            },
+
+            // 刷新信息
+            refreshInfo() {
+                this.updatePageInfo();
+                this.updateStorageInfo();
+                this.updatePopupStatus();
+                this.showToast('信息已刷新');
+            },
+
+            // 测试加载动画
+            testLoadingAnimation() {
+                const loader = document.createElement('div');
+                loader.style.cssText = `
+                    position: fixed;
+                    inset: 0;
+                    background: rgba(255,255,255,0.3);
+                    backdrop-filter: blur(15px);
+                    z-index: 99999;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                `;
+                loader.innerHTML = `
+                    <div style="text-align: center;">
+                        <div style="width: 60px; height: 60px; border: 5px solid rgba(248,165,194,0.3); border-top-color: #f8a5c2; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 20px;"></div>
+                        <p style="color: #fff; font-size: 18px; text-shadow: 0 2px 8px rgba(0,0,0,0.2);">测试加载中...</p>
+                    </div>
+                `;
+                document.body.appendChild(loader);
+                setTimeout(() => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.remove(), 400);
+                    this.showToast('加载动画测试完成');
+                }, 3000);
+            },
+
+            // Toast 提示
+            showToast(message, type = 'info') {
+                const toast = document.getElementById('toast');
+                toast.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 2500);
+            },
+
+            // 测试音乐控制
+            testMusicControl() {
+                const musicControl = document.getElementById('musicControl');
+                if (musicControl) {
+                    musicControl.click();
+                    this.showToast('已触发音乐控制');
+                } else {
+                    this.showToast('当前页面没有音乐控制按钮');
+                }
+            },
+
+            // 强制刷新
+            hardRefresh() {
+                if (confirm('确定要强制刷新并清除缓存吗？')) {
+                    location.reload(true);
+                }
+            },
+
+            // 重新加载 CSS
+            reloadCSS() {
+                const links = document.querySelectorAll('link[rel="stylesheet"]');
+                links.forEach(link => {
+                    const href = link.href;
+                    link.href = '';
+                    setTimeout(() => {
+                        link.href = href + (href.includes('?') ? '&' : '?') + Date.now();
+                    }, 10);
+                });
+                this.showToast(`已重新加载 ${links.length} 个样式表`);
+            },
+
+            // 清除缓存
+            clearCache() {
+                if ('caches' in window) {
+                    caches.keys().then(keys => {
+                        keys.forEach(key => caches.delete(key));
+                        this.showToast(`已清除 ${keys.length} 个缓存`);
+                    });
+                } else {
+                    this.showToast('浏览器不支持 Cache API');
+                }
+            },
+
+            // 更新弹窗状态
+            updatePopupStatus() {
+                const el = document.getElementById('popupStatus');
+                if (el) {
+                    const flag = localStorage.getItem('dontShowPopu022112');
+                    el.textContent = flag === 'true' ? '已禁用' : '启用中';
+                    el.style.color = flag === 'true' ? '#e74c3c' : '#27ae60';
+                }
+            },
+
+            // 更新存储信息
+            updateStorageInfo() {
+                const el = document.getElementById('storageCount');
+                if (el) {
+                    el.textContent = localStorage.length;
+                }
+            },
+
+            // 更新页面信息
+            updatePageInfo() {
+                document.getElementById('currentPage').textContent = window.location.pathname;
+                document.getElementById('screenSize').textContent = `${window.innerWidth} x ${window.innerHeight}`;
+                const ua = navigator.userAgent;
+                document.getElementById('userAgent').textContent = ua.length > 40 ? ua.substring(0, 40) + '...' : ua;
+            }
+        };
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            debugActions.updatePageInfo();
+            debugActions.updateStorageInfo();
+            debugActions.updatePopupStatus();
+        });
+
+        // 添加旋转动画
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+
+</html>
