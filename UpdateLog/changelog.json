@@ -1,5 +1,40 @@
 [
   {
+    "date": "2026-04-05",
+    "title": "=== Updata ===",
+    "content": "fix: 无限飞行bug已修复"
+  },
+  {
+    "date": "2026-03-28",
+    "title": "=== Updata ===",
+    "content": "<h3>新功能！</h3>\n现在鱼和美西螈可以一起养了！\n>> 潜行攻击美西螈打开设置\n<a href=\"https://qycloudreve.s.odn.cc/f/V6OHr/%E5%89%AA%E8%B4%B4%E6%9D%BF%201775966976442.webp\"><img src=\"https://qycloudreve.s.odn.cc/f/V6OHr/%E5%89%AA%E8%B4%B4%E6%9D%BF%201775966976442.webp\" width=\"80%\" style=\"height:auto;\"></a>"
+  },
+  {
+    "date": "2026-03-25",
+    "title": "=== Updata ===",
+    "content": "服务器现已支持 1.21.5x - 1.26.1x加入\n并修复了空包远程崩服问题"
+  },
+  {
+    "date": "2026-03-22",
+    "title": "=== Updata ===",
+    "content": "Fix: 修复了编辑书本将导致1.26.x客户端崩溃的问题"
+  },
+    {
+    "date": "2026-02-15",
+    "title": "=== Updata ===",
+    "content": "[+] 20种鞘翅饰品\n[+] 部分场景下使用弹出式ui\n[+] 5种长毛物品\n[#] 重构魔法系统 优化其性能\n[#] 魔法现已支持16格堆叠\n[#] 服务器现己支持 1.26.x进入\n[#] 修复飞行药水相关bug\n[#] 修复农夫乐事作物生长问题\n[#] 将主资源包注册为Cube ui扩展包\n[-] 删除原版维度切换背景\n<h4>备注:</h4>\n<h5>农夫乐事作物生长每秒只处理50个生长请求，超过则不处理</h5>\n<h3>图片展示:</h3>\n<a href=\"https://qycloudreve.s.odn.cc/f/Y6oSl/cea97e96-9bce-46bf-8dfe-deec920d0c2f.webp\"><img src=\"https://qycloudreve.s.odn.cc/f/Y6oSl/cea97e96-9bce-46bf-8dfe-deec920d0c2f.webp\" width=\"70%\" style=\"height:auto;\"></a>\n<h4>鞘翅修改ui</h4>\n<a href=\"https://qycloudreve.s.odn.cc/f/DzDU5/e6fa878c-7057-4dce-9f19-4213990aee32.webp\"><img src=\"https://qycloudreve.s.odn.cc/f/DzDU5/e6fa878c-7057-4dce-9f19-4213990aee32.webp\" width=\"70%\" style=\"height:auto;\"></a>\n<h4>扩展包注册</h4>\n<a href=\"https://qycloudreve.s.odn.cc/f/jPwul/bc8c849c-2997-4b83-ba9d-1f19258e65d8.jpeg\"><img src=\"https://qycloudreve.s.odn.cc/f/jPwul/bc8c849c-2997-4b83-ba9d-1f19258e65d8.jpeg\" width=\"60%\" style=\"height:auto;\"></a>\n<a href=\"https://qycloudreve.s.odn.cc/f/MzMil/f894eab4-5ce1-4121-89ae-520308fd69e6.jpeg\"><img src=\"https://qycloudreve.s.odn.cc/f/MzMil/f894eab4-5ce1-4121-89ae-520308fd69e6.jpeg\" width=\"60%\" style=\"height:auto;\"></a>\n<a href=\"https://qycloudreve.s.odn.cc/f/wLEfX/e6ad1900-adc3-4419-a834-b82320a5ff76.jpeg\"><img src=\"https://qycloudreve.s.odn.cc/f/wLEfX/e6ad1900-adc3-4419-a834-b82320a5ff76.jpeg\" width=\"60%\" style=\"height:auto;\"></a>\n<h4>鞘翅饰品\n仅展示3种，目前共20种</h4>"
+  },
+  {
+    "date": "2026-01-28",
+    "title": "=== Updata ===",
+    "content": "[+] 玩偶商店<br>[+] 对联方块<br>[+] 新年红包<br>[+] 骗子方块<br>[+] 更多饰品装备<br>[+] 两种喷花方块<br>[+] 随意抚摸魔法<br>[+] 两种新年唱片<br>[+] 经济变动提示<br>[+] 五种窜天猴实体<br>[+] 34种可获取玩偶<br>[+] 五种仙女棒物品<br>[+] 两种物品合成表<br>[+] 两个新的聊天称号<br>[#] 现在可以在副手放置红旗<br>[#] 服务核心升级1.21.93<br>[#] 修复方块坐下相关bug<br>[#] 修复错误皮肤效果bug<br>[#] 修复飞机异常坠机bug<br>[#] 修复邮件无法打开bug<br>[#] 修复壁画方块模型错误<br>[#] 修复红旗模型异常闪烁<br>[#] 替换默认史蒂夫皮肤<br><br><b>其他更新信息</b><br>现在无皮肤的玩家会显示为以下皮肤<br>支持眨眼<br>仅替换无皮肤玩家 有皮肤玩家不受影响<br><a href=\"https://qycloudreve.s.odn.cc/f/ey6tw/899ef91ec66762a3b8e04aff833992eb.webp\"><img src=\"https://qycloudreve.s.odn.cc/f/ey6tw/899ef91ec66762a3b8e04aff833992eb.webp\" width=\"200\" style=\"height:auto;\"></a><br>玩偶可以使用/helmet带在头上<br>玩偶戴在头上时其特殊功能不生效<br><a href=\"https://qycloudreve.s.odn.cc/f/Eq5Up/3f99a2b1e232352b1ca3ec91be17269a.jpg\"><img src=\"https://qycloudreve.s.odn.cc/f/Eq5Up/3f99a2b1e232352b1ca3ec91be17269a.jpg\" width=\"300\" style=\"height:auto;\"></a>"
+  },
+  {
+    "date": "2026-01-01",
+    "title": "==更新日志===",
+    "content": "[+] 部分方块可坐下<br>[+] 云野固定大蜡<br>[+] 邮件系统[+] 刘德华实体<br>[+] 查询玩家加入时间<br>[+] 更好的侧边栏<br>[+] 烟花发射UI<br>[+] 更多魔法...<br>[+] 打怪30%几率爆蜡烛<br>[+] 更多成就项<br>[+] 支持更多移动光源方块<br>[#] 服务器娘核心更换为DeepSeed 3.2<br>[#] 优化移动光源发包逻辑<br>[#] 重构菜单插件并优化性能<br>[#] 资源包添加contents.json以提高加载速度<br>[#] 修复水晶球视角跟踪时性能问题<br>[#] 修复光环耐久异常扣除<br>[#] 修复部分性能问题<br>[#] 修复留言小船部分bug<br>[#] 修复部分刷物品bug<br>[#] 修复领地实体交互bug<br>[#] 修复部分键译名出错bug<br>[-] 移除蛀虫与史莱姆药水效果<br>[-] 移除飞机实体死亡时掉落物<br>[-] 移除对地毯复制的支持<br>[-] 移除对宠物死亡保护的支持<br>[-] 移除后室残余旧架构<br>[-] 移除了Herobrine<br>[?] 更多更新内容因我记不清了所以不写<br>[?] 更新内容自己进服瞅去<br><a href=\"https://qycloudreve.s.odn.cc/f/PqRi6/280abecb8526ebf2fbdf7ad3d5a20048.jpg\"><img src=\"https://qycloudreve.s.odn.cc/f/PqRi6/280abecb8526ebf2fbdf7ad3d5a20048.jpg\" width=\"300\" style=\"height:auto;\"></a>"
+  },
+  {
     "date": "2025-12-04",
     "title": "==更新日志===",
     "content": "[#]支持了 1.21.50—1.21.12x 进入"
@@ -7,12 +42,12 @@
   {
     "date": "2025-11-12",
     "title": "=== 小更新日志 ===",
-    "content": "单个云朵电梯只能上下20格，将两个云朵连接起来可以增加上下检测范围<br><a href=\"https://qycloudreve.s.odn.cc/f/vY1TO/41d77d626afcae1339ff915db5ec9233.jpg\"><img src=\"https://qycloudreve.s.odn.cc/f/vY1TO/41d77d626afcae1339ff915db5ec9233.jpg\" width=\"800\" style=\"height:auto;\"></a>"
+    "content": "单个云朵电梯只能上下20格，将两个云朵连接起来可以增加上下检测范围<br><a href=\"https://qycloudreve.s.odn.cc/f/vY1TO/41d77d626afcae1339ff915db5ec9233.jpg\"><img src=\"https://qycloudreve.s.odn.cc/f/vY1TO/41d77d626afcae1339ff915db5ec9233.jpg\" width=\"400\" style=\"height:auto;\"></a>"
   },
   {
     "date": "2025-11-11",
     "title": "=== DevLog ===",
-    "content": "[+] 新侧边栏样式<br>[+] 云朵电梯<br>[+] 可以骑的北极熊<br>[+] 服务器娘 实体<br>[#] 修复启用灵动视效bug<br>[#] 农夫乐事降频运行<br>[-] 移除了黑格布朗<br><a href=\"https://qycloudreve.s.odn.cc/f/XKZcr/c3785ca067c25284037fda3867bd71bc.jpg\"><img src=\"https://qycloudreve.s.odn.cc/f/XKZcr/c3785ca067c25284037fda3867bd71bc.jpg\" width=\"800\" style=\"height:auto;\"></a>"
+    "content": "[+] 新侧边栏样式<br>[+] 云朵电梯<br>[+] 可以骑的北极熊<br>[+] 服务器娘 实体<br>[#] 修复启用灵动视效bug<br>[#] 农夫乐事降频运行<br>[-] 移除了黑格布朗<br><a href=\"https://qycloudreve.s.odn.cc/f/XKZcr/c3785ca067c25284037fda3867bd71bc.jpg\"><img src=\"https://qycloudreve.s.odn.cc/f/XKZcr/c3785ca067c25284037fda3867bd71bc.jpg\" width=\"400\" style=\"height:auto;\"></a>"
   },
   {
     "date": "2025-11-01",
@@ -37,7 +72,7 @@
   {
     "date": "2025-10-10",
     "title": "=== DevLog ===",
-    "content": "[+] <a href=\"http://qyserver.s.odn.cc/command/\">连锁采集</a>\n [#] 修复小部分性能问题\n [-] 移除了皮克尬的"
+    "content": "[+] <a href=\"/command/\">连锁采集</a>\n [#] 修复小部分性能问题\n [-] 移除了皮克尬的"
   },
   {
     "date": "2025-10-08",
@@ -92,12 +127,12 @@
   {
     "date": "2025-08-01",
     "title": "==更新日志===",
-    "content": "表情功能\n现在可以在服务器发emoji表情了\n<a href=\"http://qyserver.s.odn.cc/faq/problem.html?id=009\">支持的表情</a>\n"
+    "content": "表情功能\n现在可以在服务器发emoji表情了\n<a href=\"/faq/problem.html?id=009\">支持的表情</a>\n"
   },
   {
     "date": "2025-07-22",
     "title": "==新增功能==",
-    "content": "[+]横扫之刃\n<br> \n [+]网页地图与网页聊天(<a href=\"http://qyserver.s.odn.cc/faq/problem.html?id=006\">使用方法</a> ）\n[+]视角相机（<a href=\"http://qyserver.s.odn.cc/faq/problem.html?id=005\">使用方法</a> ）\n"
+    "content": "[+]横扫之刃\n<br> \n [+]网页地图与网页聊天(<a href=\"/faq/problem.html?id=006\">使用方法</a> ）\n[+]视角相机（<a href=\"/faq/problem.html?id=005\">使用方法</a> ）\n"
   },
   {
     "date": "2025-07-20",
