@@ -205,6 +205,12 @@
                 </div>
             </div>
         </div>
+
+        <!-- 评论区: Twikoo 容器 -->
+        <div class="image-comments" id="imageComments" style="margin-top:20px;">
+            <h2 style="color:white;margin-bottom:10px;">评论</h2>
+            <div id="tcomment" class="comments-section"></div>
+        </div>
     </div>
 
     <!-- 放大模态 -->
@@ -220,8 +226,90 @@
             return urlParams.get(param);
         }
 
-        // 页面加载时填充内容
-        window.onload = function () {
+        // 检测 Twikoo 评论提交：在用户点击提交/发布时记录标记和临时评论内容（用于页面重新加载后本地回显）
+        (function () {
+            function markPosted(data) {
+                try { sessionStorage.setItem('twikoo.justPosted', String(Date.now())); } catch (e) { }
+                try { sessionStorage.setItem('twikoo.lastLocalComment', JSON.stringify(data || {})); } catch (e) { }
+            }
+
+            function collectCommentData() {
+                try {
+                    var container = document.getElementById('tcomment');
+                    if (!container) return null;
+
+                    // editor: textarea / contenteditable / known classes
+                    var editor = container.querySelector('textarea, .tk-textarea, .tk-editor, [contenteditable="true"]');
+                    var content = '';
+                    if (editor) {
+                        var tag = (editor.tagName || '').toLowerCase();
+                        if (tag === 'textarea' || tag === 'input') content = editor.value || '';
+                        else content = editor.innerText || editor.textContent || '';
+                    } else {
+                        var ta = container.querySelector('textarea');
+                        if (ta) content = ta.value || '';
+                    }
+                    content = String(content || '').trim();
+
+                    // 收集 meta 输入（昵称/邮箱/网站）的常见候选
+                    var name = '', email = '', website = '';
+                    var inputs = container.querySelectorAll('input');
+                    for (var i = 0; i < inputs.length; i++) {
+                        var ip = inputs[i];
+                        if (!ip) continue;
+                        var v = ip.value || '';
+                        if (!v) continue;
+                        var key = ((ip.name || ip.placeholder || ip.className) + '').toLowerCase();
+                        if (!name && /name|nick|昵称/.test(key)) { name = v; continue; }
+                        if (!email && (ip.type === 'email' || /email|mail/.test(key))) { email = v; continue; }
+                        if (!website && (ip.type === 'url' || /site|url|website|网站/.test(key))) { website = v; continue; }
+                        if (!name) name = v;
+                    }
+
+                    // 兜底查找 placeholder 含“昵称”的输入
+                    if (!name) {
+                        var nameInp = container.querySelector('input[placeholder*="昵称"], input[name*="name"], input[class*="nick"]');
+                        if (nameInp) name = nameInp.value || '';
+                    }
+
+                    var img = (new URLSearchParams(window.location.search)).get('img') || '';
+                    return { content: content, name: name, email: email, website: website, time: Date.now(), img: img };
+                } catch (e) { return null; }
+            }
+
+            // 通过委托监听点击，捕获 Twikoo 的提交按钮点击（文本/类名匹配），并收集评论内容
+            document.addEventListener('click', function (e) {
+                var t = e.target;
+                while (t && t !== document) {
+                    try {
+                        if (t.closest && t.closest('#tcomment')) {
+                            var text = (t.innerText || '').toLowerCase();
+                            var cls = (t.className || '').toLowerCase();
+                            if (/发布|提交|回复|发表评论|发送|发布评论|send|submit|post|publish/.test(text) || /btn|submit|send|publish|post|twikoo/.test(cls)) {
+                                var data = collectCommentData();
+                                markPosted(data);
+                                break;
+                            }
+                        }
+                    } catch (err) { }
+                    t = t.parentElement;
+                }
+            }, true);
+
+            // 也监听表单提交事件作为兜底
+            document.addEventListener('submit', function (e) {
+                try {
+                    var f = e.target;
+                    if (f && f.closest && f.closest('#tcomment')) {
+                        var data = collectCommentData();
+                        markPosted(data);
+                    }
+                } catch (err) { }
+            }, true);
+        })();
+
+        // 页面内容填充 + 图片放大功能
+        window.addEventListener('DOMContentLoaded', function () {
             const imageUrl = getQueryParam('img');
             const title = getQueryParam('title') || '未知标题';
             const description = getQueryParam('desc') || '暂无描述';
@@ -237,7 +325,8 @@
             document.getElementById('imageLocation').textContent = decodeURIComponent(location);
             document.getElementById('imageAuthor').textContent = decodeURIComponent(author);
             document.getElementById('imageUthor').textContent = decodeURIComponent(uthor);
-            // --- 图片放大功能 ---
+
+            // 图片放大功能
             const displayImgEl = document.getElementById('displayImage');
             const zoomModal = document.getElementById('zoomModal');
             const zoomImg = document.getElementById('zoomImg');
@@ -253,7 +342,6 @@
                 });
             }
 
-            // 点击遮罩或图片则关闭
             zoomModal.addEventListener('click', function () {
                 zoomModal.classList.remove('open');
                 zoomModal.setAttribute('aria-hidden', 'true');
@@ -261,18 +349,200 @@
                 zoomImg.src = '';
             });
 
-            // 按 Esc 键关闭
             document.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    if (zoomModal.classList.contains('open')) {
-                        zoomModal.classList.remove('open');
-                        zoomModal.setAttribute('aria-hidden', 'true');
-                        document.body.style.overflow = '';
-                        zoomImg.src = '';
-                    }
+                if (e.key === 'Escape' && zoomModal.classList.contains('open')) {
+                    zoomModal.classList.remove('open');
+                    zoomModal.setAttribute('aria-hidden', 'true');
+                    document.body.style.overflow = '';
+                    zoomImg.src = '';
                 }
             });
-        }
+        });
+
+        // ========== Twikoo 评论系统初始化（使用短哈希区分图片，避免点击刷新导致页面跳动） ==========
+        document.addEventListener('DOMContentLoaded', function () {
+            // 取得图片参数（未编码）
+            var imgParam = (new URLSearchParams(window.location.search)).get('img') || '';
+
+            // 计算短哈希（优先使用 SubtleCrypto）
+            function shortHash(input) {
+                if (!input) return Promise.resolve('noimg');
+                if (window.crypto && window.crypto.subtle && window.TextEncoder) {
+                    try {
+                        var enc = new TextEncoder();
+                        return window.crypto.subtle.digest('SHA-256', enc.encode(input)).then(function (buf) {
+                            var hex = Array.from(new Uint8Array(buf)).map(function (b) { return ('00' + b.toString(16)).slice(-2); }).join('');
+                            return hex.slice(0, 12); // 取前12个十六进制字符，足够区分
+                        });
+                    } catch (e) { /* fallback below */ }
+                }
+                // 简单回退 hash（非加密，仅作区分）
+                var h = 0;
+                for (var i = 0; i < input.length; i++) { h = ((h << 5) - h) + input.charCodeAt(i); h |= 0; }
+                return Promise.resolve('h' + (Math.abs(h)).toString(36));
+            }
+
+            function escapeHtml(str) {
+                if (!str) return '';
+                return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+            }
+
+            // 在容器里插入本地回显的临时评论（不会触发滚动或点击）
+            function insertTempComment(data) {
+                try {
+                    var container = document.getElementById('tcomment');
+                    if (!container) return;
+                    // 防止重复插入
+                    if (container.querySelector('.twikoo-local-temp')) return;
+
+                    var wrapper = document.createElement('div');
+                    wrapper.className = 'twikoo-local-temp';
+                    wrapper.style.padding = '12px';
+                    wrapper.style.margin = '12px 0';
+                    wrapper.style.border = '1px dashed rgba(255,255,255,0.12)';
+                    wrapper.style.background = 'rgba(0,0,0,0.2)';
+                    wrapper.style.color = '#fff';
+                    wrapper.style.borderRadius = '8px';
+
+                    var nick = data.name || '你';
+                    var time = new Date((data.time || Date.now()));
+                    var html = '<div style="font-weight:700;margin-bottom:6px;">' + escapeHtml(nick) + ' <span style="font-weight:400;font-size:12px;color:#ddd;margin-left:8px;">(本地回显 · ' + time.toLocaleString() + ')</span></div>';
+                    html += '<div style="white-space:pre-wrap;line-height:1.6;color:#fff;">' + escapeHtml(data.content) + '</div>';
+                    wrapper.innerHTML = html;
+                    // 插入到评论容器顶部，避免滚动到底
+                    container.insertAdjacentElement('afterbegin', wrapper);
+                } catch (e) { console.error('insertTempComment error', e); }
+            }
+
+            // 判断真实评论是否已经出现在 Twikoo 容器（通过内容片段匹配）
+            function isRealCommentPresent(container, data) {
+                try {
+                    if (!container || !data || !data.content) return false;
+                    var txt = (container.innerText || '').replace(/\s+/g, ' ').trim();
+                    var fragment = data.content.replace(/\s+/g, ' ').trim();
+                    if (!fragment) return false;
+                    // 比较前 30 个字符是否出现在容器文本中
+                    var probe = fragment.slice(0, 30);
+                    return txt.indexOf(probe) !== -1;
+                } catch (e) { return false; }
+            }
+
+            // 计算短哈希后初始化 Twikoo
+            shortHash(imgParam || window.location.href).then(function (hash) {
+                var path = window.location.pathname + '?imgHash=' + hash;
+
+                function doInit() {
+                    try {
+                        if (typeof twikoo === 'undefined') {
+                            console.error('Twikoo 库未加载，尝试动态加载');
+                            var s = document.createElement('script');
+                            s.src = 'https://s4.zstatic.net/npm/twikoo@1.7.3/dist/twikoo.min.js';
+                            s.onload = function () { doInit(); };
+                            s.onerror = function () { console.error('无法加载 Twikoo 脚本'); };
+                            document.head.appendChild(s);
+                            return;
+                        }
+
+                        twikoo.init({
+                            envId: 'https://plapi.qyserver.cc/',
+                            el: '#tcomment',
+                            lang: 'zh-CN',
+                            path: path,
+                            placeholder: '来分享你对这张图片的看法吧！支持Markdown语法~',
+                            meta: [
+                                { name: '昵称', placeholder: '怎么称呼你？（必填）', required: true },
+                                { name: '邮箱', placeholder: '方便联系你（选填）', required: false },
+                                { name: '网站', placeholder: '你的个人主页（选填）', required: false }
+                            ]
+                        }).then(function () {
+                            console.log('Twikoo 初始化成功，path=' + path);
+
+                            // 若之前有本地回显数据且属于当前图片，则插入本地回显（不点击任何刷新按钮，避免页面蹿动）
+                            try {
+                                var last = sessionStorage.getItem('twikoo.lastLocalComment');
+                                if (last) {
+                                    var obj = JSON.parse(last);
+                                    if (obj && obj.img === imgParam) {
+                                        insertTempComment(obj);
+
+                                        // 监视真实评论何时出现，若出现则移除本地回显
+                                        var container = document.getElementById('tcomment');
+                                        if (container) {
+                                            var mo = new MutationObserver(function () {
+                                                try {
+                                                    if (isRealCommentPresent(container, obj)) {
+                                                        var tmp = container.querySelector('.twikoo-local-temp');
+                                                        if (tmp && tmp.parentNode) tmp.parentNode.removeChild(tmp);
+                                                        try { sessionStorage.removeItem('twikoo.lastLocalComment'); sessionStorage.removeItem('twikoo.justPosted'); } catch (e) { }
+                                                        mo.disconnect();
+                                                    }
+                                                } catch (err) { }
+                                            });
+                                            mo.observe(container, { childList: true, subtree: true });
+                                        }
+
+                                        // 若检测到刚刚提交过评论，尝试安全地触发 Twikoo 的“刷新”控件，但会保存并恢复滚动位置以避免页面蹿动
+                                        try {
+                                            var justPosted = sessionStorage.getItem('twikoo.justPosted');
+                                            if (justPosted && (Date.now() - parseInt(justPosted, 10) < 2 * 60 * 1000)) {
+                                                var attempts = 0;
+                                                var maxAttempts = 10;
+                                                var tryRefresh = function () {
+                                                    attempts++;
+                                                    var container = document.getElementById('tcomment');
+                                                    if (!container) return attempts > maxAttempts;
+                                                    var nodes = container.querySelectorAll('button, a, span, div');
+                                                    var target = null;
+                                                    for (var i = 0; i < nodes.length; i++) {
+                                                        var n = nodes[i];
+                                                        var txt = (n.innerText || '').trim();
+                                                        if (/刷新|重新加载|加载更多|刷新评论|reload|refresh/i.test(txt)) { target = n; break; }
+                                                        var cls = n.className || '';
+                                                        if (typeof cls === 'string' && /refresh|reload|update|twikoo-refresh|tk-refresh/i.test(cls)) { target = n; break; }
+                                                    }
+                                                    if (target) {
+                                                        try {
+                                                            var sx = window.scrollX || window.pageXOffset || 0;
+                                                            var sy = window.scrollY || window.pageYOffset || 0;
+                                                            var prevScrollBehavior = document.documentElement.style.scrollBehavior || '';
+                                                            document.documentElement.style.scrollBehavior = 'auto';
+                                                            target.click();
+                                                            // 恢复滚动位置，延时以等待 Twikoo 可能的 DOM 操作
+                                                            setTimeout(function () {
+                                                                try { window.scrollTo(sx, sy); } catch (e) { }
+                                                                document.documentElement.style.scrollBehavior = prevScrollBehavior;
+                                                            }, 120);
+                                                        } catch (e) { }
+                                                        try { sessionStorage.removeItem('twikoo.justPosted'); sessionStorage.removeItem('twikoo.lastLocalComment'); } catch (e) { }
+                                                        return true;
+                                                    }
+                                                    return attempts > maxAttempts;
+                                                };
+
+                                                var refreshTimer = setInterval(function () {
+                                                    var stop = tryRefresh();
+                                                    if (stop) clearInterval(refreshTimer);
+                                                }, 600);
+                                            }
+                                        } catch (e) { }
+                                    }
+                                }
+                            } catch (e) { }
+
+                        }).catch(function (err) {
+                            console.error('Twikoo 初始化失败:', err);
+                            var commentEl = document.getElementById('tcomment');
+                            if (commentEl) commentEl.innerHTML = '<p style="color: #f8a5c2; text-align: center;">评论加载失败，请刷新页面或检查 Twikoo 后端服务。</p>';
+                        });
+                    } catch (e) { console.error('Twikoo init error', e); }
+                }
+
+                doInit();
+            }).catch(function (err) {
+                console.error('计算短哈希失败', err);
+            });
+        });
+        // ========== Twikoo 初始化结束 ==========
     </script>
 </body>
 
