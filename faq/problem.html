@@ -574,7 +574,10 @@
         (function () {
             function markPosted(data) {
                 try { sessionStorage.setItem('twikoo.justPosted', String(Date.now())); } catch (e) { }
-                try { sessionStorage.setItem('twikoo.lastLocalComment', JSON.stringify(data || {})); } catch (e) { }
+                try {
+                    // 仅在有文本内容且包含页面 id 时保存本地回显
+                    if (data && data.content && data.id) sessionStorage.setItem('twikoo.lastLocalComment', JSON.stringify(data || {}));
+                } catch (e) { }
             }
 
             function collectCommentData() {
@@ -722,7 +725,8 @@
 
             // 计算短哈希后初始化 Twikoo
             shortHash(pageId || window.location.href).then(function (hash) {
-                var path = window.location.pathname + '?idHash=' + hash;
+                // 使用固定前缀 + 短哈希作为 Twikoo path，避免后端对查询字符串做不一致的规范化
+                var path = '/faq/id/' + hash;
 
                 function doInit() {
                     try {
