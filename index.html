@@ -1208,7 +1208,7 @@
         // 在页面加载时检查是否应该显示弹窗
         document.addEventListener('DOMContentLoaded', function () {
             // 检查localStorage中是否有"dontShowPopu"标志
-            if (localStorage.getItem('dontShowPopu022112') !== 'true') {
+            if (localStorage.getItem('dontShowPopu03') !== 'true') {
                 // 显示弹窗并锁定背景滚动
                 setTimeout(function () {
                     const po = document.getElementById('popupOverlay');
@@ -1223,7 +1223,7 @@
             document.getElementById('popupConfirm').addEventListener('click', function () {
                 // 如果勾选了"不再显示"，则保存到localStorage
                 if (document.getElementById('dontShowAgain').checked) {
-                    localStorage.setItem('dontShowPopu022112', 'true');
+                    localStorage.setItem('dontShowPopu03', 'true');
                 }
                 const po = document.getElementById('popupOverlay');
                 if (po) po.style.display = 'none';
