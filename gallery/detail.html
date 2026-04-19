@@ -10,6 +10,7 @@
         type="image/x-icon">
     <link rel="stylesheet" href="/lib/all.css">
     <script src="/lib/AllComponents.js"></script>
+    <script src="https://s4.zstatic.net/npm/twikoo@1.7.3/dist/twikoo.min.js"></script>
     <style>
         body {
             margin: 0;
@@ -217,9 +218,11 @@
     <div id="zoomModal" class="zoom-modal" aria-hidden="true">
         <img id="zoomImg" src="" alt="">
     </div>
-
+    
     <script src="/lib/all.js"></script>
     <script>
+    window.__twikoo_custom_init = true; 
+    
     // 获取URL参数
     function getQueryParam(param) {
         const urlParams = new URLSearchParams(window.location.search);
@@ -255,8 +258,9 @@
         }, true);
     })();
 
-    // 填充页面内容 + 放大功能
+    // 等待DOM完全加载后统一执行
     window.addEventListener('DOMContentLoaded', function () {
+        // 1. 填充页面基本内容
         const imageUrl = getQueryParam('img');
         const title = getQueryParam('title') || '未知标题';
         const description = getQueryParam('desc') || '暂无描述';
@@ -265,7 +269,7 @@
         const author = getQueryParam('author') || '匿名';
         const uthor = getQueryParam('uthor') || '未知';
 
-        document.getElementById('displayImage').src = decodeURIComponent(imageUrl);
+        document.getElementById('displayImage').src = decodeURIComponent(imageUrl || '');
         document.getElementById('imageTitle').textContent = decodeURIComponent(title);
         document.getElementById('imageDescription').textContent = decodeURIComponent(description);
         document.getElementById('imageDate').textContent = decodeURIComponent(date);
@@ -273,7 +277,7 @@
         document.getElementById('imageAuthor').textContent = decodeURIComponent(author);
         document.getElementById('imageUthor').textContent = decodeURIComponent(uthor);
 
-        // 图片放大
+        // 2. 图片放大模态框逻辑
         const displayImg = document.getElementById('displayImage');
         const zoomModal = document.getElementById('zoomModal');
         const zoomImg = document.getElementById('zoomImg');
@@ -300,87 +304,85 @@
                 zoomImg.src = '';
             }
         });
-    });
 
-    // ========== Twikoo 评论隔离修复（核心） ==========
-    (function initTwikooOnce() {
-        // 防止重复初始化
-        if (window.__twikoo_initialized) return;
-        window.__twikoo_initialized = true;
+        // 3. ========== Twikoo 评论隔离修复（核心） ==========
+        // 使用 setTimeout 给予浏览器 100ms 的缓冲时间，避开大型图片资源抢占主线程
+        setTimeout(function() {
+            if (window.__twikoo_initialized) return;
+            window.__twikoo_initialized = true;
 
-        // 等待 Twikoo 库就绪
-        function waitForTwikoo(cb) {
-            if (typeof twikoo !== 'undefined') return cb();
-            var check = setInterval(function () {
-                if (typeof twikoo !== 'undefined') {
-                    clearInterval(check);
-                    cb();
-                }
-            }, 100);
-        }
-
-        function startTwikoo() {
-            // ★ 关键修改：以 img 参数值作为唯一标识（编码后），确保完全隔离
+            // 【关键修改】：抛弃 encodeURIComponent，改用纯净的正则替换。
+            // 将 URL 中所有的特殊符号（包括冒号、斜杠、百分号等）全部替换为下划线。
+            // 这样既保证了每张图片路径的绝对唯一性，又保证了字符串是纯净的数字+字母+下划线，彻底防止 Vue 渲染崩溃。
             const imgParam = getQueryParam('img');
-            if (!imgParam) {
-                console.warn('未找到 img 参数，使用当前路径作为 fallback');
-                var fallbackPath = window.location.pathname + window.location.search;
-            }
-            // 构造唯一 path：前缀 + 完全编码的图片 URL（避免特殊字符干扰）
-            const uniquePath = '/gallery/detail/' + encodeURIComponent(imgParam || fallbackPath);
+            const safeImageId = imgParam ? imgParam.replace(/[^a-zA-Z0-9]/g, '_') : 'fallback_path';
+            const uniquePath = '/gallery/detail/' + safeImageId;
 
-            twikoo.init({
-                envId: 'https://plapi.qyserver.cc/',
-                el: '#tcomment',
-                lang: 'zh-CN',
-                path: uniquePath,
-                placeholder: '来分享你对这张图片的看法吧！支持Markdown语法~ \n不显示评论请点击评论区的刷新按钮试试哦~',
-                meta: [
-                    { name: '昵称', placeholder: '怎么称呼你？（必填）', required: true },
-                    { name: '邮箱', placeholder: '方便联系你（选填）', required: false },
-                    { name: '网站', placeholder: '你的个人主页（选填）', required: false }
-                ],
-                onCommentLoaded: function () {
-                    console.log('Twikoo 加载完成，path=' + uniquePath);
-                }
-            }).then(function () {
-                console.log('Twikoo 初始化成功');
-                // 发布后自动刷新（原有逻辑）
-                try {
-                    var justPosted = sessionStorage.getItem('twikoo.justPosted');
-                    if (justPosted && (Date.now() - parseInt(justPosted, 10) < 2 * 60 * 1000)) {
-                        var attempts = 0;
-                        var timer = setInterval(function () {
-                            attempts++;
-                            var container = document.getElementById('tcomment');
-                            if (!container) { clearInterval(timer); return; }
-                            var nodes = container.querySelectorAll('button, a, span, div');
-                            var clicked = false;
-                            for (var i = 0; i < nodes.length; i++) {
-                                var n = nodes[i];
-                                var txt = (n.innerText || '').trim();
-                                if (/刷新|重新加载|加载更多|刷新评论|reload|refresh/i.test(txt)) {
-                                    try { n.click(); } catch (e) { }
-                                    clicked = true;
-                                    break;
-                                }
-                            }
-                            if (clicked || attempts > 12) {
-                                clearInterval(timer);
-                                sessionStorage.removeItem('twikoo.justPosted');
-                            }
-                        }, 800);
+            function initTwikoo() {
+                twikoo.init({
+                    envId: 'https://plapi.qyserver.cc/',
+                    el: '#tcomment',
+                    lang: 'zh-CN',
+                    path: uniquePath, // 传入安全解析的路径
+                    placeholder: '来分享你对这张图片的看法吧！支持Markdown语法~ \n不显示评论请点击评论区的刷新按钮试试哦~',
+                    meta: [
+                        { name: '昵称', placeholder: '怎么称呼你？（必填）', required: true },
+                        { name: '邮箱', placeholder: '方便联系你（选填）', required: false },
+                        { name: '网站', placeholder: '你的个人主页（选填）', required: false }
+                    ],
+                    onCommentLoaded: function () {
+                        // 正常情况下，首次加载拿到数据后就会走到这里并直接显示
+                        console.log('Twikoo 评论渲染完成，当前隔离ID: ' + uniquePath);
                     }
-                } catch (e) { }
-            }).catch(function (err) {
-                console.error('Twikoo 初始化失败:', err);
-                var el = document.getElementById('tcomment');
-                if (el) el.innerHTML = '<p style="color: #f8a5c2; text-align: center;">评论加载失败，请检查后端服务。</p>';
-            });
-        }
+                }).then(function () {
+                    console.log('Twikoo 初始化成功');
+                    // 原有的发布后自动刷新逻辑保留
+                    try {
+                        var justPosted = sessionStorage.getItem('twikoo.justPosted');
+                        if (justPosted && (Date.now() - parseInt(justPosted, 10) < 2 * 60 * 1000)) {
+                            var attempts = 0;
+                            var timer = setInterval(function () {
+                                attempts++;
+                                var container = document.getElementById('tcomment');
+                                if (!container) { clearInterval(timer); return; }
+                                var nodes = container.querySelectorAll('button, a, span, div');
+                                var clicked = false;
+                                for (var i = 0; i < nodes.length; i++) {
+                                    var n = nodes[i];
+                                    var txt = (n.innerText || '').trim();
+                                    if (/刷新|重新加载|加载更多|刷新评论|reload|refresh/i.test(txt)) {
+                                        try { n.click(); } catch (e) { }
+                                        clicked = true;
+                                        break;
+                                    }
+                                }
+                                if (clicked || attempts > 12) {
+                                    clearInterval(timer);
+                                    sessionStorage.removeItem('twikoo.justPosted');
+                                }
+                            }, 800);
+                        }
+                    } catch (e) { }
+                }).catch(function (err) {
+                    console.error('Twikoo 初始化失败:', err);
+                    var el = document.getElementById('tcomment');
+                    if (el) el.innerHTML = '<p style="color: #f8a5c2; text-align: center;">评论加载失败，请检查后端服务。</p>';
+                });
+            }
 
-        waitForTwikoo(startTwikoo);
-    })();
+            // 确保 twikoo 库已经下载并挂载到 window 对象上后再执行初始化
+            if (typeof twikoo !== 'undefined') {
+                initTwikoo();
+            } else {
+                var check = setInterval(function () {
+                    if (typeof twikoo !== 'undefined') {
+                        clearInterval(check);
+                        initTwikoo();
+                    }
+                }, 100);
+            }
+        }, 100); 
+    });
     </script>
 </body>
 

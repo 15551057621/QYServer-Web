@@ -91,11 +91,9 @@
         }
 
         /* 欢迎卡片 - 响应式布局 */
-        /* 欢迎卡片 - 响应式布局 */
         .welcome-card {
             padding: 25px;
             overflow: hidden;
-            /* 添加这行 */
         }
 
         .welcome-content {
@@ -104,7 +102,6 @@
             gap: 30px;
             align-items: center;
             width: 100%;
-            /* 添加这行 */
         }
 
         .welcome-text {
@@ -117,12 +114,8 @@
             min-width: 300px;
             max-width: 500px;
             margin: 0 auto;
-            /* 添加这行，居中 */
         }
 
-        /* 移动端：图片在上，文字在下 */
-        /* 移动端：图片在文字下方，按钮上方 */
-        /* 移动端：图片在文字下方，按钮上方 */
         @media (max-width: 768px) {
             .welcome-card {
                 padding: 15px 10px;
@@ -178,7 +171,6 @@
             }
         }
 
-        /* 确保轮播图正常显示 */
         .welcome-image .carousel {
             width: 100%;
             aspect-ratio: 16 / 9;
@@ -187,7 +179,6 @@
             box-shadow: 8px 8px 20px rgba(234, 234, 234, 0.8);
             background: #fff;
             margin: 0 auto;
-            /* 添加这行 */
         }
 
         /* 内容区域 */
@@ -257,8 +248,6 @@
             text-decoration: underline;
         }
 
-
-
         .carousel {
             position: relative;
             width: 100%;
@@ -269,7 +258,6 @@
             background: #fff;
             box-sizing: border-box;
             margin: 0;
-            /* 添加这行，移除可能的外边距 */
         }
 
         .carousel-track {
@@ -279,25 +267,20 @@
             height: 100%;
             width: 100%;
             padding: 0;
-            /* 添加这行 */
             margin: 0;
-            /* 添加这行 */
         }
 
         .carousel-item {
             min-width: 100%;
             width: 100%;
             flex-shrink: 0;
-            /* 添加这行，防止被压缩 */
             box-sizing: border-box;
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100%;
             padding: 0;
-            /* 添加这行 */
             margin: 0;
-            /* 添加这行 */
         }
 
         .carousel-item img {
@@ -305,14 +288,6 @@
             height: 100%;
             object-fit: cover;
             display: block;
-        }
-
-
-        .carousel-overlay img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block
         }
 
         .carousel-prev,
@@ -398,7 +373,7 @@
             box-shadow: 0 8px 20px rgba(248, 165, 194, 0.6);
         }
 
-        /* ===== AI 对话样式（从 index.html 移植） ===== */
+        /* AI 对话样式 */
         .ai-chat-section {
             clear: both;
             margin-top: 60px;
@@ -517,7 +492,6 @@
             display: none;
             position: fixed;
             inset: 0;
-            /* top:0; right:0; bottom:0; left:0 */
             width: 100vw;
             height: 100vh;
             right: 0;
@@ -528,7 +502,6 @@
             align-items: center;
             box-sizing: border-box;
             padding: 20px;
-            /* 保证移动端有内边距 */
         }
 
         .popup-content {
@@ -548,7 +521,6 @@
             overflow: auto;
         }
 
-        /* 隐藏弹窗内部默认滚动条（仍允许滚动） */
         .popup-overlay .popup-content::-webkit-scrollbar {
             width: 0;
             height: 0;
@@ -557,9 +529,7 @@
 
         .popup-overlay .popup-content {
             -ms-overflow-style: none;
-            /* IE 10+ */
             scrollbar-width: none;
-            /* Firefox */
         }
 
         /* 信息卡片 */
@@ -584,7 +554,6 @@
             color: #333;
         }
 
-        /* 规则列表 */
         .rule-list {
             list-style: none;
             padding: 0;
@@ -601,13 +570,6 @@
             border-bottom: none;
         }
 
-        .info-card h3 {
-            font-size: 1.4rem;
-            margin-top: 0;
-            margin-bottom: 5px;
-            color: #333;
-        }
-
         .card-label {
             font-size: 0.75rem;
             color: #aaa;
@@ -617,7 +579,6 @@
             margin-bottom: 15px;
         }
 
-        /* 快速链接 */
         .quick-links {
             display: flex;
             flex-wrap: wrap;
@@ -647,7 +608,6 @@
             box-shadow: 0 5px 15px rgba(248, 165, 194, 0.3);
         }
 
-        /* Beta 标签 */
         .beta-tag {
             font-size: 0.7rem;
             background: #878787;
@@ -659,20 +619,6 @@
             vertical-align: middle;
         }
 
-        /* AI 区域 */
-        .ai-chat-section {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid #f0f0f0;
-        }
-
-        .ai-chat-section h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        /* 评论区域 */
         .comments-wrapper {
             margin-top: 50px;
         }
@@ -683,7 +629,6 @@
             color: #333;
         }
 
-        /* 发送按钮优化 */
         #sendBtn {
             display: flex;
             align-items: center;
@@ -703,7 +648,6 @@
             transform: translateY(-1px);
         }
 
-        /* 响应式调整 */
         @media (max-width: 768px) {
             .quick-links {
                 flex-direction: column;
@@ -718,7 +662,6 @@
             }
         }
 
-        /* 在显示弹窗时锁定页面滚动 */
         .no-scroll {
             overflow: hidden !important;
             height: 100vh !important;
@@ -738,7 +681,6 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
 
-        /* 图片模态放大层 */
         .image-modal-overlay {
             position: fixed;
             inset: 0;
@@ -896,8 +838,7 @@
             }
         }
 
-        /* ========== Twikoo 评论区域自定义样式 ========== */
-        /* 评论区域整体样式 */
+        /* Twikoo 评论区域自定义样式 */
         .comments-section {
             max-width: 800px;
             margin: 40px auto;
@@ -907,7 +848,6 @@
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
         }
 
-        /* Twikoo 自定义样式 */
         .tk-comments-container {
             font-family: "微软雅黑", "Microsoft YaHei", sans-serif;
         }
@@ -1003,9 +943,8 @@
                 <p>欢迎来到QYServer！</p>
                 <p>请务必遵守服务器规则，共同维护良好的游戏环境</p>
                 <video src="/asses/sky.mp4" autoplay muted loop playsinline webkit-playsinline="true" preload="auto">
-                    您的浏览器不支
+                    您的浏览器不支持视频播放
                 </video>
-
                 <p>游戏延迟高输入 /server 来切换线路</p>
                 <p>推荐的互通服务器<br>🎮java版地址：mcje.qyserver.cc<br>端口无需填写<br>📱 基岩版地址：qyjavabe.s.odn.cc<br>端口默认<br><br>📌
                     支持版本：<br>• Java版：1.8 - 1.26.x (推荐 1.21.8)<br>• 基岩版：1.21.130 - 最新版本</p>
@@ -1041,10 +980,6 @@
             <hr class="divider">
 
             <div class="content-section">
-                <!-- 轮播图区域 -->
-
-
-                <!-- 文字内容区域 -->
                 <!-- 快速入门卡片（包含轮播图） -->
                 <div class="info-card welcome-card">
                     <div class="welcome-content">
@@ -1100,7 +1035,6 @@
 
                 <!-- 服务器规则 -->
                 <div class="info-card">
-
                     <h3><i class="fas fa-gavel" style="color: #f8a5c2; margin-right: 10px;"></i>服务器规则</h3>
                     <p class="card-label">和谐友爱</p>
                     <ul class="rule-list">
@@ -1119,6 +1053,7 @@
                         <a href="/gallery/" class="quick-link"><i class="fas fa-images"></i> 游戏图廊</a><br>
                         <a href="/download/" class="quick-link"><i class="fas fa-download"></i> 文件下载</a><br>
                         <a href="/map/" class="quick-link"><i class="fas fa-map"></i> 网页地图</a><br>
+                        <a href="/video/test/" class="quick-link"><i class="fa-solid fa-file-video"></i>视频测试</a><br>
                         <a href="mailto:qy@qyserver.cc" class="quick-link"><i class="fas fa-envelope"></i>
                             联系邮箱：qy@qyserver.cc</a>
                     </p>
@@ -1140,7 +1075,7 @@
                     </div>
                 </div>
 
-                <!-- 评论区域 -->
+                <!-- 评论区域 - 由 all.js 接管 -->
                 <div class="comments-wrapper">
                     <hr class="divider">
                     <h3><i class="fas fa-comments" style="color: #bababa; margin-right: 10px;"></i>玩家评论</h3>
@@ -1149,19 +1084,19 @@
             </div>
     </section>
 
+    <!-- 全站公共脚本（包含导航栏滚动、音乐控制、弹窗、平滑滚动、Twikoo 评论统一初始化） -->
     <script src="/lib/all.js"></script>
 
-    <!-- 引入 AI 聊天所需脚本 -->
+    <!-- AI 聊天所需脚本 -->
     <script src="/lib/marked.min.js"></script>
     <script src="/faq/ai/ai.js"></script>
     <!-- 引入 Twikoo JS 库 -->
-    <!-- <script src="https://s4.zstatic.net/npm/twikoo@1.7.7/dist/twikoo.min.js"></script> -->
+    <script src="https://s4.zstatic.net/npm/twikoo@1.7.3/dist/twikoo.min.js"></script>
 
     <script src="/lib/twikoo.js"></script>
     <script>
         // 图片放大辅助：在大屏幕显示模态，否则打开新标签
         function openImageModal(src) {
-            // 避免重复打开多个模态
             if (document.querySelector('.image-modal-overlay')) return;
 
             const overlay = document.createElement('div');
@@ -1174,22 +1109,18 @@
 
             document.body.appendChild(overlay);
 
-            // 点击遮罩空白处关闭
             overlay.addEventListener('click', function (e) {
                 if (e.target === overlay) removeOverlay();
             });
 
-            // 关闭按钮、点击图片不关闭（只用于展示）
             const closeBtn = overlay.querySelector('.image-modal-close');
             closeBtn.addEventListener('click', removeOverlay);
 
-            // ESC 关闭
             function escHandler(e) {
                 if (e.key === 'Escape') removeOverlay();
             }
             document.addEventListener('keydown', escHandler);
 
-            // 移除 overlay 及相关监听
             function removeOverlay() {
                 if (!overlay || !overlay.parentNode) return;
                 document.removeEventListener('keydown', escHandler);
@@ -1205,11 +1136,10 @@
             }
         }
 
-        // 在页面加载时检查是否应该显示弹窗
+        // 页面加载时的弹窗、图片绑定等
         document.addEventListener('DOMContentLoaded', function () {
-            // 检查localStorage中是否有"dontShowPopu"标志
-            if (localStorage.getItem('dontShowPopu03') !== 'true') {
-                // 显示弹窗并锁定背景滚动
+            // 公告弹窗逻辑
+            if (localStorage.getItem('dontShowPopu022112') !== 'true') {
                 setTimeout(function () {
                     const po = document.getElementById('popupOverlay');
                     if (po) {
@@ -1219,25 +1149,23 @@
                 }, 2000);
             }
 
-            // 确认按钮点击事件
             document.getElementById('popupConfirm').addEventListener('click', function () {
-                // 如果勾选了"不再显示"，则保存到localStorage
                 if (document.getElementById('dontShowAgain').checked) {
-                    localStorage.setItem('dontShowPopu03', 'true');
+                    localStorage.setItem('dontShowPopu022112', 'true');
                 }
                 const po = document.getElementById('popupOverlay');
                 if (po) po.style.display = 'none';
                 document.body.classList.remove('no-scroll');
             });
 
-            // 点击遮罩层也可关闭弹窗
             document.getElementById('popupOverlay').addEventListener('click', function (e) {
                 if (e.target === this) {
                     this.style.display = 'none';
                     document.body.classList.remove('no-scroll');
                 }
             });
-            // 弹窗图片点击查看大图（大屏幕模态 / 小屏幕新标签）
+
+            // 弹窗内图片放大
             const popupMainImg = document.querySelector('#popupOverlay .popup-image img');
             if (popupMainImg) {
                 popupMainImg.style.cursor = 'pointer';
@@ -1246,35 +1174,27 @@
                 });
             }
 
-            // 为页面主要内容图片绑定放大点击事件（第2张图等也会生效）
-            // 规则：
-            // - 若图片位于 .carousel 内且被 <a> 包裹，则保留链接跳转（不绑定放大）
-            // - 若图片位于 .carousel 内但未被 <a> 包裹，则允许放大模态
-            // - 其他位置的图片一律允许放大模态
+            // 为页面主要内容图片绑定放大点击事件（排除轮播中被链接包裹的图片）
             document.querySelectorAll('#content img, .content-image img, .popup-image img').forEach(img => {
                 if (!img) return;
-                if (img.id === 'musicIcon') return; // 排除控制图标
+                if (img.id === 'musicIcon') return;
 
                 const inCarousel = img.closest && img.closest('.carousel');
                 const wrappedByLink = img.closest && img.closest('a');
 
-                // 如果在轮播里并且被链接包裹，则不绑定（保留跳转行为）
                 if (inCarousel && wrappedByLink) return;
 
-                // 其它情况绑定放大行为（轮播内未被链接包裹的图片也会在此绑定）
                 img.style.cursor = 'pointer';
                 img.addEventListener('click', function (e) {
-                    // 如果 img 在 <a> 内，但我们仍在绑定（保护性检查），不阻止默认行为
                     const parentLink = this.closest && this.closest('a');
-                    if (parentLink) return; // 交给链接处理
+                    if (parentLink) return;
                     handleImageClick(this.src);
                 });
             });
         });
 
-        // 一键加入游戏
+        // 一键加入游戏弹窗
         document.getElementById("add-server-btn").addEventListener("click", function () {
-            // 创建加入服务器弹窗
             const popup = document.createElement('div');
             popup.className = 'popup-overlay';
             popup.style.display = 'flex';
@@ -1285,16 +1205,13 @@
                     </div>
                     <div class="popup-message">
                         <p style="font-size: 1.1rem; margin-bottom: 20px;">欢迎来到 QYServer！</p>
-                
                         <p style="margin-bottom: 10px;"><i class="fas fa-gamepad" style="color: #f8a5c2; margin-right: 8px;"></i><strong>游戏版本：</strong>基岩版 1.21.50+</p>
                         <p style="margin-bottom: 10px;"><i class="fas fa-server" style="color: #f8a5c2; margin-right: 8px;"></i><strong>服务器地址：</strong><code style="background: #f0f0f0; padding: 4px 8px; border-radius: 4px; margin-left: 8px;">mc.qyserver.cc</code></p>
                         <p style="margin-bottom: 15px;"><i class="fas fa-plug" style="color: #f8a5c2; margin-right: 8px;"></i><strong>端口：</strong><code style="background: #f0f0f0; padding: 4px 8px; border-radius: 4px; margin-left: 8px;">41657</code></p>
-            
                         <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;"> >> 💡 点击下方按钮可直接启动游戏（需已安装 Minecraft）</p>
-            
                         <div class="popup-image">
                             <img src="https://qycloudreve.s.odn.cc/f/MqMHl/2026-01-01_00.01.55.webp" alt="服务器预览">
-                        <p style="color: #888; font-size: 0.8rem; margin-top: 8px;">（服务器跨年合照）</p>
+                            <p style="color: #888; font-size: 0.8rem; margin-top: 8px;">（服务器跨年合照）</p>
                         </div>
                     </div>
                     <div class="popup-footer">
@@ -1309,9 +1226,8 @@
             `;
 
             document.body.appendChild(popup);
-            // 锁定背景滚动并隐藏页面右侧滚动条
             document.body.classList.add('no-scroll');
-            // 为弹窗内图片绑定放大/打开行为（大屏模态 / 小屏新标签）
+
             const popupImg = popup.querySelector('.popup-image img');
             if (popupImg) {
                 popupImg.style.cursor = 'pointer';
@@ -1320,7 +1236,6 @@
                 });
             }
 
-            // 确认加入游戏
             popup.querySelector('#confirmJoin').addEventListener('click', function () {
                 const serverIp = ".mc.qyserver.cc";
                 const serverPort = 41657;
@@ -1330,13 +1245,11 @@
                 document.body.classList.remove('no-scroll');
             });
 
-            // 取消加入
             popup.querySelector('#cancelJoin').addEventListener('click', function () {
                 popup.remove();
                 document.body.classList.remove('no-scroll');
             });
 
-            // 点击遮罩层关闭
             popup.addEventListener('click', function (e) {
                 if (e.target === popup) {
                     popup.remove();
@@ -1345,7 +1258,7 @@
             });
         });
 
-        // 确保所有链接在点击时平滑滚动
+        // 确保所有锚点链接平滑滚动
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1354,112 +1267,59 @@
                 });
             });
         });
-
-        // ========== Twikoo 评论系统初始化 ==========
-        // 等待页面完全加载后初始化 Twikoo
-        document.addEventListener('DOMContentLoaded', function () {
-            // 检查 Twikoo 库是否已加载
-            if (typeof twikoo === 'undefined') {
-                console.error('Twikoo 库未加载，请检查网络或CDN链接');
-                return;
-            }
-
-            // 初始化 Twikoo
-            twikoo.init({
-                // 重要：这里填写 Twikoo 后端地址，
-                envId: 'https://plapi.qyserver.cc/',
-                el: '#tcomment',
-                lang: 'zh-CN',
-                path: window.location.pathname,
-                placeholder: '来分享你对QYServer的看法吧！支持Markdown语法~<br>使用QQ邮箱可以显示头像哦',
-                meta: [
-                    { name: '昵称', placeholder: '怎么称呼你？（必填）', required: true },
-                    { name: '邮箱', placeholder: '方便联系你（选填）', required: false },
-                    { name: '网站', placeholder: '你的个人主页（选填）', required: false }
-                ],
-                onCommentLoaded: function () {
-                    console.log('Twikoo 评论加载完成');
-                },
-                onCommentClicked: function (comment) {
-                    console.log('评论被点击', comment);
-                }
-            }).then(function () {
-                console.log('Twikoo 初始化成功');
-            }).catch(function (err) {
-                console.error('Twikoo 初始化失败:', err);
-                // 显示错误信息
-                const commentSection = document.getElementById('tcomment');
-                if (commentSection) {
-                    commentSection.innerHTML = '<p style="color: #f8a5c2; text-align: center;">评论加载失败，请检查 Twikoo 后端服务是否正常运行。</p>';
-                }
-            });
-        });
-        twikoo.init({
-            el: '#tcomment',
-            envId: 'https://plapi.qyserver.cc',
-            path: window.location.pathname
-
-        })
-
-        // ========== Twikoo 初始化结束 ==========
     </script>
 
+    <!-- 轮播图脚本 -->
     <script>
-            (function () {
-                const carousel = document.getElementById('heroCarousel');
-                if (!carousel) return;
-                const track = carousel.querySelector('.carousel-track');
-                const items = Array.from(track.children);
-                const prev = carousel.querySelector('.carousel-prev');
-                const next = carousel.querySelector('.carousel-next');
-                const dotsContainer = carousel.querySelector('.carousel-dots');
-                let index = 0;
-                const total = items.length || 1;
+        (function () {
+            const carousel = document.getElementById('heroCarousel');
+            if (!carousel) return;
+            const track = carousel.querySelector('.carousel-track');
+            const items = Array.from(track.children);
+            const prev = carousel.querySelector('.carousel-prev');
+            const next = carousel.querySelector('.carousel-next');
+            const dotsContainer = carousel.querySelector('.carousel-dots');
+            let index = 0;
+            const total = items.length || 1;
 
-                // ===== 添加这两行，强制重置位置 =====
-                track.style.transform = 'translateX(0)';
-                track.style.transition = 'none';
-                // =================================
+            track.style.transform = 'translateX(0)';
+            track.style.transition = 'none';
 
-                // create dots
-                items.forEach((_, i) => {
-                    const d = document.createElement('button');
-                    d.className = 'carousel-dot';
-                    if (i === 0) d.classList.add('active');
-                    d.addEventListener('click', function () { goTo(i); resetAutoplay(); });
-                    dotsContainer.appendChild(d);
-                });
-                const dots = Array.from(dotsContainer.children);
+            items.forEach((_, i) => {
+                const d = document.createElement('button');
+                d.className = 'carousel-dot';
+                if (i === 0) d.classList.add('active');
+                d.addEventListener('click', function () { goTo(i); resetAutoplay(); });
+                dotsContainer.appendChild(d);
+            });
+            const dots = Array.from(dotsContainer.children);
 
-                function update() {
-                    track.style.transform = `translateX(-${index * 100}%)`;
-                    dots.forEach((d, i) => d.classList.toggle('active', i === index));
-                }
+            function update() {
+                track.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach((d, i) => d.classList.toggle('active', i === index));
+            }
 
-                function goTo(i) {
-                    index = ((i % total) + total) % total;
-                    update();
-                }
-
-                next.addEventListener('click', function () { goTo(index + 1); resetAutoplay(); });
-                prev.addEventListener('click', function () { goTo(index - 1); resetAutoplay(); });
-
-                // autoplay
-                let autoplayInterval = 4000;
-                let timer = setInterval(function () { goTo(index + 1); }, autoplayInterval);
-                function resetAutoplay() { clearInterval(timer); timer = setInterval(function () { goTo(index + 1); }, autoplayInterval); }
-
-                carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
-                carousel.addEventListener('mouseleave', function () { resetAutoplay(); });
-
-                // ===== 恢复 transition =====
-                setTimeout(() => {
-                    track.style.transition = '';
-                }, 50);
-                // ===========================
-
+            function goTo(i) {
+                index = ((i % total) + total) % total;
                 update();
-            })();
+            }
+
+            next.addEventListener('click', function () { goTo(index + 1); resetAutoplay(); });
+            prev.addEventListener('click', function () { goTo(index - 1); resetAutoplay(); });
+
+            let autoplayInterval = 4000;
+            let timer = setInterval(function () { goTo(index + 1); }, autoplayInterval);
+            function resetAutoplay() { clearInterval(timer); timer = setInterval(function () { goTo(index + 1); }, autoplayInterval); }
+
+            carousel.addEventListener('mouseenter', function () { clearInterval(timer); });
+            carousel.addEventListener('mouseleave', function () { resetAutoplay(); });
+
+            setTimeout(() => {
+                track.style.transition = '';
+            }, 50);
+
+            update();
+        })();
     </script>
 </body>
 
