@@ -46,3 +46,8 @@ function fetchHistory() {
 
 fetchStatus();
 fetchHistory();
+// 每60秒重新请求状态与历史数据，避免整页刷新
+setInterval(function() {
+  fetchStatus();
+  fetchHistory();
+}, 60000);
