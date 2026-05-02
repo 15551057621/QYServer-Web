@@ -140,3 +140,18 @@ body {
   cursor: pointer;
   user-select: none;
 }
+p5 {
+    color: #ff95ba;
+    font-size: 1.07em;
+    font-weight: normal;
+}
+p4 {
+    color: #ce65ff;
+    font-size: 1.23em;
+    font-weight: 700;
+}
+p3 {
+    color: #ff3535;
+    font-size: 1.74em;
+    font-weight: 600;
+}
