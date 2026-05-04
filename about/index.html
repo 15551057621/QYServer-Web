@@ -894,7 +894,7 @@
                 </div>
                 <div class="timeline-item">
                     <div class="timeline-content">
-                        <div class="timeline-date">∞</div>
+                        <div class="timeline-date">∞年∞月</div>
                         <p>剩下的内容...由你们来谱写！(未完待续)</p>
                     </div>
                 </div>
@@ -913,7 +913,7 @@
 
                 <div class="team-member">
                     <img src="https://qycloudreve.s.odn.cc/f/oL5tE/649e41ea4db2b511c8d798444ddef034.jpg" alt="技术管理员">
-                    <h4>fangfubin0782</h4>
+                    <h4>冰凌呀</h4>
                     <p>技术管理员</p>
                     <p>服务器维护与技术支持</p>
                 </div>
@@ -1121,27 +1121,27 @@
             });
         });
         // ========== 动态计算运行天数 ==========
-            (function () {
-                // 服务器成立日期：2025年1月1日
-                const startDate = new Date('2025-01-01T00:00:00');
+        (function () {
+            // 服务器成立日期：2025年1月1日
+            const startDate = new Date('2025-01-01T00:00:00');
 
-                function updateRunDays() {
-                    const now = new Date();
-                    const diffTime = now - startDate; // 毫秒差
-                    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); // 转换为天数
+            function updateRunDays() {
+                const now = new Date();
+                const diffTime = now - startDate; // 毫秒差
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); // 转换为天数
 
-                    const runDaysEl = document.getElementById('runDays');
-                    if (runDaysEl) {
-                        runDaysEl.textContent = diffDays.toLocaleString();
-                    }
+                const runDaysEl = document.getElementById('runDays');
+                if (runDaysEl) {
+                    runDaysEl.textContent = diffDays.toLocaleString();
                 }
+            }
 
-                // 页面加载时立即更新
-                updateRunDays();
+            // 页面加载时立即更新
+            updateRunDays();
 
-                // 每天凌晨自动更新（检查频率：每小时一次）
-                setInterval(updateRunDays, 1000 * 60 * 60);
-            })();
+            // 每天凌晨自动更新（检查频率：每小时一次）
+            setInterval(updateRunDays, 1000 * 60 * 60);
+        })();
     </script>
 </body>
 
