@@ -195,6 +195,23 @@
                 </div>
             </div>
 
+            <!-- 加载动画控制 -->
+            <div class="debug-card">
+                <h3><i class="fas fa-spinner"></i> 加载动画</h3>
+                <button class="debug-btn" id="toggleLoaderBtn" onclick="debugActions.toggleLoader()">
+                    <i class="fas fa-toggle-on"></i> <span id="loaderBtnText">关闭加载动画</span>
+                </button>
+                <button class="debug-btn" onclick="debugActions.testLoader()">
+                    <i class="fas fa-eye"></i> 预览加载动画
+                </button>
+                <div class="debug-info">
+                    <div class="debug-info-item">
+                        <span class="debug-info-label">当前状态</span>
+                        <span class="debug-info-value" id="loaderStatus">启用中</span>
+                    </div>
+                </div>
+            </div>
+
             <!-- 存储控制 -->
             <div class="debug-card">
                 <h3><i class="fas fa-database"></i> 本地存储</h3>
@@ -328,12 +345,90 @@
                 });
             },
 
+            // 切换加载动画
+            toggleLoader() {
+                const current = localStorage.getItem('disablePageLoader');
+                if (current === 'true') {
+                    localStorage.setItem('disablePageLoader', 'false');
+                    this.showToast('加载动画已启用，下次访问页面时将显示加载动画');
+                } else {
+                    localStorage.setItem('disablePageLoader', 'true');
+                    this.showToast('加载动画已关闭，所有页面将不再显示加载动画');
+                }
+                this.updateLoaderStatus();
+            },
+
+            // 预览加载动画
+            testLoader() {
+                const loader = document.createElement('div');
+                loader.id = 'test-page-loader';
+                loader.style.cssText = `
+                    position: fixed;
+                    inset: 0;
+                    background: rgba(255, 255, 255, 0.3);
+                    backdrop-filter: blur(15px);
+                    -webkit-backdrop-filter: blur(15px);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    z-index: 99999;
+                    transition: opacity 0.25s ease;
+                `;
+                loader.innerHTML = `
+                    <div style="text-align: center;">
+                        <div style="
+                            width: 60px;
+                            height: 60px;
+                            border: 5px solid rgba(248, 165, 194, 0.3);
+                            border-top-color: #f8a5c2;
+                            border-radius: 50%;
+                            animation: spin 0.8s linear infinite;
+                            margin: 0 auto 20px;
+                            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+                        "></div>
+                        <p style="
+                            color: #fff; 
+                            font-size: 18px; 
+                            font-weight: bold; 
+                            letter-spacing: 2px;
+                            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+                        ">加载中...</p>
+                        <p style="color: rgba(255,255,255,0.7); font-size: 14px; margin-top: 8px;">预览模式 - 点击任意位置关闭</p>
+                    </div>
+                `;
+                document.body.appendChild(loader);
+
+                const closeLoader = () => {
+                    loader.style.opacity = '0';
+                    setTimeout(() => {
+                        if (loader.parentNode) loader.remove();
+                    }, 300);
+                    document.removeEventListener('click', closeLoader);
+                };
+
+                setTimeout(() => {
+                    document.addEventListener('click', closeLoader);
+                }, 100);
+
+                setTimeout(() => {
+                    if (loader.parentNode) {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            if (loader.parentNode) loader.remove();
+                        }, 300);
+                        document.removeEventListener('click', closeLoader);
+                    }
+                }, 3000);
+            },
+
             // 清除所有存储
             clearAllStorage() {
                 const count = localStorage.length;
                 localStorage.clear();
                 this.showToast(`已清除 ${count} 个存储项`);
                 this.updateStorageInfo();
+                this.updateLoaderStatus();
+                this.updatePopupStatus();
             },
 
             // 仅清除弹窗标记
@@ -364,10 +459,11 @@
                 this.updatePageInfo();
                 this.updateStorageInfo();
                 this.updatePopupStatus();
+                this.updateLoaderStatus();
                 this.showToast('信息已刷新');
             },
 
-            // 测试加载动画
+            // 测试加载动画（原有方法，保留兼容）
             testLoadingAnimation() {
                 const loader = document.createElement('div');
                 loader.style.cssText = `
@@ -457,6 +553,26 @@
                 }
             },
 
+            // 更新加载动画状态
+            updateLoaderStatus() {
+                const statusEl = document.getElementById('loaderStatus');
+                const btnText = document.getElementById('loaderBtnText');
+                const btnIcon = document.querySelector('#toggleLoaderBtn i');
+
+                const disabled = localStorage.getItem('disablePageLoader') === 'true';
+
+                if (statusEl) {
+                    statusEl.textContent = disabled ? '已关闭' : '启用中';
+                    statusEl.style.color = disabled ? '#e74c3c' : '#27ae60';
+                }
+                if (btnText) {
+                    btnText.textContent = disabled ? '启用加载动画' : '关闭加载动画';
+                }
+                if (btnIcon) {
+                    btnIcon.className = disabled ? 'fas fa-toggle-off' : 'fas fa-toggle-on';
+                }
+            },
+
             // 更新存储信息
             updateStorageInfo() {
                 const el = document.getElementById('storageCount');
@@ -479,6 +595,7 @@
             debugActions.updatePageInfo();
             debugActions.updateStorageInfo();
             debugActions.updatePopupStatus();
+            debugActions.updateLoaderStatus();
         });
 
         // 添加旋转动画
