@@ -511,6 +511,162 @@
             cursor: pointer;
             box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
         }
+
+        /* ========== 服务器数据卡片样式 ========== */
+        .server-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+            margin: 40px 0 20px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #fff 0%, #f9f9f9 100%);
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(248, 165, 194, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #f8a5c2, #a56de2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(248, 165, 194, 0.2);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 16px;
+            background: linear-gradient(135deg, rgba(248, 165, 194, 0.12) 0%, rgba(165, 109, 226, 0.12) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #f8a5c2;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover .stat-icon {
+            background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%);
+            color: #fff;
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(248, 165, 194, 0.3);
+        }
+
+        .stat-info {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 4px;
+            margin-bottom: 8px;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            line-height: 1;
+            background: linear-gradient(135deg, #f8a5c2 0%, #a56de2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .stat-desc {
+            font-size: 0.9rem;
+            color: #888;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .stats-note {
+            text-align: center;
+            color: #aaa;
+            font-size: 0.85rem;
+            margin-top: 10px;
+            padding: 12px;
+            background: rgba(248, 165, 194, 0.05);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .stats-note i {
+            color: #f8a5c2;
+        }
+
+        /* 响应式优化 */
+        @media (max-width: 768px) {
+            .server-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .stat-card {
+                padding: 20px 15px;
+            }
+
+            .stat-value {
+                font-size: 1.6rem;
+            }
+
+            .stat-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .server-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 16px 10px;
+            }
+
+            .stat-value {
+                font-size: 1.4rem;
+            }
+
+            .stat-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
+        }
     </style>
 </head>
 
@@ -773,24 +929,56 @@
             <h2>服务器数据</h2>
             <hr class="divider">
 
-            <div class="content-text">
-                <p>截至目前，QYServer已经运行了超过343天：</p>
-                <ul>
-                    <li>总玩家数: 1000+</li>
-                    <li>日常活跃玩家: 3+</li>
-                    <li>最长在线时间: 20000+小时（单个玩家）</li>
-                </ul>
-                <a>以上数据统计于2026年1月1日</a>
+            <div class="server-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="runDays">343</span>
+                        <span class="stat-label">天</span>
+                    </div>
+                    <div class="stat-desc">稳定运行</div>
+                </div>
 
-                <!-- ========== 评论区域 ========== -->
-                <h2>玩家评论</h2>
-                <hr class="divider">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value">1000</span>
+                        <span class="stat-label">+</span>
+                    </div>
+                    <div class="stat-desc">注册玩家</div>
+                </div>
 
-                <!-- Twikoo评论系统容器 -->
-                <div id="tcomment" class="comments-section"></div>
-                <!-- ========== 结束 ========== -->
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value">3</span>
+                        <span class="stat-label">+</span>
+                    </div>
+                    <div class="stat-desc">日常活跃</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-crown"></i>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value">20,000</span>
+                        <span class="stat-label">+小时</span>
+                    </div>
+                    <div class="stat-desc">最长在线</div>
+                </div>
 
             </div>
+
+            <p class="stats-note">
+                <i class="fas fa-info-circle"></i> 以上数据统计于 2026年1月1日，实际数据以游戏内为准
+            </p>
         </div>
     </section>
 
@@ -932,7 +1120,28 @@
                 }
             });
         });
-        // ========== Twikoo 初始化结束 ==========
+        // ========== 动态计算运行天数 ==========
+            (function () {
+                // 服务器成立日期：2025年1月1日
+                const startDate = new Date('2025-01-01T00:00:00');
+
+                function updateRunDays() {
+                    const now = new Date();
+                    const diffTime = now - startDate; // 毫秒差
+                    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); // 转换为天数
+
+                    const runDaysEl = document.getElementById('runDays');
+                    if (runDaysEl) {
+                        runDaysEl.textContent = diffDays.toLocaleString();
+                    }
+                }
+
+                // 页面加载时立即更新
+                updateRunDays();
+
+                // 每天凌晨自动更新（检查频率：每小时一次）
+                setInterval(updateRunDays, 1000 * 60 * 60);
+            })();
     </script>
 </body>
 
