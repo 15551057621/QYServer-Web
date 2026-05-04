@@ -27,7 +27,7 @@
             scroll-behavior: smooth;
         }
 
-        /* 内容区域 - 壁纸将在JS中设置 */
+        /* 内容区域 */
         #content {
             padding: 60px 0;
             position: relative;
@@ -265,12 +265,14 @@
         </div>
     </section>
 
+    <!-- 引入问题列表数据 -->
+    <script src="faqList.js"></script>
     <script src="/lib/all.js"></script>
     <script>
         // 壁纸配置
         const wallpapers = {
-            desktop: 'https://t.alcy.cc/pc', // 电脑壁纸
-            mobile: 'https://t.alcy.cc/mp' // 手机壁纸（与电脑一致）
+            desktop: 'https://t.alcy.cc/pc',
+            mobile: 'https://t.alcy.cc/mp'
         };
 
         // 检测设备类型
@@ -283,59 +285,62 @@
             }
         }
 
-        // 设置壁纸
-        // ...existing code...
-        const problems = [
-            { id: '001', title: '常见问题', tags: ['玩家'], summary: '常见问题', file: 'problems/001.md' },
-            { id: '019', title: '领地管理使用教程', tags: ['玩家'], summary: '详细的使用教程', file: 'problems/019.md' },
-            { id: '004', title: '进不去怎么办？', tags: ['玩家'], summary: '检查网络或地区', file: 'problems/004.md' },
-            { id: '003', title: '如何使用oiiao猫', tags: ['玩家'], summary: '如何使用：令名牌+铁砧更将名字改为 oiia', file: 'problems/003.md' },
-            { id: '002', title: '游戏卡顿如何解决?', tags: ['玩家'], summary: ' 删除a&s并开启"材质包限制', file: 'problems/002.md' },
-            { id: '005', title: '如何使用水晶球更改视角?', tags: ['玩家'], summary: '水晶球右键即可', file: 'problems/005.md' },
-            { id: '007', title: '视角不正常如何更改', tags: ['玩家'], summary: '查看视频教程', file: 'problems/007.md' },
-            { id: '006', title: '如何使用网页地图聊天功能？', tags: ['玩家'], summary: '在游戏注册打开网站登录即可', file: 'problems/006.md' },
-            { id: '009', title: '表情使用与注意事项', tags: ['玩家'], summary: '英文双引号', file: 'problems/009.md' },
-            { id: '017', title: '购买', tags: ['入门'], summary: '如何购买', file: 'problems/017.md' },
-            { id: '114', title: '日志', tags: [''], summary: '日志', file: 'problems/114.md' },
-            { id: '010', title: 'Java-BE互通服操作文档', tags: [''], summary: 'Java-BE互通服操作文档', file: 'problems/javabeserver.md' },
-            { id: '011', title: 'Java-BE互通服指令', tags: ['互通服'], summary: 'Java-BE互通服指令', file: 'problems/javabecomm.md' }
-        ];
-
         // 渲染问题列表
         function renderList(filter = '') {
             const list = document.getElementById('problem-list');
+            if (!list) {
+                console.error('未找到 problem-list 元素');
+                return;
+            }
+
             list.innerHTML = '';
             const keyword = filter.trim().toLowerCase();
 
-            problems.filter(p =>
+            const filteredProblems = problems.filter(p =>
                 p.title.toLowerCase().includes(keyword) ||
                 p.summary.toLowerCase().includes(keyword) ||
                 (p.tags && p.tags.join(',').toLowerCase().includes(keyword))
-            ).forEach(p => {
+            );
+
+            if (filteredProblems.length === 0) {
+                list.innerHTML = '<li style="text-align:center;padding:2em;">没有找到匹配的问题</li>';
+                return;
+            }
+
+            filteredProblems.forEach(p => {
                 const li = document.createElement('li');
                 li.innerHTML = `
-          <a href="problem.html?id=${p.id}">${p.title}</a>
-          <small>${p.summary}</small>
-          <span>${(p.tags || []).map(t => `<mark>${t}</mark>`).join(' ')}</span>
-        `;
+                    <a href="problem.html?id=${p.id}">${p.title}</a>
+                    <small>${p.summary}</small>
+                    <span>${(p.tags || []).map(t => `<mark>${t}</mark>`).join(' ')}</span>
+                `;
                 list.appendChild(li);
             });
         }
 
-        // 页面加载完成后
+        // 使用 window.onload 确保所有元素都已加载完毕
         window.addEventListener('load', function () {
             // 设置壁纸
-            setWallpaper();
+            const deviceType = detectDeviceType();
+            const bgDiv = document.querySelector('.bg-fixed');
+            if (bgDiv) {
+                bgDiv.style.backgroundImage = `url('${wallpapers[deviceType]}')`;
+            }
 
             // 初始化问题列表
             renderList();
-        });
 
-        function setWallpaper() {
-            const deviceType = detectDeviceType();
-            const bgDiv = document.querySelector('.bg-fixed');
-            bgDiv.style.backgroundImage = `url('${wallpapers[deviceType]}')`;
-        }
+            // 绑定搜索事件——这是关键修复点
+            const searchInput = document.getElementById('search');
+            if (searchInput) {
+                searchInput.addEventListener('input', function () {
+                    renderList(this.value);
+                });
+                console.log('搜索事件已绑定');
+            } else {
+                console.error('未找到搜索框元素 #search');
+            }
+        });
     </script>
 </body>
 
