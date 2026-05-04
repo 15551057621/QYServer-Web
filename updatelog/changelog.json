@@ -1,13 +1,18 @@
 [
   {
-    "date": "2026-04-05",
+    "date": "2026-06-02",
+    "title": "=== 小更新日志 ===",
+    "content": "[+] 服务器娘己支持上下文\n[+] 支持 投喂 || rua 服务器娘\n[+] 服务器能接入小型知识库\n \n[#] 服务器娘核心变为DeepSeek v4\n[#] 修复网页地图不转发QQ消息问题\n \n<p4>指令</p4>\n<p5>/om aichat give</p5> - 投喂主手手持食物\n<p5>/om aichat rua</p5> - rua一下服务器娘\n<img src=\"\" width=\"80%\" style=\"height:auto;\">\n<p4>介绍</p4>\n<img src=\"https://qycloudreve.s.odn.cc/f/X6nfr/5d2f8b35-d518-42d5-8d48-fabb7144978e.jpeg\" width=\"95%\" style=\"height:auto;\">\nrua和投喂\n投喂时有概率收到回礼哦~\n<img src=\"https://qycloudreve.s.odn.cc/f/qrnhX/carbon.png\" width=\"95%\" style=\"height:auto;\">\n支持投喂的食物"
+  },
+  {
+    "date": "2026-05-01",
     "title": "=== Updata ===",
-    "content": "fix: 无限飞行bug已修复"
+    "content": "[+] 账户邮件绑定功能\n[+] 账户自助迁移功能\n[+] 鱼与美西螈共存设置\n[+] 增加附魔金苹果合成表\n[+] 用水桶可以在下界放水\n[+] Q群内自助获取日志文件\n[+] 50%概率掉落紫水晶母岩\n \n[#] 重构了核心插件，提升其性能\n[#] 最大领地提升至60个\n[#] 修复了无限飞行Bug\n[#] 修复无限刷金币Bug\n[#] 修复了空包远程崩服问题\n[#] 修复 /scale 指令不生效Bug\n[#] 复刻先祖复刻概率由1%变为20%\n[#] 服务器现已支持 1.21.5x - 1.26.1x加入\n[#] 修复了编辑书本将导致1.26.x客户端崩溃的问题\n \n[&] 放了一次小长假 >w<！\n \n<h4>图片</h4>\n<img src=\"https://qycloudreve.s.odn.cc/f/V6OHr/%E5%89%AA%E8%B4%B4%E6%9D%BF%201775966976442.webp\" width=\"80%\" style=\"height:auto;\">\n鱼与美西螈共存设置\n<img src=\"https://qycloudreve.s.odn.cc/f/Pzmh6/777713794258.webp\" width=\"90%\" style=\"height:auto;\">\n账户邮件绑定"
   },
   {
     "date": "2026-03-28",
     "title": "=== Updata ===",
-    "content": "<h3>新功能！</h3>\n现在鱼和美西螈可以一起养了！\n>> 潜行攻击美西螈打开设置\n<a href=\"https://qycloudreve.s.odn.cc/f/V6OHr/%E5%89%AA%E8%B4%B4%E6%9D%BF%201775966976442.webp\"><img src=\"https://qycloudreve.s.odn.cc/f/V6OHr/%E5%89%AA%E8%B4%B4%E6%9D%BF%201775966976442.webp\" width=\"80%\" style=\"height:auto;\"></a>"
+    "content": "<p3>新功能！</p3>\n现在鱼和美西螈可以一起养了！\n>> 潜行攻击美西螈打开设置\n<a href=\"https://qycloudreve.s.odn.cc/f/V6OHr/%E5%89%AA%E8%B4%B4%E6%9D%BF%201775966976442.webp\"><img src=\"https://qycloudreve.s.odn.cc/f/V6OHr/%E5%89%AA%E8%B4%B4%E6%9D%BF%201775966976442.webp\" width=\"80%\" style=\"height:auto;\"></a>"
   },
   {
     "date": "2026-03-25",
